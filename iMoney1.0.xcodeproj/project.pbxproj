@@ -1,0 +1,760 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D1DA2421DDFAE8900D0E0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1DA2411DDFAE8900D0E0E3 /* AppDelegate.swift */; };
+		3D1DA2441DDFAE8900D0E0E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */; };
+		3D1DA2471DDFAE8900D0E0E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA2451DDFAE8900D0E0E3 /* Main.storyboard */; };
+		3D1DA2491DDFAE8900D0E0E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA2481DDFAE8900D0E0E3 /* Assets.xcassets */; };
+		3D1DA24C1DDFAE8900D0E0E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA24A1DDFAE8900D0E0E3 /* LaunchScreen.storyboard */; };
+		3D1DA2571DDFAE8900D0E0E3 /* iMoney1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1DA2561DDFAE8900D0E0E3 /* iMoney1_0Tests.swift */; };
+		3D1DA2621DDFAE8900D0E0E3 /* iMoney1_0UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1DA2611DDFAE8900D0E0E3 /* iMoney1_0UITests.swift */; };
+		3D1DA2701DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
+		3D1DA2711DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
+		3D1DA2721DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
+		9B40834D5B8705E39A1A4915 /* Pods_iMoney1_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D23F8045CF666B302AE5D6 /* Pods_iMoney1_0.framework */; };
+		A0F19647BCC1D90DCB6B6A73 /* Pods_iMoney1_0Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09DCE88CB33C6A3002CA685E /* Pods_iMoney1_0Tests.framework */; };
+		A2F93E0D1DE202B50088BFB4 /* 8557-200.png in Resources */ = {isa = PBXBuildFile; fileRef = A2F93E0C1DE202B50088BFB4 /* 8557-200.png */; };
+		A2F93E0F1DE2033B0088BFB4 /* 557994-200.png in Resources */ = {isa = PBXBuildFile; fileRef = A2F93E0E1DE2033B0088BFB4 /* 557994-200.png */; };
+		A2F93E111DE203690088BFB4 /* 610387-200.png in Resources */ = {isa = PBXBuildFile; fileRef = A2F93E101DE203690088BFB4 /* 610387-200.png */; };
+		A2F93E131DE203880088BFB4 /* 633679-200.png in Resources */ = {isa = PBXBuildFile; fileRef = A2F93E121DE203880088BFB4 /* 633679-200.png */; };
+		CE68F55C84B8C535E4951E14 /* Pods_iMoney1_0UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92350E0F4EBC8987C9986994 /* Pods_iMoney1_0UITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3D1DA2531DDFAE8900D0E0E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D1DA2361DDFAE8800D0E0E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D1DA23D1DDFAE8900D0E0E3;
+			remoteInfo = iMoney1.0;
+		};
+		3D1DA25E1DDFAE8900D0E0E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D1DA2361DDFAE8800D0E0E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D1DA23D1DDFAE8900D0E0E3;
+			remoteInfo = iMoney1.0;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		09DCE88CB33C6A3002CA685E /* Pods_iMoney1_0Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMoney1_0Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11110C7CB7084D97894641E5 /* Pods-iMoney1.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMoney1.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMoney1.0/Pods-iMoney1.0.release.xcconfig"; sourceTree = "<group>"; };
+		3ABD51C6B76AA783C9B93F05 /* Pods-iMoney1.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMoney1.0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMoney1.0/Pods-iMoney1.0.debug.xcconfig"; sourceTree = "<group>"; };
+		3D1DA23E1DDFAE8900D0E0E3 /* iMoney1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMoney1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D1DA2411DDFAE8900D0E0E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3D1DA2461DDFAE8900D0E0E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3D1DA2481DDFAE8900D0E0E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3D1DA24B1DDFAE8900D0E0E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3D1DA24D1DDFAE8900D0E0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D1DA2521DDFAE8900D0E0E3 /* iMoney1.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iMoney1.0Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D1DA2561DDFAE8900D0E0E3 /* iMoney1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMoney1_0Tests.swift; sourceTree = "<group>"; };
+		3D1DA2581DDFAE8900D0E0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D1DA25D1DDFAE8900D0E0E3 /* iMoney1.0UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iMoney1.0UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D1DA2611DDFAE8900D0E0E3 /* iMoney1_0UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMoney1_0UITests.swift; sourceTree = "<group>"; };
+		3D1DA2631DDFAE8900D0E0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3D1DA27B1DDFE29A00D0E0E3 /* iMoney1.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMoney1.0.entitlements; sourceTree = "<group>"; };
+		91D23F8045CF666B302AE5D6 /* Pods_iMoney1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMoney1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		92350E0F4EBC8987C9986994 /* Pods_iMoney1_0UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMoney1_0UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2F93E0C1DE202B50088BFB4 /* 8557-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "8557-200.png"; sourceTree = "<group>"; };
+		A2F93E0E1DE2033B0088BFB4 /* 557994-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "557994-200.png"; sourceTree = "<group>"; };
+		A2F93E101DE203690088BFB4 /* 610387-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "610387-200.png"; sourceTree = "<group>"; };
+		A2F93E121DE203880088BFB4 /* 633679-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "633679-200.png"; sourceTree = "<group>"; };
+		ABBA0869E2A22D6D466B3523 /* Pods-iMoney1.0Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMoney1.0Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMoney1.0Tests/Pods-iMoney1.0Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BAD980C624241AB1344B7505 /* Pods-iMoney1.0UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMoney1.0UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMoney1.0UITests/Pods-iMoney1.0UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D280173A467684600ACE9354 /* Pods-iMoney1.0Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMoney1.0Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMoney1.0Tests/Pods-iMoney1.0Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		FB266F389BF3961F5BAC8926 /* Pods-iMoney1.0UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMoney1.0UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMoney1.0UITests/Pods-iMoney1.0UITests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D1DA23B1DDFAE8900D0E0E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B40834D5B8705E39A1A4915 /* Pods_iMoney1_0.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D1DA24F1DDFAE8900D0E0E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0F19647BCC1D90DCB6B6A73 /* Pods_iMoney1_0Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D1DA25A1DDFAE8900D0E0E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE68F55C84B8C535E4951E14 /* Pods_iMoney1_0UITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D1DA2351DDFAE8800D0E0E3 = {
+			isa = PBXGroup;
+			children = (
+				3D1DA2401DDFAE8900D0E0E3 /* iMoney1.0 */,
+				3D1DA2551DDFAE8900D0E0E3 /* iMoney1.0Tests */,
+				3D1DA2601DDFAE8900D0E0E3 /* iMoney1.0UITests */,
+				3D1DA23F1DDFAE8900D0E0E3 /* Products */,
+				7DB2DB18E47CEA3B8BAF3363 /* Pods */,
+				A9418CD0A2A475EC2F4BE99C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3D1DA23F1DDFAE8900D0E0E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D1DA23E1DDFAE8900D0E0E3 /* iMoney1.0.app */,
+				3D1DA2521DDFAE8900D0E0E3 /* iMoney1.0Tests.xctest */,
+				3D1DA25D1DDFAE8900D0E0E3 /* iMoney1.0UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D1DA2401DDFAE8900D0E0E3 /* iMoney1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				A2F93E0C1DE202B50088BFB4 /* 8557-200.png */,
+				3D1DA27B1DDFE29A00D0E0E3 /* iMoney1.0.entitlements */,
+				3D1DA2411DDFAE8900D0E0E3 /* AppDelegate.swift */,
+				3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */,
+				3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */,
+				A2F93E121DE203880088BFB4 /* 633679-200.png */,
+				A2F93E101DE203690088BFB4 /* 610387-200.png */,
+				A2F93E0E1DE2033B0088BFB4 /* 557994-200.png */,
+				3D1DA2451DDFAE8900D0E0E3 /* Main.storyboard */,
+				3D1DA2481DDFAE8900D0E0E3 /* Assets.xcassets */,
+				3D1DA24A1DDFAE8900D0E0E3 /* LaunchScreen.storyboard */,
+				3D1DA24D1DDFAE8900D0E0E3 /* Info.plist */,
+			);
+			path = iMoney1.0;
+			sourceTree = "<group>";
+		};
+		3D1DA2551DDFAE8900D0E0E3 /* iMoney1.0Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3D1DA2561DDFAE8900D0E0E3 /* iMoney1_0Tests.swift */,
+				3D1DA2581DDFAE8900D0E0E3 /* Info.plist */,
+			);
+			path = iMoney1.0Tests;
+			sourceTree = "<group>";
+		};
+		3D1DA2601DDFAE8900D0E0E3 /* iMoney1.0UITests */ = {
+			isa = PBXGroup;
+			children = (
+				3D1DA2611DDFAE8900D0E0E3 /* iMoney1_0UITests.swift */,
+				3D1DA2631DDFAE8900D0E0E3 /* Info.plist */,
+			);
+			path = iMoney1.0UITests;
+			sourceTree = "<group>";
+		};
+		7DB2DB18E47CEA3B8BAF3363 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3ABD51C6B76AA783C9B93F05 /* Pods-iMoney1.0.debug.xcconfig */,
+				11110C7CB7084D97894641E5 /* Pods-iMoney1.0.release.xcconfig */,
+				D280173A467684600ACE9354 /* Pods-iMoney1.0Tests.debug.xcconfig */,
+				ABBA0869E2A22D6D466B3523 /* Pods-iMoney1.0Tests.release.xcconfig */,
+				BAD980C624241AB1344B7505 /* Pods-iMoney1.0UITests.debug.xcconfig */,
+				FB266F389BF3961F5BAC8926 /* Pods-iMoney1.0UITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A9418CD0A2A475EC2F4BE99C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91D23F8045CF666B302AE5D6 /* Pods_iMoney1_0.framework */,
+				09DCE88CB33C6A3002CA685E /* Pods_iMoney1_0Tests.framework */,
+				92350E0F4EBC8987C9986994 /* Pods_iMoney1_0UITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3D1DA23D1DDFAE8900D0E0E3 /* iMoney1.0 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D1DA2661DDFAE8900D0E0E3 /* Build configuration list for PBXNativeTarget "iMoney1.0" */;
+			buildPhases = (
+				6B4D237835083D8682B8C199 /* [CP] Check Pods Manifest.lock */,
+				3D1DA23A1DDFAE8900D0E0E3 /* Sources */,
+				3D1DA23B1DDFAE8900D0E0E3 /* Frameworks */,
+				3D1DA23C1DDFAE8900D0E0E3 /* Resources */,
+				0FB56F1940D6567557E6B44E /* [CP] Embed Pods Frameworks */,
+				90D41967D55B92E5B6274828 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iMoney1.0;
+			productName = iMoney1.0;
+			productReference = 3D1DA23E1DDFAE8900D0E0E3 /* iMoney1.0.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3D1DA2511DDFAE8900D0E0E3 /* iMoney1.0Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D1DA2691DDFAE8900D0E0E3 /* Build configuration list for PBXNativeTarget "iMoney1.0Tests" */;
+			buildPhases = (
+				4D29E02577BBCB83FC7CFB78 /* [CP] Check Pods Manifest.lock */,
+				3D1DA24E1DDFAE8900D0E0E3 /* Sources */,
+				3D1DA24F1DDFAE8900D0E0E3 /* Frameworks */,
+				3D1DA2501DDFAE8900D0E0E3 /* Resources */,
+				54926DE8EBB4EFC445458BAF /* [CP] Embed Pods Frameworks */,
+				7E5863DF2E27B87432785105 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3D1DA2541DDFAE8900D0E0E3 /* PBXTargetDependency */,
+			);
+			name = iMoney1.0Tests;
+			productName = iMoney1.0Tests;
+			productReference = 3D1DA2521DDFAE8900D0E0E3 /* iMoney1.0Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3D1DA25C1DDFAE8900D0E0E3 /* iMoney1.0UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D1DA26C1DDFAE8900D0E0E3 /* Build configuration list for PBXNativeTarget "iMoney1.0UITests" */;
+			buildPhases = (
+				8208AB4A037BD494D1343C47 /* [CP] Check Pods Manifest.lock */,
+				3D1DA2591DDFAE8900D0E0E3 /* Sources */,
+				3D1DA25A1DDFAE8900D0E0E3 /* Frameworks */,
+				3D1DA25B1DDFAE8900D0E0E3 /* Resources */,
+				5A01DEF7BE9246F1B0DFB63F /* [CP] Embed Pods Frameworks */,
+				8B88A6658B8E89FE1E78A8C6 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3D1DA25F1DDFAE8900D0E0E3 /* PBXTargetDependency */,
+			);
+			name = iMoney1.0UITests;
+			productName = iMoney1.0UITests;
+			productReference = 3D1DA25D1DDFAE8900D0E0E3 /* iMoney1.0UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3D1DA2361DDFAE8800D0E0E3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "文静";
+				TargetAttributes = {
+					3D1DA23D1DDFAE8900D0E0E3 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = Q7ZG3R7KV3;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+					3D1DA2511DDFAE8900D0E0E3 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3D1DA23D1DDFAE8900D0E0E3;
+					};
+					3D1DA25C1DDFAE8900D0E0E3 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3D1DA23D1DDFAE8900D0E0E3;
+					};
+				};
+			};
+			buildConfigurationList = 3D1DA2391DDFAE8800D0E0E3 /* Build configuration list for PBXProject "iMoney1.0" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3D1DA2351DDFAE8800D0E0E3;
+			productRefGroup = 3D1DA23F1DDFAE8900D0E0E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3D1DA23D1DDFAE8900D0E0E3 /* iMoney1.0 */,
+				3D1DA2511DDFAE8900D0E0E3 /* iMoney1.0Tests */,
+				3D1DA25C1DDFAE8900D0E0E3 /* iMoney1.0UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3D1DA23C1DDFAE8900D0E0E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1DA24C1DDFAE8900D0E0E3 /* LaunchScreen.storyboard in Resources */,
+				A2F93E111DE203690088BFB4 /* 610387-200.png in Resources */,
+				A2F93E131DE203880088BFB4 /* 633679-200.png in Resources */,
+				3D1DA2701DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */,
+				3D1DA2491DDFAE8900D0E0E3 /* Assets.xcassets in Resources */,
+				A2F93E0F1DE2033B0088BFB4 /* 557994-200.png in Resources */,
+				3D1DA2471DDFAE8900D0E0E3 /* Main.storyboard in Resources */,
+				A2F93E0D1DE202B50088BFB4 /* 8557-200.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D1DA2501DDFAE8900D0E0E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1DA2711DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D1DA25B1DDFAE8900D0E0E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1DA2721DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0FB56F1940D6567557E6B44E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMoney1.0/Pods-iMoney1.0-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D29E02577BBCB83FC7CFB78 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		54926DE8EBB4EFC445458BAF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMoney1.0Tests/Pods-iMoney1.0Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A01DEF7BE9246F1B0DFB63F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMoney1.0UITests/Pods-iMoney1.0UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6B4D237835083D8682B8C199 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7E5863DF2E27B87432785105 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMoney1.0Tests/Pods-iMoney1.0Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8208AB4A037BD494D1343C47 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8B88A6658B8E89FE1E78A8C6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMoney1.0UITests/Pods-iMoney1.0UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90D41967D55B92E5B6274828 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMoney1.0/Pods-iMoney1.0-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3D1DA23A1DDFAE8900D0E0E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1DA2441DDFAE8900D0E0E3 /* ViewController.swift in Sources */,
+				3D1DA2421DDFAE8900D0E0E3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D1DA24E1DDFAE8900D0E0E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1DA2571DDFAE8900D0E0E3 /* iMoney1_0Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D1DA2591DDFAE8900D0E0E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1DA2621DDFAE8900D0E0E3 /* iMoney1_0UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3D1DA2541DDFAE8900D0E0E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D1DA23D1DDFAE8900D0E0E3 /* iMoney1.0 */;
+			targetProxy = 3D1DA2531DDFAE8900D0E0E3 /* PBXContainerItemProxy */;
+		};
+		3D1DA25F1DDFAE8900D0E0E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D1DA23D1DDFAE8900D0E0E3 /* iMoney1.0 */;
+			targetProxy = 3D1DA25E1DDFAE8900D0E0E3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3D1DA2451DDFAE8900D0E0E3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D1DA2461DDFAE8900D0E0E3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3D1DA24A1DDFAE8900D0E0E3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D1DA24B1DDFAE8900D0E0E3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3D1DA2641DDFAE8900D0E0E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3D1DA2651DDFAE8900D0E0E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3D1DA2671DDFAE8900D0E0E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3ABD51C6B76AA783C9B93F05 /* Pods-iMoney1.0.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iMoney1.0/iMoney1.0.entitlements;
+				DEVELOPMENT_TEAM = Q7ZG3R7KV3;
+				INFOPLIST_FILE = iMoney1.0/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "whooooo.iMoney1-0";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3D1DA2681DDFAE8900D0E0E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11110C7CB7084D97894641E5 /* Pods-iMoney1.0.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iMoney1.0/iMoney1.0.entitlements;
+				DEVELOPMENT_TEAM = Q7ZG3R7KV3;
+				INFOPLIST_FILE = iMoney1.0/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "whooooo.iMoney1-0";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		3D1DA26A1DDFAE8900D0E0E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D280173A467684600ACE9354 /* Pods-iMoney1.0Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = iMoney1.0Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "whooooo.iMoney1-0Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iMoney1.0.app/iMoney1.0";
+			};
+			name = Debug;
+		};
+		3D1DA26B1DDFAE8900D0E0E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABBA0869E2A22D6D466B3523 /* Pods-iMoney1.0Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = iMoney1.0Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "whooooo.iMoney1-0Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iMoney1.0.app/iMoney1.0";
+			};
+			name = Release;
+		};
+		3D1DA26D1DDFAE8900D0E0E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAD980C624241AB1344B7505 /* Pods-iMoney1.0UITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = iMoney1.0UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "whooooo.iMoney1-0UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = iMoney1.0;
+			};
+			name = Debug;
+		};
+		3D1DA26E1DDFAE8900D0E0E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB266F389BF3961F5BAC8926 /* Pods-iMoney1.0UITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = iMoney1.0UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "whooooo.iMoney1-0UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = iMoney1.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D1DA2391DDFAE8800D0E0E3 /* Build configuration list for PBXProject "iMoney1.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D1DA2641DDFAE8900D0E0E3 /* Debug */,
+				3D1DA2651DDFAE8900D0E0E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D1DA2661DDFAE8900D0E0E3 /* Build configuration list for PBXNativeTarget "iMoney1.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D1DA2671DDFAE8900D0E0E3 /* Debug */,
+				3D1DA2681DDFAE8900D0E0E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D1DA2691DDFAE8900D0E0E3 /* Build configuration list for PBXNativeTarget "iMoney1.0Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D1DA26A1DDFAE8900D0E0E3 /* Debug */,
+				3D1DA26B1DDFAE8900D0E0E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D1DA26C1DDFAE8900D0E0E3 /* Build configuration list for PBXNativeTarget "iMoney1.0UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D1DA26D1DDFAE8900D0E0E3 /* Debug */,
+				3D1DA26E1DDFAE8900D0E0E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3D1DA2361DDFAE8800D0E0E3 /* Project object */;
+}
