@@ -62,6 +62,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                                                     if error == nil {
                                                                         FIRAuth.auth()!.signIn(withEmail: self.emailField.text!,
                                                                                                password: self.passwordField.text!)
+                                                                        self.saveUserInfo(user!, withEmail: emailField.text!)
                                                                     }
                                         }
         }
@@ -83,5 +84,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    func saveUserInfo(_ user: FIRUser, withEmail email: String) {
+        
+        // Create a change request
+        let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+        changeRequest?.displayName = email
+        
+        // Commit profile changes to server
+        changeRequest?.commitChanges() { (error) in
+            
+            if let error = error {
+                //                self.showMessagePrompt(error.localizedDescription)
+                return
+            }
+            
+            // [START basic_write]
+            self.ref.child("users").child(user.uid).setValue(["Email": email])
+            // [END basic_write]
+        }
+        
+    }
+
 }
 
