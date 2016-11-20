@@ -19,6 +19,7 @@
 		3D1DA2721DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
 		9B40834D5B8705E39A1A4915 /* Pods_iMoney1_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D23F8045CF666B302AE5D6 /* Pods_iMoney1_0.framework */; };
 		A0F19647BCC1D90DCB6B6A73 /* Pods_iMoney1_0Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09DCE88CB33C6A3002CA685E /* Pods_iMoney1_0Tests.framework */; };
+		A2C4320D1DE25B9B00286E3B /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A2C4320C1DE25B9B00286E3B /* AppIcon.png */; };
 		A2F93E0D1DE202B50088BFB4 /* 8557-200.png in Resources */ = {isa = PBXBuildFile; fileRef = A2F93E0C1DE202B50088BFB4 /* 8557-200.png */; };
 		A2F93E0F1DE2033B0088BFB4 /* 557994-200.png in Resources */ = {isa = PBXBuildFile; fileRef = A2F93E0E1DE2033B0088BFB4 /* 557994-200.png */; };
 		A2F93E111DE203690088BFB4 /* 610387-200.png in Resources */ = {isa = PBXBuildFile; fileRef = A2F93E101DE203690088BFB4 /* 610387-200.png */; };
@@ -64,6 +65,7 @@
 		3D1DA27B1DDFE29A00D0E0E3 /* iMoney1.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMoney1.0.entitlements; sourceTree = "<group>"; };
 		91D23F8045CF666B302AE5D6 /* Pods_iMoney1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMoney1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92350E0F4EBC8987C9986994 /* Pods_iMoney1_0UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMoney1_0UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2C4320C1DE25B9B00286E3B /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
 		A2F93E0C1DE202B50088BFB4 /* 8557-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "8557-200.png"; sourceTree = "<group>"; };
 		A2F93E0E1DE2033B0088BFB4 /* 557994-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "557994-200.png"; sourceTree = "<group>"; };
 		A2F93E101DE203690088BFB4 /* 610387-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "610387-200.png"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */,
 				3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */,
 				A2F93E121DE203880088BFB4 /* 633679-200.png */,
+				A2C4320C1DE25B9B00286E3B /* AppIcon.png */,
 				A2F93E101DE203690088BFB4 /* 610387-200.png */,
 				A2F93E0E1DE2033B0088BFB4 /* 557994-200.png */,
 				3D1DA2451DDFAE8900D0E0E3 /* Main.storyboard */,
@@ -308,6 +311,7 @@
 			files = (
 				3D1DA24C1DDFAE8900D0E0E3 /* LaunchScreen.storyboard in Resources */,
 				A2F93E111DE203690088BFB4 /* 610387-200.png in Resources */,
+				A2C4320D1DE25B9B00286E3B /* AppIcon.png in Resources */,
 				A2F93E131DE203880088BFB4 /* 633679-200.png in Resources */,
 				3D1DA2701DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */,
 				3D1DA2491DDFAE8900D0E0E3 /* Assets.xcassets in Resources */,
