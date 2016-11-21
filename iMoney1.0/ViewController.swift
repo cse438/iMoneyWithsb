@@ -33,6 +33,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Sign user in
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             guard let user = user, error == nil else {
+                let signInAlert = UIAlertController(title: "Sorry",
+                                                    message: "Email and password combination is not valid, please sign up or try again.",
+                                                    preferredStyle: .alert)
+                let dismissAction = UIAlertAction(title: "OK",
+                                                  style: .default)
+                signInAlert.addAction(dismissAction)
+                self.present(signInAlert, animated: true, completion: nil)
                 return
             }
             
@@ -41,6 +48,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 // Check if user already exists
                 guard !snapshot.exists() else {
                     print(user.uid)
+                    self.performSegue(withIdentifier: "toDashboard", sender: sender)
                     return
                 }
             }) // End of observeSingleEvent
@@ -63,6 +71,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                                                         FIRAuth.auth()!.signIn(withEmail: self.emailField.text!,
                                                                                                password: self.passwordField.text!)
                                                                         self.saveUserInfo(user!, withEmail: emailField.text!)
+                                                                        self.performSegue(withIdentifier: "toDashboard", sender: sender)
+                                                                    }
+                                                                    else {
+                                                                        let signUpAlert = UIAlertController(title: "Sorry",
+                                                                                                      message: "Can't create account",
+                                                                                                      preferredStyle: .alert)
+                                                                        let dismissAction = UIAlertAction(title: "OK",
+                                                                                                          style: .default)
+                                                                        signUpAlert.addAction(dismissAction)
+                                                                        self.present(signUpAlert, animated: true, completion: nil)
                                                                     }
                                         }
         }
