@@ -9,10 +9,19 @@
 import UIKit
 import Firebase
 
-class AccountController: UIViewController {
+class AccountController: UIViewController, UICollectionViewDataSource {
+    
+    @IBOutlet weak var theCollectionView: UICollectionView!
+    
+    @IBOutlet weak var dataLabel: UILabel!
     
     var ref: FIRDatabaseReference!
     var currentUser: User!
+    var accountsDict: [String : [String : String]] = [:]
+    var accountImage: UIImage! = UIImage(named: "Money.png")
+    
+    override func viewWillAppear(_ animated: Bool) {
+            }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +34,29 @@ class AccountController: UIViewController {
             let uid = user.uid
             self.currentUser = User(uid:uid,email:email)
         }
+        
+        print("strat to query")
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        self.ref.child("Accounts").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard snapshot.exists() else {
+                return
+            }
+            self.accountsDict = snapshot.value as? [String : [String : String]] ?? [:]
+            for (accountID, account) in self.accountsDict {
+                print(accountID + ": " + account["balance"]!)
+            }
+            print("end of query")
+            print("We get \(self.accountsDict.count) accounts")
+            
+            print("before reloading data")
+            self.theCollectionView.reloadData()
+            print("after reloading data")
+            print("we have \(self.accountsDict.count) accounts")
+        }) // End of observeSingleEvent
+
+        
+        theCollectionView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,6 +104,24 @@ class AccountController: UIViewController {
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("number of cell: \(accountsDict.count) returned.")
+        return accountsDict.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "accountCell", for: indexPath) as! AccountCell
+        let accountsArray = Array(accountsDict.values)
+        if accountsDict.count != 0 {
+            let account = accountsArray[indexPath.row]
+            
+            cell.theImage.image = accountImage!
+            cell.nameLabel.text = account["accountNumber"]
+            cell.balanceLabel.text = "balance: " + account["balance"]!
+            print("cell " + account["accountNumber"]! + " populated.")
+        }
+        return cell
+    }
     
 
     /*
