@@ -19,6 +19,7 @@
 		3D1DA2701DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
 		3D1DA2711DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
 		3D1DA2721DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
+		618A0AA91DE2949100CDFAD9 /* spendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618A0AA81DE2949100CDFAD9 /* spendingController.swift */; };
 		61E28B581DE25743008C02D2 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E28B571DE25743008C02D2 /* AccountController.swift */; };
 		61E28B5A1DE25D3C008C02D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E28B591DE25D3B008C02D2 /* User.swift */; };
 		9B40834D5B8705E39A1A4915 /* Pods_iMoney1_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D23F8045CF666B302AE5D6 /* Pods_iMoney1_0.framework */; };
@@ -69,6 +70,7 @@
 		3D1DA2631DDFAE8900D0E0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D1DA27B1DDFE29A00D0E0E3 /* iMoney1.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMoney1.0.entitlements; sourceTree = "<group>"; };
+		618A0AA81DE2949100CDFAD9 /* spendingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spendingController.swift; sourceTree = "<group>"; };
 		61E28B571DE25743008C02D2 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountController.swift; path = ../AccountController.swift; sourceTree = "<group>"; };
 		61E28B591DE25D3B008C02D2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		91D23F8045CF666B302AE5D6 /* Pods_iMoney1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMoney1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 				A2F93E0C1DE202B50088BFB4 /* 8557-200.png */,
 				3D1DA27B1DDFE29A00D0E0E3 /* iMoney1.0.entitlements */,
 				3D1DA2411DDFAE8900D0E0E3 /* AppDelegate.swift */,
+				618A0AA81DE2949100CDFAD9 /* spendingController.swift */,
 				61E28B571DE25743008C02D2 /* AccountController.swift */,
 				3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */,
 				359DE4DA1DE2A56E00EF497F /* AccountCell.swift */,
@@ -498,6 +501,7 @@
 				61E28B5A1DE25D3C008C02D2 /* User.swift in Sources */,
 				359DE4DB1DE2A56E00EF497F /* AccountCell.swift in Sources */,
 				61E28B581DE25743008C02D2 /* AccountController.swift in Sources */,
+				618A0AA91DE2949100CDFAD9 /* spendingController.swift in Sources */,
 				3D1DA2441DDFAE8900D0E0E3 /* ViewController.swift in Sources */,
 				3D1DA2421DDFAE8900D0E0E3 /* AppDelegate.swift in Sources */,
 			);
