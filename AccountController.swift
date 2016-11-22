@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
-class AccountController: UIViewController, UICollectionViewDataSource {
+class AccountController: UIViewController, UICollectionViewDataSource, CLLocationManagerDelegate {
     
     @IBOutlet weak var theCollectionView: UICollectionView!
     
@@ -20,6 +21,7 @@ class AccountController: UIViewController, UICollectionViewDataSource {
     var accountsDict: [String : [String : String]] = [:]
     var accountImage: UIImage! = UIImage(named: "Money.png")
     
+    let locationManager = CLLocationManager()
     override func viewWillAppear(_ animated: Bool) {
             }
     
@@ -33,6 +35,11 @@ class AccountController: UIViewController, UICollectionViewDataSource {
             let email = user.email!
             let uid = user.uid
             self.currentUser = User(uid:uid,email:email)
+            
+            
+            self.locationManager.delegate = self
+            self.locationManager.requestAlwaysAuthorization()
+
         }
         
         print("strat to query")
@@ -82,7 +89,7 @@ class AccountController: UIViewController, UICollectionViewDataSource {
                                         print("here is " + id)
                                         self.ref.child("Accounts").child(id).childByAutoId().setValue(["owner":email, "accountNumber":accountNumber.text!, "balance":balance.text!])
                                         
-                        
+            
                                         
         }
         

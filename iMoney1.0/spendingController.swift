@@ -8,8 +8,10 @@
 
 import UIKit
 import Firebase
+import CoreLocation
+import MapKit
 
-class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var note: UITextView!
     @IBOutlet weak var amount: UITextField!
@@ -18,6 +20,16 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var catePicker: UIPickerView!
     
     @IBOutlet weak var accountPicker: UIPickerView!
+    
+    @IBOutlet weak var mapView: MKMapView!
+    
+    
+     let locationManager = CLLocationManager()
+    
+    
+    var currentLocation = CLLocation()
+    
+    
     var category = ["Clothes", "Food", "Living", "Transport"];
     var accounts = [String]();
     
@@ -26,11 +38,51 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 //    var subcategory0 = ["Pants","Dresses","Overcoat",]
     
     
+  
+    func determineCurrentLocation()
+    {
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        if CLLocationManager.locationServicesEnabled() {
+            
+            locationManager.startUpdatingLocation()
+        }
+            
+            
+        }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        var userLocation = locations[0]
+        if CLLocationManager.locationServicesEnabled() {
+            userLocation = locations[0]}
+        currentLocation = userLocation
+        print("The current location is \(userLocation)")
+        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+    
+        
+        mapView.setRegion(region, animated: true)
+        
+        // Drop a pin at user's Current Location
+        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+        myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+        myAnnotation.title = "Current location"
+        mapView.addAnnotation(myAnnotation)
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ref = FIRDatabase.database().reference()
-
+        
+       determineCurrentLocation()
+        
+        
         // Do any additional setup after loading the view.
         catePicker.dataSource = self;
         catePicker.delegate = self;
@@ -106,10 +158,14 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         let id = (FIRAuth.auth()?.currentUser?.uid)!
         let amnt = amount.text!
         let nt = note.text!
+        let loc: [Double] = [currentLocation.coordinate.latitude,currentLocation.coordinate.longitude]
+        
         print(cateStr)
         print(accntStr)
         print(amnt)
         print(nt)
+        print(loc)
+        
         self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt])
         
     }
