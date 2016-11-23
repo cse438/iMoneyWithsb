@@ -20,10 +20,10 @@ class statisticsController: UIViewController,MKMapViewDelegate {
     
         // Do any additional setup after loading the view.
         coordinatesSet?.append(CLLocationCoordinate2DMake(0.0, 0.0))
-//        coordinatesSet?.append(CLLocationCoordinate2DMake(33.0, 25.0))
-//        coordinatesSet?.append(CLLocationCoordinate2DMake(35.0, 45.0))
-//        coordinatesSet?.append(CLLocationCoordinate2DMake(57.0, 67.0))
-//        coordinatesSet?.append(CLLocationCoordinate2DMake(57.0, 64.0))
+        coordinatesSet?.append(CLLocationCoordinate2DMake(33.0, 25.0))
+        coordinatesSet?.append(CLLocationCoordinate2DMake(35.0, 45.0))
+        coordinatesSet?.append(CLLocationCoordinate2DMake(57.0, 67.0))
+        coordinatesSet?.append(CLLocationCoordinate2DMake(57.0, 64.0))
         fetchCoordinates()
     
         for coordinate in coordinatesSet!{
@@ -31,7 +31,7 @@ class statisticsController: UIViewController,MKMapViewDelegate {
         myAnnotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
         myAnnotation.title = (String(coordinate.latitude) + "," + String(coordinate.longitude))
             
-            mapView.addAnnotation(myAnnotation)}
+            mapView.addAnnotation(myAnnotation)} 
 
     }
     func fetchCoordinates(){

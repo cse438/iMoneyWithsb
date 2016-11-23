@@ -10,16 +10,53 @@ import CoreLocation
 import MapKit
 import UIKit
 
-class earningController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class earningController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     
     @IBOutlet weak var mapView: MKMapView!
     
     
     let locationManager = CLLocationManager()
-    
+   let myAnnotation: MKPointAnnotation = MKPointAnnotation()
     
     var currentLocation = CLLocation()
+    
+    @IBOutlet weak var imageDisplay: UIImageView!
+    @IBOutlet weak var cameraButton: UIButton!
+    @IBAction func cameraClicked(_ sender: Any) {
+        
+        
+        
+        let picker = UIImagePickerController()
+        
+        picker.delegate = self
+        picker.sourceType = .camera
+        
+        present(picker,animated: true, completion: nil)
+        
+    }
+    
+    func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        
+        print("in here")
+        if error == nil {
+            let ac = UIAlertController(title: "Saved!", message: "image has been saved to your photos." , preferredStyle: .alert
+            )
+            ac.addAction(UIAlertAction(title:"OK", style: .default, handler:nil))
+            present(ac, animated:true, completion:nil)
+        } else{
+            let ac = UIAlertController(title:"Save error", message: error?.localizedDescription,preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title:"OK", style: .default, handler:nil))
+            present(ac, animated:true, completion:nil)
+        }
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        imageDisplay.image = info[UIImagePickerControllerOriginalImage] as? UIImage;dismiss(animated: true, completion: nil)
+        UIImageWriteToSavedPhotosAlbum(imageDisplay.image!,self,#selector(spendingController.image(_:didFinishSavingWithError:contextInfo:)),nil)
+    }
+    
+    
     
     func determineCurrentLocation()
     {
@@ -31,6 +68,8 @@ class earningController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if CLLocationManager.locationServicesEnabled() {
            
             locationManager.startUpdatingLocation()
+            self.myAnnotation.title = "Current location"
+            mapView.addAnnotation(myAnnotation)
         }
         
     }
@@ -50,10 +89,9 @@ class earningController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.setRegion(region, animated: true)
         
         // Drop a pin at user's Current Location
-        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+       
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-        myAnnotation.title = "Current location"
-        mapView.addAnnotation(myAnnotation)
+
         
     }
 
