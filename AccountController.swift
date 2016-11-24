@@ -28,6 +28,10 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.locationManager.delegate = self
+        self.locationManager.requestAlwaysAuthorization()
+        
+        
         ref = FIRDatabase.database().reference()
         // Do any additional setup after loading the view.
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
@@ -37,8 +41,6 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
             self.currentUser = User(uid:uid,email:email)
             
             
-            self.locationManager.delegate = self
-            self.locationManager.requestAlwaysAuthorization()
 
         }
         

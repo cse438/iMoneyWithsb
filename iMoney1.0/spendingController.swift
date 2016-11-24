@@ -198,15 +198,16 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         let id = (FIRAuth.auth()?.currentUser?.uid)!
         let amnt = amount.text!
         let nt = note.text!
-        let loc: [Double] = [currentLocation.coordinate.latitude,currentLocation.coordinate.longitude]
+        let latitude = currentLocation.coordinate.latitude
+        let longitude = currentLocation.coordinate.longitude
         
         print(cateStr)
         print(accntStr)
         print(amnt)
         print(nt)
-        print(loc)
+    
         
-        self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt])
+        self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude])
         
     }
 

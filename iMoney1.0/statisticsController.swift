@@ -8,37 +8,111 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 class statisticsController: UIViewController,MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-    var coordinatesSet:[CLLocationCoordinate2D]? = []
-    
+    var longitudeSet: [CLLocationDegrees] = []
+    var latitudeSet: [CLLocationDegrees] = []
+    var ref: FIRDatabaseReference!
+    var currentUser: User!
+    var coordinateSet: [CLLocationCoordinate2D]? = []
+    var records: [String: [String: Any]]? = [:]
+    var titles: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         // Do any additional setup after loading the view.
-        coordinatesSet?.append(CLLocationCoordinate2DMake(0.0, 0.0))
-        coordinatesSet?.append(CLLocationCoordinate2DMake(33.0, 25.0))
-        coordinatesSet?.append(CLLocationCoordinate2DMake(35.0, 45.0))
-        coordinatesSet?.append(CLLocationCoordinate2DMake(57.0, 67.0))
-        coordinatesSet?.append(CLLocationCoordinate2DMake(57.0, 64.0))
-        fetchCoordinates()
-    
-        for coordinate in coordinatesSet!{
-        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
-        myAnnotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
-        myAnnotation.title = (String(coordinate.latitude) + "," + String(coordinate.longitude))
+       
+        
+        
+        ref = FIRDatabase.database().reference()
+        FIRAuth.auth()!.addStateDidChangeListener{auth, user in
+        guard let user = user else { return }
+        let email = user.email!
+        let uid = user.uid
+            self.currentUser = User(uid:uid,email:email)
+        }
+        
+      
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        self.ref.child("Records").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
-            mapView.addAnnotation(myAnnotation)} 
+            guard snapshot.exists() else {
+                return
+            }
+            
+            
+            let records = snapshot.value as? [String: [String : Any]] ?? [:]
+          
+             print("*********************")
+             print(records)
+             print("*********************")
+            
+            if records.count != 0 {
+                print("--------------------------------------")
+                
+                for singleRecord in records.values{
+                    self.longitudeSet.append(singleRecord["locationLongitude"] as! CLLocationDegrees)
+                    self.latitudeSet.append(singleRecord["locationLatitude"] as! CLLocationDegrees)
+                    self.titles.append(String(describing: singleRecord["Amount"]) + "for" + String(describing: singleRecord["Category"]))
+                }
+                
+                
+                
+                
+                
+                
+                
+                print(self.longitudeSet)
+                print(self.latitudeSet)
+                print("--------------------------------------")
+                
+                
+                
+                var i: Int = 0
+                while(i < self.longitudeSet.count){
+                    self.coordinateSet?.append(CLLocationCoordinate2D())
+                    self.coordinateSet?[i].latitude = self.latitudeSet[i]
+                    self.coordinateSet?[i].longitude = self.longitudeSet[i]
+                    print("@@@@@@@@@@@@@@@@@@")
+                    print(self.coordinateSet?[i])
+                    print("@@@@@@@@@@@@@@@@@@")
+                    i = i + 1
+                    
+                }
+                
+                var j: Int = 0
+                for coordinate in self.coordinateSet!{
+                    let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+                    myAnnotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
+                    myAnnotation.title = (self.titles[j])
+                    j += 1
+                    self.mapView.addAnnotation(myAnnotation)
+                }
+            
+                
+            }
+            
+            
+        })
+        
+        
+        
+       
+       
+        
+        
+        }
 
-    }
-    func fetchCoordinates(){
-        
-        
-        
-    }
+    
+    
+    
+    
+    
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
