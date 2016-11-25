@@ -23,13 +23,14 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     @IBOutlet weak var mapView: MKMapView!
     
-    @IBOutlet weak var imageDisplay: UIImageView!
+    @IBOutlet weak var imageDisplay: UIImageView?
     
     @IBOutlet weak var cameraButton: UIButton!
      let locationManager = CLLocationManager()
     
     var currentLocation = CLLocation()
     let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+    
     
     var category = ["Clothes", "Food", "Living", "Transport"];
     var accounts = [String]();
@@ -51,12 +52,21 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        imageDisplay.image = info[UIImagePickerControllerOriginalImage] as? UIImage;dismiss(animated: true, completion: nil)
-        imageDisplay.isUserInteractionEnabled = true
-        UIImageWriteToSavedPhotosAlbum(imageDisplay.image!,self,#selector(spendingController.image(_:didFinishSavingWithError:contextInfo:)),nil)
+        imageDisplay?.image = info[UIImagePickerControllerOriginalImage] as? UIImage;dismiss(animated: true, completion: nil)
+        imageDisplay?.isUserInteractionEnabled = true
+        UIImageWriteToSavedPhotosAlbum((imageDisplay?.image!)!,self,#selector(spendingController.image(_:didFinishSavingWithError:contextInfo:)),nil)
+        
+       
+        
+        
+      
         
     }
  
+    
+    
+    var base64String: NSString!
+    
     func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         
         print("in here")
@@ -201,14 +211,28 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         let latitude = currentLocation.coordinate.latitude
         let longitude = currentLocation.coordinate.longitude
         
+        
+        var data = NSData()
+        data = UIImageJPEGRepresentation(imageDisplay!.image!, 0.8)! as NSData
+        
+        let base64String = data.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
+                    
+                    
+                    
+                    
+                    
+        print("-----------------------------")
         print(cateStr)
         print(accntStr)
+        
         print(amnt)
         print(nt)
+        print(base64String)
+        print("-----------------------------")
+
+        
+        self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
     
-        
-        self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude])
-        
     }
 
     override func didReceiveMemoryWarning() {

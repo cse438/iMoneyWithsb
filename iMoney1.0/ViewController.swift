@@ -59,7 +59,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: "Register",
                                       message: "Register",
                                       preferredStyle: .alert)
-        
+       
         let saveAction = UIAlertAction(title: "Save",
                                        style: .default) { action in
                                         let emailField = alert.textFields![0]

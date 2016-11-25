@@ -107,8 +107,13 @@ class earningController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     @IBAction func saveTouched(_ sender: Any) {
         
-        let loc: [Double] = [currentLocation.coordinate.latitude,currentLocation.coordinate.longitude]
-        print(loc)
+        let latitude = currentLocation.coordinate.latitude
+        let longitude = currentLocation.coordinate.longitude
+        
+        
+        
+        
+//            self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude])
     }
     @IBAction func cancelTouched(_ sender: Any) {
         
