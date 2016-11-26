@@ -146,7 +146,9 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         fetchAccounts()
         
         print("View Loading")
-        
+  
+        self.catePicker.selectRow(0, inComponent: 0, animated: false)
+        self.accountPicker.selectRow(0, inComponent: 0, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
