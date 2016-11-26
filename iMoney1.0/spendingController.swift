@@ -33,10 +33,10 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     
     var category = ["Clothes", "Food", "Living", "Transport"];
-    var accounts = [String]();
+    var accounts = [Account]();
     
     var cateStr : String = ""
-    var accntStr : String = ""
+    var selectedAccnt : Account?
 //    var subcategory0 = ["Pants","Dresses","Overcoat",]
     
     
@@ -145,6 +145,12 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         fetchAccounts()
         
+        print("View Loading")
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("View appearing")
     }
     
     
@@ -152,7 +158,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         print("strat to query")
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         self.ref.child("Accounts").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            
+            self.accountPicker.reloadAllComponents()
             guard snapshot.exists() else {
                 return
             }
@@ -161,7 +167,9 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
                 print("in here")
                 print("id" + accntID)
                 print("accountNumber" + accnt["accountNumber"]!)
-                self.accounts.append(accnt["accountNumber"]!)
+                let account = Account(id:accntID, AccountNumber: accnt["accountNumber"]!, balance : accnt["balance"]!, owner : accnt["owner"]!)
+                self.accounts.append(account)
+            self.accountPicker.reloadAllComponents()
             }
             print("end of query")
         }) // End of observeSingleEvent
@@ -184,7 +192,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         if pickerView.tag == 0 {
             return category[row]
         }
-        return accounts[row]
+        return accounts[row].AccountNumber
         
     }
     
@@ -197,10 +205,12 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        print("row:  \(row)")
         if pickerView.tag == 0{
             cateStr = category[row]
+        }else{
+            selectedAccnt = accounts[row]
         }
-        accntStr = accounts[row]
     }
     
 
@@ -223,7 +233,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
                     
         print("-----------------------------")
         print(cateStr)
-        print(accntStr)
+        print("account number is " + selectedAccnt!.AccountNumber)
         
         print(amnt)
         print(nt)
@@ -231,8 +241,20 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         print("-----------------------------")
 
         
-        self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
-    
+//        self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
+        
+        self.ref.child("Records").child(id).child(selectedAccnt!.id).childByAutoId().setValue(["category":cateStr, "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
+        
+            let blc = Int(selectedAccnt!.balance)
+            let spd = Int(amnt)
+            let newBlc = blc! - spd!
+        
+            print(newBlc)
+        
+            self.ref.child("Accounts").child(id).child(selectedAccnt!.id).setValue(["owner":selectedAccnt!.owner,"accountNumber":selectedAccnt!.AccountNumber, "balance":String(newBlc)])
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

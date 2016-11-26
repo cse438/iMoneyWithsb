@@ -20,6 +20,7 @@
 		3D1DA2711DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
 		3D1DA2721DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
 		618A0AA91DE2949100CDFAD9 /* spendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618A0AA81DE2949100CDFAD9 /* spendingController.swift */; };
+		61ADE02B1DEA03EC005E37D0 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ADE02A1DEA03EC005E37D0 /* Account.swift */; };
 		61E28B581DE25743008C02D2 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E28B571DE25743008C02D2 /* AccountController.swift */; };
 		61E28B5A1DE25D3C008C02D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E28B591DE25D3B008C02D2 /* User.swift */; };
 		9B40834D5B8705E39A1A4915 /* Pods_iMoney1_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D23F8045CF666B302AE5D6 /* Pods_iMoney1_0.framework */; };
@@ -75,6 +76,7 @@
 		3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D1DA27B1DDFE29A00D0E0E3 /* iMoney1.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMoney1.0.entitlements; sourceTree = "<group>"; };
 		618A0AA81DE2949100CDFAD9 /* spendingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spendingController.swift; sourceTree = "<group>"; };
+		61ADE02A1DEA03EC005E37D0 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		61E28B571DE25743008C02D2 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountController.swift; path = ../AccountController.swift; sourceTree = "<group>"; };
 		61E28B591DE25D3B008C02D2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		91D23F8045CF666B302AE5D6 /* Pods_iMoney1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMoney1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +171,7 @@
 				61E28B591DE25D3B008C02D2 /* User.swift */,
 				A2682B001DE3AF4F0091102F /* earningController.swift */,
 				A2682B021DE3C2520091102F /* statisticsController.swift */,
+				61ADE02A1DEA03EC005E37D0 /* Account.swift */,
 			);
 			path = iMoney1.0;
 			sourceTree = "<group>";
@@ -291,7 +294,6 @@
 				TargetAttributes = {
 					3D1DA23D1DDFAE8900D0E0E3 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = T8ZP529MU8;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -517,6 +519,7 @@
 				359DE4DB1DE2A56E00EF497F /* AccountCell.swift in Sources */,
 				61E28B581DE25743008C02D2 /* AccountController.swift in Sources */,
 				A2682B031DE3C2520091102F /* statisticsController.swift in Sources */,
+				61ADE02B1DEA03EC005E37D0 /* Account.swift in Sources */,
 				618A0AA91DE2949100CDFAD9 /* spendingController.swift in Sources */,
 				3D1DA2441DDFAE8900D0E0E3 /* ViewController.swift in Sources */,
 				3D1DA2421DDFAE8900D0E0E3 /* AppDelegate.swift in Sources */,
@@ -674,7 +677,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMoney1.0/iMoney1.0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = T8ZP529MU8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iMoney1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-0";
@@ -690,7 +693,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMoney1.0/iMoney1.0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = T8ZP529MU8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iMoney1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-0";

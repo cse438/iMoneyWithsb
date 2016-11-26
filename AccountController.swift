@@ -129,7 +129,7 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
             cell.theImage.image = accountImage!
             cell.nameLabel.text = account["accountNumber"]
             cell.balanceLabel.text = "balance: " + account["balance"]!
-            print("cell " + account["accountNumber"]! + " populated.")
+            print("cell " + (account["accountNumber"])! + " populated.")
         }
         return cell
     }
