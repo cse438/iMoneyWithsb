@@ -190,7 +190,7 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         print(nt)
         print(base64String)
         
-        self.ref.child("Records").child(id).child(selectedAccnt!.id).childByAutoId().setValue([ "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
+        self.ref.child("Earn").child(id).child(selectedAccnt!.id).childByAutoId().setValue([ "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
         
         let blc = Int(selectedAccnt!.balance)
         let earn = Int(amnt)

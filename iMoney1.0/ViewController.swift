@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         ref = FIRDatabase.database().reference()
-       }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

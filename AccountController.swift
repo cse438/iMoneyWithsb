@@ -14,6 +14,7 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
     
     @IBOutlet weak var theCollectionView: UICollectionView!
     
+    @IBOutlet weak var datetime: UITextField!
     @IBOutlet weak var dataLabel: UILabel!
     
     var ref: FIRDatabaseReference!
@@ -40,7 +41,14 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
             let uid = user.uid
             self.currentUser = User(uid:uid,email:email)
             
-            
+            let date = Date()
+            let calendar = Calendar.current
+            let day = calendar.component(.day, from: date)
+            let hour = calendar.component(.hour, from: date)
+            let minutes = calendar.component(.minute, from: date)
+            let month = calendar.component(.month, from: date)
+            let year = calendar.component(.year, from: date)
+            self.datetime.text = "\(month)/\(day)/\(year)"
 
         }
         
