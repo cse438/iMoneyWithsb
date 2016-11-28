@@ -10,8 +10,12 @@ import CoreLocation
 import MapKit
 import UIKit
 
-class earningController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate, MKMapViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
+    @IBOutlet weak var accountPicker: UIPickerView!
+    @IBOutlet weak var amount: UITextField!
     
+    @IBOutlet weak var note: UITextView!
+       var ref: FIRDatabaseReference!
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -21,11 +25,12 @@ class earningController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     var currentLocation = CLLocation()
     
+        var accounts = [Account]();
+        var selectedAccnt : Account?
+    
     @IBOutlet weak var imageDisplay: UIImageView!
     @IBOutlet weak var cameraButton: UIButton!
     @IBAction func cameraClicked(_ sender: Any) {
-        
-        
         
         let picker = UIImagePickerController()
         
@@ -38,7 +43,6 @@ class earningController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         
-        print("in here")
         if error == nil {
             let ac = UIAlertController(title: "Saved!", message: "image has been saved to your photos." , preferredStyle: .alert
             )
@@ -56,7 +60,7 @@ class earningController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         UIImageWriteToSavedPhotosAlbum(imageDisplay.image!,self,#selector(spendingController.image(_:didFinishSavingWithError:contextInfo:)),nil)
     }
     
-    
+    var base64String: NSString!
     
     func determineCurrentLocation()
     {
@@ -80,7 +84,6 @@ class earningController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         currentLocation = userLocation
         
         
-        print("The current location is \(userLocation)")
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
@@ -97,19 +100,72 @@ class earningController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = FIRDatabase.database().reference()
+
         determineCurrentLocation()
         // Do any additional setup after loading the view.
+        accountPicker.dataSource = self;
+        accountPicker.delegate = self;
+        fetchAccounts()
+        print("View Loading1")
+        let emptyAccnt = Account(id:"", AccountNumber: "", balance : "", owner : "")
+        accounts.append(emptyAccnt)
+
     }
+    override func viewWillAppear(_ animated: Bool) {
+        print("View appearing")
+    }
+    
+    func fetchAccounts(){
+        print("earn start to query")
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        self.ref.child("Accounts").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            self.accountPicker.reloadAllComponents()
+            guard snapshot.exists() else {
+                return
+            }
+            let accntsDict = snapshot.value as? [String : [String : String]] ?? [:]
+            for (accntID, accnt) in accntsDict {
+                print("in here")
+                print("id" + accntID)
+                print("accountNumberearn" + accnt["accountNumber"]!)
+                let account = Account(id:accntID, AccountNumber: accnt["accountNumber"]!, balance : accnt["balance"]!, owner : accnt["owner"]!)
+                self.accounts.append(account)
+                self.accountPicker.reloadAllComponents()
+            }
+            print("earn end of query")
+        }) // End of observeSingleEvent
+    }
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow row: Int,
+                    forComponent component: Int) -> String? {
+        
+                return accounts[row].AccountNumber
+        
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return accounts.count
+        
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        print("row:  \(row)")
+        
+         selectedAccnt = accounts[row]
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     @IBAction func saveTouched(_ sender: Any) {
-        
-        let latitude = currentLocation.coordinate.latitude
-        let longitude = currentLocation.coordinate.longitude
-        
         
         
         
@@ -120,15 +176,4 @@ class earningController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         print("you were messing with me???")
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
