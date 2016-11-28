@@ -870,7 +870,6 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancelTouched:" destination="0Ot-ue-Ojg" eventType="touchUpInside" id="PwO-W0-kkV"/>
                                     <segue destination="RNa-H2-Ehw" kind="show" id="x08-Pz-9UR"/>
                                 </connections>
                             </button>
@@ -898,7 +897,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iq7-Et-znI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pric.png" translatesAutoresizingMaskIntoConstraints="NO" id="Iq7-Et-znI">
                                 <rect key="frame" x="188" y="362" width="187" height="139"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
@@ -924,7 +923,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDw-Bu-muw">
-                                <rect key="frame" x="204" y="148" width="171" height="54"/>
+                                <rect key="frame" x="204" y="113" width="171" height="127"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mgg-uk-n7H">
@@ -1001,8 +1000,8 @@
                             <constraint firstItem="nDw-Bu-muw" firstAttribute="trailing" secondItem="UmV-Jf-x7J" secondAttribute="trailing" id="cat-lV-W8v"/>
                             <constraint firstItem="6Gp-o7-nHA" firstAttribute="top" secondItem="86u-Nd-oVB" secondAttribute="bottom" constant="1" id="cmX-2J-h3o"/>
                             <constraint firstItem="DRI-KR-jJA" firstAttribute="top" secondItem="6Gp-o7-nHA" secondAttribute="bottom" id="dQ3-Kg-8AF"/>
-                            <constraint firstItem="dzk-7d-Opu" firstAttribute="top" secondItem="nDw-Bu-muw" secondAttribute="top" id="djc-Ma-26G"/>
-                            <constraint firstItem="dzk-7d-Opu" firstAttribute="bottom" secondItem="nDw-Bu-muw" secondAttribute="bottom" id="eoJ-53-5mJ"/>
+                            <constraint firstItem="dzk-7d-Opu" firstAttribute="top" secondItem="nDw-Bu-muw" secondAttribute="top" constant="35" id="djc-Ma-26G"/>
+                            <constraint firstItem="dzk-7d-Opu" firstAttribute="bottom" secondItem="nDw-Bu-muw" secondAttribute="bottom" constant="-38" id="eoJ-53-5mJ"/>
                             <constraint firstItem="dzk-7d-Opu" firstAttribute="leading" secondItem="iQi-ce-qeQ" secondAttribute="leading" id="f9o-ob-m7U"/>
                             <constraint firstItem="Iq7-Et-znI" firstAttribute="leading" secondItem="dJ8-Hz-lQR" secondAttribute="leading" id="fRv-JB-SP9"/>
                             <constraint firstItem="DRI-KR-jJA" firstAttribute="baseline" secondItem="MzL-Vl-Lpi" secondAttribute="firstBaseline" id="ftg-bD-bPC"/>
@@ -1011,7 +1010,7 @@
                             <constraint firstItem="Iq7-Et-znI" firstAttribute="trailing" secondItem="MzL-Vl-Lpi" secondAttribute="trailing" id="kNG-4Q-GEV"/>
                             <constraint firstItem="UmV-Jf-x7J" firstAttribute="trailing" secondItem="Iq7-Et-znI" secondAttribute="trailing" id="kuf-Kq-yOH"/>
                             <constraint firstItem="UmV-Jf-x7J" firstAttribute="leading" secondItem="86u-Nd-oVB" secondAttribute="trailing" constant="1" id="mco-66-u0W"/>
-                            <constraint firstItem="nDw-Bu-muw" firstAttribute="top" secondItem="4tZ-gt-ylB" secondAttribute="bottom" constant="43" id="nWY-j8-vIk"/>
+                            <constraint firstItem="nDw-Bu-muw" firstAttribute="top" secondItem="4tZ-gt-ylB" secondAttribute="bottom" constant="8" id="nWY-j8-vIk"/>
                             <constraint firstItem="iQi-ce-qeQ" firstAttribute="bottom" secondItem="UmV-Jf-x7J" secondAttribute="bottom" id="olZ-Uo-pdh"/>
                             <constraint firstItem="dzk-7d-Opu" firstAttribute="trailing" secondItem="iQi-ce-qeQ" secondAttribute="trailing" id="qOv-BX-AM8"/>
                             <constraint firstItem="nDw-Bu-muw" firstAttribute="leading" secondItem="dzk-7d-Opu" secondAttribute="trailing" constant="17" id="tPi-UC-qBX"/>
@@ -1046,6 +1045,6 @@
         <image name="pric.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="x08-Pz-9UR"/>
+        <segue reference="CAy-NX-KYk"/>
     </inferredMetricsTieBreakers>
 </document>

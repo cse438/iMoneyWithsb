@@ -40,6 +40,8 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         present(picker,animated: true, completion: nil)
         
     }
+    var base64String: NSString!
+
     
     func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         
@@ -60,7 +62,6 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         UIImageWriteToSavedPhotosAlbum(imageDisplay.image!,self,#selector(spendingController.image(_:didFinishSavingWithError:contextInfo:)),nil)
     }
     
-    var base64String: NSString!
     
     func determineCurrentLocation()
     {
@@ -113,7 +114,7 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
 
     }
     override func viewWillAppear(_ animated: Bool) {
-        print("View appearing")
+        print("View appearing1")
     }
     
     func fetchAccounts(){
@@ -126,7 +127,7 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             }
             let accntsDict = snapshot.value as? [String : [String : String]] ?? [:]
             for (accntID, accnt) in accntsDict {
-                print("in here")
+                
                 print("id" + accntID)
                 print("accountNumberearn" + accnt["accountNumber"]!)
                 let account = Account(id:accntID, AccountNumber: accnt["accountNumber"]!, balance : accnt["balance"]!, owner : accnt["owner"]!)
@@ -154,7 +155,7 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        print("row:  \(row)")
+        print("earnrow:  \(row)")
         
          selectedAccnt = accounts[row]
         
@@ -166,14 +167,43 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         // Dispose of any resources that can be recreated.
     }
     @IBAction func saveTouched(_ sender: Any) {
+        let id = (FIRAuth.auth()?.currentUser?.uid)!
+        let amnt = amount.text!
+        let nt = note.text!
+        let latitude = currentLocation.coordinate.latitude
+        let longitude = currentLocation.coordinate.longitude
         
         
+        var data = NSData()
+        data = UIImageJPEGRepresentation(imageDisplay!.image!, 0.8)! as NSData
         
-//            self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude])
+        let base64String = data.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
+        
+        if selectedAccnt == nil || amnt == "" {
+            print("error")
+            return
+        }
+        print("-----------------------------")
+        print("account number is " + selectedAccnt!.AccountNumber)
+        
+        print(amnt)
+        print(nt)
+        print(base64String)
+        
+        self.ref.child("Records").child(id).child(selectedAccnt!.id).childByAutoId().setValue([ "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
+        
+        let blc = Int(selectedAccnt!.balance)
+        let earn = Int(amnt)
+        let newBlc = blc! + earn!
+        
+        print(newBlc)
+        
+    self.ref.child("Accounts").child(id).child(selectedAccnt!.id).setValue(["owner":selectedAccnt!.owner,"accountNumber":selectedAccnt!.AccountNumber, "balance":String(newBlc)])
+        
     }
-    @IBAction func cancelTouched(_ sender: Any) {
-        
-        print("you were messing with me???")
-    }
+//    @IBAction func cancelTouched(_ sender: Any) {
+//        
+//        print("you were messing with me???")
+//    }
     
 }
