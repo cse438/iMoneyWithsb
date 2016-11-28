@@ -32,7 +32,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     let myAnnotation: MKPointAnnotation = MKPointAnnotation()
     
     
-    var category = ["Clothes", "Food", "Living", "Transport"];
+    var category = ["", "Clothes", "Food", "Living", "Transport"];
     var accounts = [Account]();
     
     var cateStr : String = ""
@@ -55,12 +55,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         imageDisplay?.image = info[UIImagePickerControllerOriginalImage] as? UIImage;dismiss(animated: true, completion: nil)
         imageDisplay?.isUserInteractionEnabled = true
         UIImageWriteToSavedPhotosAlbum((imageDisplay?.image!)!,self,#selector(spendingController.image(_:didFinishSavingWithError:contextInfo:)),nil)
-        
-       
-        
-        
-      
-        
+  
     }
  
     
@@ -130,7 +125,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         ref = FIRDatabase.database().reference()
         
-       determineCurrentLocation()
+        determineCurrentLocation()
         
         
         // Do any additional setup after loading the view.
@@ -146,9 +141,11 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         fetchAccounts()
         
         print("View Loading")
-  
-        self.catePicker.selectRow(0, inComponent: 0, animated: false)
-        self.accountPicker.selectRow(0, inComponent: 0, animated: false)
+
+        self.accountPicker.selectRow(0, inComponent: 0, animated: true)
+        
+        let emptyAccnt = Account(id:"", AccountNumber: "", balance : "", owner : "")
+        accounts.append(emptyAccnt)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -229,7 +226,10 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         let base64String = data.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
                     
-                    
+        if selectedAccnt == nil || cateStr == "" || amnt == "" {
+            print("error")
+            return
+        }
                     
                     
                     
@@ -244,7 +244,6 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 
         
 //        self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
-        
         self.ref.child("Records").child(id).child(selectedAccnt!.id).childByAutoId().setValue(["category":cateStr, "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
         
             let blc = Int(selectedAccnt!.balance)
