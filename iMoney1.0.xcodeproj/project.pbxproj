@@ -19,6 +19,7 @@
 		3D1DA2701DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
 		3D1DA2711DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
 		3D1DA2721DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
+		3DA5373E1DECC8FF006C5BC1 /* transferController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5373D1DECC8FF006C5BC1 /* transferController.swift */; };
 		618A0AA91DE2949100CDFAD9 /* spendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618A0AA81DE2949100CDFAD9 /* spendingController.swift */; };
 		61ADE02B1DEA03EC005E37D0 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ADE02A1DEA03EC005E37D0 /* Account.swift */; };
 		61E28B581DE25743008C02D2 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E28B571DE25743008C02D2 /* AccountController.swift */; };
@@ -75,6 +76,7 @@
 		3D1DA2631DDFAE8900D0E0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D1DA27B1DDFE29A00D0E0E3 /* iMoney1.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMoney1.0.entitlements; sourceTree = "<group>"; };
+		3DA5373D1DECC8FF006C5BC1 /* transferController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = transferController.swift; sourceTree = "<group>"; };
 		618A0AA81DE2949100CDFAD9 /* spendingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spendingController.swift; sourceTree = "<group>"; };
 		61ADE02A1DEA03EC005E37D0 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		61E28B571DE25743008C02D2 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountController.swift; path = ../AccountController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				3D1DA24D1DDFAE8900D0E0E3 /* Info.plist */,
 				61E28B591DE25D3B008C02D2 /* User.swift */,
 				A2682B001DE3AF4F0091102F /* earningController.swift */,
+				3DA5373D1DECC8FF006C5BC1 /* transferController.swift */,
 				A2682B021DE3C2520091102F /* statisticsController.swift */,
 				61ADE02A1DEA03EC005E37D0 /* Account.swift */,
 			);
@@ -520,6 +523,7 @@
 				61E28B581DE25743008C02D2 /* AccountController.swift in Sources */,
 				A2682B031DE3C2520091102F /* statisticsController.swift in Sources */,
 				61ADE02B1DEA03EC005E37D0 /* Account.swift in Sources */,
+				3DA5373E1DECC8FF006C5BC1 /* transferController.swift in Sources */,
 				618A0AA91DE2949100CDFAD9 /* spendingController.swift in Sources */,
 				3D1DA2441DDFAE8900D0E0E3 /* ViewController.swift in Sources */,
 				3D1DA2421DDFAE8900D0E0E3 /* AppDelegate.swift in Sources */,

@@ -179,7 +179,7 @@
         <scene sceneID="sfi-fE-9jL">
             <objects>
                 <navigationController id="DwV-GY-tyU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yLm-rk-o8p">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yLm-rk-o8p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -687,7 +687,7 @@
         <!--New Transfer-->
         <scene sceneID="p4R-2H-yx4">
             <objects>
-                <viewController title="New Transfer" id="o3H-QQ-5MU" sceneMemberID="viewController">
+                <viewController title="New Transfer" id="o3H-QQ-5MU" customClass="transferController" customModule="iMoney1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MU7-pL-sGr"/>
                         <viewControllerLayoutGuide type="bottom" id="ijB-lq-vXx"/>
@@ -706,6 +706,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
                                 <connections>
+                                    <action selector="didTapTransfer:" destination="o3H-QQ-5MU" eventType="touchUpInside" id="Dli-Kt-i2Q"/>
                                     <segue destination="RNa-H2-Ehw" kind="show" id="ilW-k4-7qW"/>
                                 </connections>
                             </button>
@@ -818,6 +819,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Spending" id="Ql9-KD-glb"/>
+                    <connections>
+                        <outlet property="acntPickerView1" destination="XfK-a8-7SK" id="dde-VJ-feE"/>
+                        <outlet property="acntPickerView2" destination="U29-UW-0OC" id="Z7k-AJ-sfD"/>
+                        <outlet property="amount" destination="iwi-VU-fBq" id="DKG-Jb-gtp"/>
+                        <outlet property="note" destination="gBJ-ad-VVP" id="RGA-mR-DeY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sEj-xR-YcD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1054,6 +1061,6 @@
         <image name="pric.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CAy-NX-KYk"/>
+        <segue reference="ilW-k4-7qW"/>
     </inferredMetricsTieBreakers>
 </document>

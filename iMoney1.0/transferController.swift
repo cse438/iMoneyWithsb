@@ -1,0 +1,167 @@
+//
+//  transferController.swift
+//  iMoney1.0
+//
+//  Created by John Han on 11/28/16.
+//  Copyright © 2016 文静. All rights reserved.
+//
+
+import UIKit
+import Firebase
+
+class transferController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
+    
+    @IBOutlet weak var amount: UITextField!
+    
+    @IBOutlet weak var acntPickerView1: UIPickerView!
+    
+    @IBOutlet weak var acntPickerView2: UIPickerView!
+    
+    @IBOutlet weak var note: UITextView!
+    
+    var accounts = [Account]();
+    
+    var ref: FIRDatabaseReference!
+    
+    var acnt1 : Account?
+    
+    var acnt2 : Account?
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        ref = FIRDatabase.database().reference()
+        
+        acntPickerView1.dataSource = self;
+        acntPickerView1.delegate = self;
+        
+        acntPickerView2.dataSource = self;
+        acntPickerView2.delegate = self;
+        
+        acntPickerView1.tag = 0
+        
+        acntPickerView2.tag = 1
+        
+        fetchAccounts()
+        
+        print("in view did load")
+        
+        let emptyAccnt = Account(id:"", AccountNumber: "", balance : "", owner : "")
+        accounts.append(emptyAccnt)
+        
+        print(accounts)
+    }
+    
+    
+    func fetchAccounts(){
+        print("strat to query")
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        self.ref.child("Accounts").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            self.acntPickerView1.reloadAllComponents()
+            self.acntPickerView2.reloadAllComponents()
+            guard snapshot.exists() else {
+                return
+            }
+            let accntsDict = snapshot.value as? [String : [String : String]] ?? [:]
+            for (accntID, accnt) in accntsDict {
+                let account = Account(id:accntID, AccountNumber: accnt["accountNumber"]!, balance : accnt["balance"]!, owner : accnt["owner"]!)
+                
+                print(account)
+                self.accounts.append(account)
+                self.acntPickerView1.reloadAllComponents()
+                self.acntPickerView2.reloadAllComponents()
+            }
+            
+            print("end of query")
+        }) // End of observeSingleEvent
+    }
+    
+    
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        if pickerView.tag == 0 {
+            return 1
+        }
+        
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow row: Int,
+                    forComponent component: Int) -> String? {
+        
+        if pickerView.tag == 0  {
+            return accounts[row].AccountNumber
+        }
+        return accounts[row].AccountNumber
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == 0 {
+            return accounts.count
+        }
+        return accounts.count
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        print("row:  \(row)")
+        if pickerView == acntPickerView1{
+            acnt1 = accounts[row]
+        }else{
+            acnt2 = accounts[row]
+        }
+    }
+    
+    
+    @IBAction func didTapTransfer(_ sender: Any) {
+        let id = (FIRAuth.auth()?.currentUser?.uid)!
+        
+        let amnt = Int(amount.text!)!
+        
+        let nt = note.text!
+        
+        let newAmnt1 = Int((acnt1?.balance)!)! - amnt
+        
+        let newAmnt2 = Int((acnt2?.balance)!)! + amnt
+        
+        if acnt1!.AccountNumber == acnt2!.AccountNumber {
+            print("Should use different account")
+            return
+        }
+        
+        if amnt <= 0{
+            print("Invalid amount")
+            return
+        }
+        self.ref.child("Accounts").child(id).child(acnt1!.id).setValue(["owner":acnt1!.owner,"accountNumber":acnt1!.AccountNumber, "balance":String(newAmnt1)])
+        
+        self.ref.child("Accounts").child(id).child(acnt2!.id).setValue(["owner":acnt2!.owner,"accountNumber":acnt2!.AccountNumber, "balance":String(newAmnt2)])
+        
+        
+        self.ref.child("Transfers").child(id).childByAutoId().setValue(["from": acnt1!.AccountNumber, "to": acnt2!.AccountNumber, "amount": String(amnt), "note" : nt])
+        
+
+
+    }
+    
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+}
