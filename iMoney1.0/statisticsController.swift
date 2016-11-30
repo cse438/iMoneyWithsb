@@ -37,6 +37,9 @@ class statisticsController: UIViewController,MKMapViewDelegate {
         }
         
       
+        
+        
+        
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         self.ref.child("Records").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -45,30 +48,26 @@ class statisticsController: UIViewController,MKMapViewDelegate {
             }
             
             
-            let records = snapshot.value as? [String: [String : Any]] ?? [:]
-          
+            let records = snapshot.value as? [String: [String : [String : Any]]] ?? [:]
+    
              print("*********************")
              print(records)
              print("*********************")
             
             if records.count != 0 {
-                print("--------------------------------------")
                 
                 for singleRecord in records.values{
-                    self.longitudeSet.append(singleRecord["locationLongitude"] as! CLLocationDegrees)
-                    self.latitudeSet.append(singleRecord["locationLatitude"] as! CLLocationDegrees)
-                    self.titles.append(String(describing: singleRecord["Amount"]) + "for" + String(describing: singleRecord["Category"]))
+                    
+                    for oneRecord in singleRecord.values{
+                    
+                    self.latitudeSet.append(oneRecord["locationLatitude"] as! CLLocationDegrees)
+                    self.longitudeSet.append(oneRecord["locationLongitude"] as! CLLocationDegrees)
+                       var str1: String = oneRecord["amount"] as! String
+                        var str2: String = oneRecord["category"] as! String
+                    self.titles.append(str1 + "$ for " + str2)
+                    }
                 }
-                
-                
-                
-                
-                
-                
-                
-                print(self.longitudeSet)
-                print(self.latitudeSet)
-                print("--------------------------------------")
+
                 
                 
                 

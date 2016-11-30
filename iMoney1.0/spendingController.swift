@@ -23,9 +23,11 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     @IBOutlet weak var mapView: MKMapView!
     
-    @IBOutlet weak var imageDisplay: UIImageView?
+    @IBOutlet weak var imageDisplay: UIImageView!
     
     @IBOutlet weak var cameraButton: UIButton!
+    
+    var imageUrl: String = ""
      let locationManager = CLLocationManager()
     
     var currentLocation = CLLocation()
@@ -220,12 +222,22 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         let latitude = currentLocation.coordinate.latitude
         let longitude = currentLocation.coordinate.longitude
         
+        let storageRef = FIRStorage.storage().reference().child("\(id).png")
         
-        var data = NSData()
-        data = UIImageJPEGRepresentation(imageDisplay!.image!, 0.8)! as NSData
-        
-        let base64String = data.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
-                    
+        if let uploadData = UIImagePNGRepresentation(imageDisplay.image!){
+            storageRef.put(uploadData, metadata: nil, completion: {
+                (metadata, error) in
+                
+                
+                if error != nil{
+                    print(error)
+                    return
+                }
+                self.imageUrl = (metadata?.downloadURL()?.absoluteString)!
+                print(metadata)
+            })
+            
+        }
         if selectedAccnt == nil || cateStr == "" || amnt == "" {
             print("error")
             return
@@ -239,12 +251,11 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         print(amnt)
         print(nt)
-        print(base64String)
         print("-----------------------------")
 
         
 //        self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
-        self.ref.child("Records").child(id).child(selectedAccnt!.id).childByAutoId().setValue(["category":cateStr, "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
+        self.ref.child("Records").child(id).child(selectedAccnt!.id).childByAutoId().setValue(["category":cateStr, "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "imageURL" : imageUrl])
         
             let blc = Int(selectedAccnt!.balance)
             let spd = Int(amnt)
