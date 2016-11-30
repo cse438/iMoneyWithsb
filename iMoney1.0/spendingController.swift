@@ -227,7 +227,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         if let uploadData = UIImagePNGRepresentation(imageDisplay.image!){
             storageRef.put(uploadData, metadata: nil, completion: {
                 (metadata, error) in
-                
+                 
                 
                 if error != nil{
                     print(error)

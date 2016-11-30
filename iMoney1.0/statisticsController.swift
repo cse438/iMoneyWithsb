@@ -67,7 +67,7 @@ class statisticsController: UIViewController,MKMapViewDelegate {
                     self.titles.append(str1 + "$ for " + str2)
                     }
                 }
-
+ 
                 
                 
                 

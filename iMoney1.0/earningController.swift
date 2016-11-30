@@ -55,7 +55,7 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             ac.addAction(UIAlertAction(title:"OK", style: .default, handler:nil))
             present(ac, animated:true, completion:nil)
         }
-    }
+    } 
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imageDisplay.image = info[UIImagePickerControllerOriginalImage] as? UIImage;dismiss(animated: true, completion: nil)
