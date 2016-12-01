@@ -45,7 +45,8 @@ class statisticsController: UIViewController,MKMapViewDelegate {
             }
             
             
-            let records = snapshot.value as? [String: [String : Any]] ?? [:]
+            //let records = snapshot.value as? [String: [String : Any]] ?? [:]
+            let records = snapshot.value as? [String: [String : [String : Any]]] ?? [:]
           
              print("*********************")
              print(records)
@@ -55,21 +56,18 @@ class statisticsController: UIViewController,MKMapViewDelegate {
                 print("--------------------------------------")
                 
                 for singleRecord in records.values{
-                    self.longitudeSet.append(singleRecord["locationLongitude"] as! CLLocationDegrees)
-                    self.latitudeSet.append(singleRecord["locationLatitude"] as! CLLocationDegrees)
-                    self.titles.append(String(describing: singleRecord["Amount"]) + "for" + String(describing: singleRecord["Category"]))
+//                    self.longitudeSet.append(singleRecord["locationLongitude"] as! CLLocationDegrees)
+//                    self.latitudeSet.append(singleRecord["locationLatitude"] as! CLLocationDegrees)
+//                    self.titles.append(String(describing: singleRecord["Amount"]) + "for" + String(describing: singleRecord["Category"]))
+                    for oneRecord in singleRecord.values{
+                        
+                       self.latitudeSet.append(oneRecord["locationLatitude"] as! CLLocationDegrees)
+                       self.longitudeSet.append(oneRecord["locationLongitude"] as! CLLocationDegrees)
+                       var str1: String = oneRecord["amount"] as! String
+                       var str2: String = oneRecord["category"] as! String
+                       self.titles.append(str1 + "$ for " + str2)
+                      }
                 }
-                
-                
-                
-                
-                
-                
-                
-                print(self.longitudeSet)
-                print(self.latitudeSet)
-                print("--------------------------------------")
-                
                 
                 
                 var i: Int = 0

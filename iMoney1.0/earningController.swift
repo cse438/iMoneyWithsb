@@ -18,7 +18,7 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
        var ref: FIRDatabaseReference!
     
     @IBOutlet weak var mapView: MKMapView!
-    
+    var imageUrl: String = ""
     
     let locationManager = CLLocationManager()
    let myAnnotation: MKPointAnnotation = MKPointAnnotation()
@@ -172,17 +172,31 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         let nt = note.text!
         let latitude = currentLocation.coordinate.latitude
         let longitude = currentLocation.coordinate.longitude
+        let storageRef = FIRStorage.storage().reference().child("\(id).png")
+
         let date = NSDate()
         var formatter = DateFormatter();
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
         formatter.timeZone = NSTimeZone.local
         let defaultTimeZoneStr = formatter.string(from: date as Date);
         
-        var data = NSData()
-        data = UIImageJPEGRepresentation(imageDisplay!.image!, 0.8)! as NSData
-        
-        let base64String = data.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
-        
+//        var data = NSData()
+//        data = UIImageJPEGRepresentation(imageDisplay!.image!, 0.8)! as NSData
+//        
+//        let base64String = data.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
+        if let uploadData = UIImagePNGRepresentation(imageDisplay.image!){
+                        storageRef.put(uploadData, metadata: nil, completion: {
+                                (metadata, error) in
+                
+                
+                                if error != nil{
+                                        print(error)
+                                        return
+                                    }
+                                self.imageUrl = (metadata?.downloadURL()?.absoluteString)!
+                                print(metadata)
+                            })
+        }
         if selectedAccnt == nil || amnt == "" {
             print("error")
             return
@@ -192,7 +206,7 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         print(amnt)
         print(nt)
-        print(base64String)
+        //print(base64String)
         
         self.ref.child("Earn").child(id).child(selectedAccnt!.id).childByAutoId().setValue([ "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
         

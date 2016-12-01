@@ -157,10 +157,10 @@
 				618A0AA81DE2949100CDFAD9 /* spendingController.swift */,
 				A269C28A1DE521F0004270F6 /* pric.png */,
 				61E28B571DE25743008C02D2 /* AccountController.swift */,
+				3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */,
 				3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */,
 				359DE4DA1DE2A56E00EF497F /* AccountCell.swift */,
 				A2682B041DE4F3490091102F /* Camera.png */,
-				3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */,
 				A2F93E121DE203880088BFB4 /* 633679-200.png */,
 				A2C4320C1DE25B9B00286E3B /* AppIcon.png */,
 				A2F93E101DE203690088BFB4 /* 610387-200.png */,
@@ -297,6 +297,7 @@
 				TargetAttributes = {
 					3D1DA23D1DDFAE8900D0E0E3 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = Q7ZG3R7KV3;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -681,10 +682,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMoney1.0/iMoney1.0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q7ZG3R7KV3;
 				INFOPLIST_FILE = iMoney1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-0";
+				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -697,10 +698,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMoney1.0/iMoney1.0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q7ZG3R7KV3;
 				INFOPLIST_FILE = iMoney1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-0";
+				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
