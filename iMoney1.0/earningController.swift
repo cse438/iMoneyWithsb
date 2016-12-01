@@ -172,7 +172,11 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         let nt = note.text!
         let latitude = currentLocation.coordinate.latitude
         let longitude = currentLocation.coordinate.longitude
-        
+        let date = NSDate()
+        var formatter = DateFormatter();
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
+        formatter.timeZone = NSTimeZone.local
+        let defaultTimeZoneStr = formatter.string(from: date as Date);
         
         var data = NSData()
         data = UIImageJPEGRepresentation(imageDisplay!.image!, 0.8)! as NSData
@@ -190,7 +194,7 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         print(nt)
         print(base64String)
         
-        self.ref.child("Earn").child(id).child(selectedAccnt!.id).childByAutoId().setValue([ "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
+        self.ref.child("Earn").child(id).child(selectedAccnt!.id).childByAutoId().setValue([ "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
         
         let blc = Int(selectedAccnt!.balance)
         let earn = Int(amnt)

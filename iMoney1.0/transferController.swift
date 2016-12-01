@@ -125,7 +125,12 @@ class transferController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         let newAmnt1 = Int((acnt1?.balance)!)! - amnt
         
         let newAmnt2 = Int((acnt2?.balance)!)! + amnt
-        
+        let date = NSDate()
+        var formatter = DateFormatter();
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
+        formatter.timeZone = NSTimeZone.local
+        let defaultTimeZoneStr = formatter.string(from: date as Date);
+
         if acnt1!.AccountNumber == acnt2!.AccountNumber {
             print("Should use different account")
             return
@@ -140,7 +145,7 @@ class transferController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         self.ref.child("Accounts").child(id).child(acnt2!.id).setValue(["owner":acnt2!.owner,"accountNumber":acnt2!.AccountNumber, "balance":String(newAmnt2)])
         
         
-        self.ref.child("Transfers").child(id).childByAutoId().setValue(["from": acnt1!.AccountNumber, "to": acnt2!.AccountNumber, "amount": String(amnt), "note" : nt])
+        self.ref.child("Transfers").child(id).childByAutoId().setValue(["from": acnt1!.AccountNumber, "to": acnt2!.AccountNumber, "amount": String(amnt), "note" : nt, "date": defaultTimeZoneStr])
         
 
 

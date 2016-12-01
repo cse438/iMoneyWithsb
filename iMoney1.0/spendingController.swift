@@ -220,7 +220,12 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         let latitude = currentLocation.coordinate.latitude
         let longitude = currentLocation.coordinate.longitude
         
-        
+        let date = NSDate()
+        var formatter = DateFormatter();
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
+        formatter.timeZone = NSTimeZone.local
+        let defaultTimeZoneStr = formatter.string(from: date as Date);
+
         var data = NSData()
         data = UIImageJPEGRepresentation(imageDisplay!.image!, 0.8)! as NSData
         
@@ -230,9 +235,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             print("error")
             return
         }
-                    
-                    
-                    
+
         print("-----------------------------")
         print(cateStr)
         print("account number is " + selectedAccnt!.AccountNumber)
@@ -244,7 +247,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 
         
 //        self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
-        self.ref.child("Records").child(id).child(selectedAccnt!.id).childByAutoId().setValue(["category":cateStr, "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
+        self.ref.child("Records").child(id).child(selectedAccnt!.id).childByAutoId().setValue(["category":cateStr, "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr,"locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
         
             let blc = Int(selectedAccnt!.balance)
             let spd = Int(amnt)
