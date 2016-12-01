@@ -2,12 +2,13 @@
 # platform :ios, '9.0'
 
 use_frameworks!
-platform :ios, '7.0'
+# platform :ios, '7.0'
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
 pod 'FirebaseUI'
 pod 'Firebase/Core'
 pod 'Firebase/Storage'
+pod 'Charts'
 
 target 'iMoney1.0' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -17,6 +18,7 @@ pod 'Firebase/Auth'
 pod 'FirebaseUI'
 pod 'Firebase/Core'
 pod 'Firebase/Storage'
+pod 'Charts'
 
   # Pods for iMoney1.0
 
