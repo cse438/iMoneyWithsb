@@ -208,8 +208,8 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         print(nt)
         //print(base64String)
         
-        self.ref.child("Earn").child(id).child(selectedAccnt!.id).childByAutoId().setValue([ "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
-        
+        self.ref.child("Earn").child(id).child(selectedAccnt!.id).childByAutoId().setValue([ "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr, "locationLatitude": latitude , "locationLongitude": longitude, "imageURL" : imageUrl])
+
         let blc = Int(selectedAccnt!.balance)
         let earn = Int(amnt)
         let newBlc = blc! + earn!
