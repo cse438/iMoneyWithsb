@@ -139,6 +139,7 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
             guard snapshot.exists() else {
                 return
             }
+            self.accounts = []
             self.accountsDict = snapshot.value as? [String : [String : String]] ?? [:]
             var totalBlc = 0.0
             for (accountID, account) in self.accountsDict {
