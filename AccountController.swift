@@ -26,6 +26,7 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
     var accountImage: UIImage! = UIImage(named: "Money.png")
     var spendings: [Record] = []
     var earnings: [Record] = []
+    var inUseRecords: [Record] = []
     var formatter: DateFormatter! = nil
     
     let locationManager = CLLocationManager()
@@ -73,7 +74,18 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
     }
     
     @IBAction func balanceTapped(_ sender: Any) {
-        
+        self.inUseRecords = self.earnings + self.spendings
+        self.performSegue(withIdentifier: "dashboardToHistory", sender: nil)
+    }
+    
+    @IBAction func incomeTapped(_ sender: Any) {
+        self.inUseRecords = self.earnings
+        self.performSegue(withIdentifier: "dashboardToHistory", sender: nil)
+    }
+    
+    @IBAction func spendingTapped(_ sender: Any) {
+        self.inUseRecords = self.spendings
+        self.performSegue(withIdentifier: "dashboardToHistory", sender: nil)
     }
     
     @IBAction func addAccount(_ sender: Any) {
@@ -170,7 +182,6 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
                     
                     total += amount
                     print("Spending is: \(self.spendings[self.spendings.count - 1])")
-                    
                 }
             }
             self.spendingButton.setTitle("\(round(total*100)/100)", for: UIControlState.normal)
@@ -205,12 +216,23 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
                     
                     total += amount
                     print("Earning is: \(self.earnings[self.earnings.count - 1])")
-                    
                 }
             }
             self.incomeButton.setTitle("\(round(total*100)/100)", for: UIControlState.normal)
         })
         return
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "dashboardToHistory" {
+            if let toCV = segue.destination as? HistoryController {
+//                toCV.spendings = self.spendings
+//                toCV.earnings = self.earnings
+                toCV.inUseRecords = self.inUseRecords
+                toCV.accountsDict = self.accountsDict
+                print("data passed")
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
