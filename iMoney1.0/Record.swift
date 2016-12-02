@@ -11,6 +11,7 @@ import MapKit
 
 struct Record {
     
+    let id: String
     let account: String
     let amount: Double
     let category: String
@@ -20,7 +21,8 @@ struct Record {
     let imageURL: String
     let note: String
     
-    init(account: String, amount: Double, category: String, date: Date, long: CLLocationDegrees, lat: CLLocationDegrees, imageURL: String, note: String) {
+    init(id: String, account: String, amount: Double, category: String, date: Date, long: CLLocationDegrees, lat: CLLocationDegrees, imageURL: String, note: String) {
+        self.id = id
         self.account = account
         self.amount = amount
         self.category = category

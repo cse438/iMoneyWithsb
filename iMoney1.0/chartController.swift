@@ -110,7 +110,8 @@ class chartController: UIViewController {
             let accountDict = snapshot.value as? NSDictionary ?? [:]
             for (_, accountValue) in accountDict{
                 let recordDict = accountValue as? [String : [String : Any]] ?? [:]
-                for (_, record) in recordDict {
+                for (recordID, record) in recordDict {
+                    let id = recordID
                     let account = record["accountNumber"] as? String ?? ""
                     let amountString = record["amount"] as? String ?? ""
                     let amount = Double(amountString) ?? 0
@@ -121,7 +122,7 @@ class chartController: UIViewController {
                     let lat = record["locationLatitude"] as? CLLocationDegrees ?? 0
                     let long = record["locationLongitude"] as? CLLocationDegrees ?? 0
                     let note = record["note"] as? String ?? ""
-                    self.records.append(Record(account: account, amount: amount, category: category, date: date, long: long, lat: lat, imageURL: imageURL, note: note))
+                    self.records.append(Record(id: id, account: account, amount: amount, category: category, date: date, long: long, lat: lat, imageURL: imageURL, note: note))
                     
                     print("Record is: \(self.records[self.records.count - 1])")
                     
