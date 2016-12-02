@@ -23,6 +23,7 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
     var ref: FIRDatabaseReference!
     var currentUser: User!
     var accountsDict: [String : [String : String]] = [:]
+    var accounts: [Account] = []
     var accountImage: UIImage! = UIImage(named: "Money.png")
     var spendings: [Record] = []
     var earnings: [Record] = []
@@ -142,16 +143,22 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
             var totalBlc = 0.0
             for (accountID, account) in self.accountsDict {
                 print(accountID + ": " + account["balance"]!)
-                let blc = Double(account["balance"]!)
-                totalBlc += blc ?? 0
+                let blcOp = Double(account["balance"] ?? "")
+                let blc = blcOp != nil ? blcOp! : 0
+                let id = account["id"] ?? ""
+                let acountNumber = account["accountNumber"] ?? ""
+                let owner = account["owner"] ?? ""
+                let accountOb = Account(id: id, AccountNumber: acountNumber, balance: String(blc), owner: owner)
+                self.accounts.append(accountOb)
+                totalBlc += blc
             }
             self.balanceButton.setTitle("\(round(totalBlc*100)/100)", for: UIControlState.normal)
             print("end of query")
-            print("We get \(self.accountsDict.count) accounts")
+            print("We get \(self.accounts.count) accounts")
             print("before reloading data")
             self.theCollectionView.reloadData()
             print("after reloading data")
-            print("we have \(self.accountsDict.count) accounts")
+            print("we have \(self.accounts.count) accounts")
         }) // End of observeSingleEvent
     }
     
@@ -229,27 +236,26 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
 //                toCV.spendings = self.spendings
 //                toCV.earnings = self.earnings
                 toCV.inUseRecords = self.inUseRecords
-                toCV.accountsDict = self.accountsDict
+                toCV.accounts = self.accounts
                 print("data passed")
             }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("number of cell: \(accountsDict.count) returned.")
-        return accountsDict.count
+        print("number of cell: \(accounts.count) returned.")
+        return accounts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "accountCell", for: indexPath) as! AccountCell
-        let accountsArray = Array(accountsDict.values)
-        if accountsDict.count != 0 {
-            let account = accountsArray[indexPath.row]
+        if self.accounts.count != 0 {
+            let account = self.accounts[indexPath.row]
             
             cell.theImage.image = accountImage!
-            cell.nameLabel.text = account["accountNumber"]
-            cell.balanceLabel.text = "balance: " + account["balance"]!
-            print("cell " + (account["accountNumber"])! + " populated.")
+            cell.nameLabel.text = account.AccountNumber
+            cell.balanceLabel.text = "balance: " + account.balance
+            print("cell " + account.AccountNumber + " populated.")
         }
         return cell
     }

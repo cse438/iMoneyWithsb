@@ -19,7 +19,7 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
     
     var ref: FIRDatabaseReference!
     var currentUser: FIRUser!
-    var accountsDict: [String : [String : String]] = [:]
+    var accounts: [Account] = []
     var numberToID: [String : String] = [:]
 //    var spendings: [Record] = []
 //    var earnings: [Record] = []
@@ -37,10 +37,10 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
         self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
         self.formatter.timeZone = NSTimeZone.local
         
-        for (accountID, account) in accountsDict {
-            let number = account["accountNumber"] ?? ""
+        for account in accounts {
+            let number = account.AccountNumber
             if number != "" {
-                self.numberToID.updateValue(accountID, forKey: number)
+                self.numberToID.updateValue(account.id, forKey: number)
             }
         }
 //        allReords = spendings + earnings
