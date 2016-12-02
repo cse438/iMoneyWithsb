@@ -13,7 +13,6 @@
 		359DE4F31DF0E1BB00EF497F /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359DE4F11DF0E1BB00EF497F /* Record.swift */; };
 		3D1DA2421DDFAE8900D0E0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1DA2411DDFAE8900D0E0E3 /* AppDelegate.swift */; };
 		3D1DA2441DDFAE8900D0E0E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */; };
-		3D1DA2471DDFAE8900D0E0E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA2451DDFAE8900D0E0E3 /* Main.storyboard */; };
 		3D1DA2491DDFAE8900D0E0E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA2481DDFAE8900D0E0E3 /* Assets.xcassets */; };
 		3D1DA24C1DDFAE8900D0E0E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA24A1DDFAE8900D0E0E3 /* LaunchScreen.storyboard */; };
 		3D1DA2571DDFAE8900D0E0E3 /* iMoney1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1DA2561DDFAE8900D0E0E3 /* iMoney1_0Tests.swift */; };
@@ -21,6 +20,8 @@
 		3D1DA2701DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
 		3D1DA2711DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
 		3D1DA2721DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */; };
+		3D9409C51DF11DB900885835 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9409C41DF11DB900885835 /* SettingController.swift */; };
+		3D9409C71DF1253B00885835 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9409C61DF1253B00885835 /* Main.storyboard */; };
 		3DA5373E1DECC8FF006C5BC1 /* transferController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5373D1DECC8FF006C5BC1 /* transferController.swift */; };
 		618A0AA91DE2949100CDFAD9 /* spendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618A0AA81DE2949100CDFAD9 /* spendingController.swift */; };
 		61ADE02B1DEA03EC005E37D0 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ADE02A1DEA03EC005E37D0 /* Account.swift */; };
@@ -68,7 +69,6 @@
 		3D1DA23E1DDFAE8900D0E0E3 /* iMoney1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMoney1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D1DA2411DDFAE8900D0E0E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3D1DA2461DDFAE8900D0E0E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3D1DA2481DDFAE8900D0E0E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D1DA24B1DDFAE8900D0E0E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D1DA24D1DDFAE8900D0E0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,6 +80,8 @@
 		3D1DA2631DDFAE8900D0E0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D1DA27B1DDFE29A00D0E0E3 /* iMoney1.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMoney1.0.entitlements; sourceTree = "<group>"; };
+		3D9409C41DF11DB900885835 /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
+		3D9409C61DF1253B00885835 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3DA5373D1DECC8FF006C5BC1 /* transferController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = transferController.swift; sourceTree = "<group>"; };
 		618A0AA81DE2949100CDFAD9 /* spendingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spendingController.swift; sourceTree = "<group>"; };
 		61ADE02A1DEA03EC005E37D0 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				A269C28A1DE521F0004270F6 /* pric.png */,
 				61E28B571DE25743008C02D2 /* AccountController.swift */,
 				3D1DA26F1DDFB12700D0E0E3 /* GoogleService-Info.plist */,
+				3D9409C61DF1253B00885835 /* Main.storyboard */,
 				3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */,
 				359DE4DA1DE2A56E00EF497F /* AccountCell.swift */,
 				359DE4F01DF0E1BB00EF497F /* chartController.swift */,
@@ -171,7 +174,7 @@
 				A2F93E101DE203690088BFB4 /* 610387-200.png */,
 				A2F93E0E1DE2033B0088BFB4 /* 557994-200.png */,
 				359DE4DC1DE2AE7300EF497F /* Money.png */,
-				3D1DA2451DDFAE8900D0E0E3 /* Main.storyboard */,
+				3D9409C41DF11DB900885835 /* SettingController.swift */,
 				3D1DA2481DDFAE8900D0E0E3 /* Assets.xcassets */,
 				3D1DA24A1DDFAE8900D0E0E3 /* LaunchScreen.storyboard */,
 				3D1DA24D1DDFAE8900D0E0E3 /* Info.plist */,
@@ -351,13 +354,13 @@
 				3D1DA24C1DDFAE8900D0E0E3 /* LaunchScreen.storyboard in Resources */,
 				A2682B051DE4F3490091102F /* Camera.png in Resources */,
 				A2F93E111DE203690088BFB4 /* 610387-200.png in Resources */,
+				3D9409C71DF1253B00885835 /* Main.storyboard in Resources */,
 				A2C4320D1DE25B9B00286E3B /* AppIcon.png in Resources */,
 				A2F93E131DE203880088BFB4 /* 633679-200.png in Resources */,
 				A269C28B1DE521F0004270F6 /* pric.png in Resources */,
 				3D1DA2701DDFB12700D0E0E3 /* GoogleService-Info.plist in Resources */,
 				3D1DA2491DDFAE8900D0E0E3 /* Assets.xcassets in Resources */,
 				A2F93E0F1DE2033B0088BFB4 /* 557994-200.png in Resources */,
-				3D1DA2471DDFAE8900D0E0E3 /* Main.storyboard in Resources */,
 				359DE4DD1DE2AE7300EF497F /* Money.png in Resources */,
 				A2F93E0D1DE202B50088BFB4 /* 8557-200.png in Resources */,
 			);
@@ -535,6 +538,7 @@
 				618A0AA91DE2949100CDFAD9 /* spendingController.swift in Sources */,
 				359DE4F21DF0E1BB00EF497F /* chartController.swift in Sources */,
 				3D1DA2441DDFAE8900D0E0E3 /* ViewController.swift in Sources */,
+				3D9409C51DF11DB900885835 /* SettingController.swift in Sources */,
 				3D1DA2421DDFAE8900D0E0E3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,14 +575,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3D1DA2451DDFAE8900D0E0E3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3D1DA2461DDFAE8900D0E0E3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3D1DA24A1DDFAE8900D0E0E3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

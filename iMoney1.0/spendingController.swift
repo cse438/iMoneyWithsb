@@ -267,6 +267,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         self.ref.child("Records").child(id).child(selectedAccnt!.id).childByAutoId().setValue(["category":cateStr, "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr,"locationLatitude": latitude , "locationLongitude": longitude, "imageURL" : imageUrl])
         
             let blc = Int(selectedAccnt!.balance)
+        print("\(selectedAccnt)")
             let spd = Int(amnt)
             let newBlc = blc! - spd!
         

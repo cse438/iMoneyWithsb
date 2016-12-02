@@ -14,11 +14,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     var ref: FIRDatabaseReference!
+    var currentUser: FIRUser!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         ref = FIRDatabase.database().reference()
+        currentUser = FIRAuth.auth()?.currentUser
+        print("currentuser is:  \(currentUser)")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        currentUser = FIRAuth.auth()?.currentUser
+        guard currentUser == nil else {
+            self.performSegue(withIdentifier: "toDashboard", sender: nil)
+            return
+        }
     }
     
     override func didReceiveMemoryWarning() {
