@@ -146,7 +146,7 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
                 print(accountID + ": " + account["balance"]!)
                 let blcOp = Double(account["balance"] ?? "")
                 let blc = blcOp != nil ? blcOp! : 0
-                let id = account["id"] ?? ""
+                let id = accountID
                 let acountNumber = account["accountNumber"] ?? ""
                 let owner = account["owner"] ?? ""
                 let accountOb = Account(id: id, AccountNumber: acountNumber, balance: String(blc), owner: owner)
