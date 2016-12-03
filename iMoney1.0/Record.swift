@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-struct Record {
+class Record {
     
     let id: String
     let account: String

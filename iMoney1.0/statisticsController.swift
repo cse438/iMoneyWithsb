@@ -56,20 +56,14 @@ class statisticsController: UIViewController,MKMapViewDelegate {
                 print("--------------------------------------")
                 
                 for singleRecord in records.values{
-//                    self.longitudeSet.append(singleRecord["locationLongitude"] as! CLLocationDegrees)
-//                    self.latitudeSet.append(singleRecord["locationLatitude"] as! CLLocationDegrees)
-//                    self.titles.append(String(describing: singleRecord["Amount"]) + "for" + String(describing: singleRecord["Category"]))
                     for oneRecord in singleRecord.values{
-                        
                        self.latitudeSet.append(oneRecord["locationLatitude"] as! CLLocationDegrees)
                        self.longitudeSet.append(oneRecord["locationLongitude"] as! CLLocationDegrees)
-                       var str1: String = oneRecord["amount"] as! String
-                       var str2: String = oneRecord["category"] as! String
+                       let str1: String = oneRecord["amount"] as! String
+                       let str2: String = oneRecord["category"] as! String
                        self.titles.append(str1 + "$ for " + str2)
                       }
                 }
-                
-                
                 var i: Int = 0
                 while(i < self.longitudeSet.count){
                     self.coordinateSet?.append(CLLocationCoordinate2D())
@@ -79,9 +73,7 @@ class statisticsController: UIViewController,MKMapViewDelegate {
                     print(self.coordinateSet?[i])
                     print("@@@@@@@@@@@@@@@@@@")
                     i = i + 1
-                    
                 }
-                
                 var j: Int = 0
                 for coordinate in self.coordinateSet!{
                     let myAnnotation: MKPointAnnotation = MKPointAnnotation()
@@ -90,41 +82,12 @@ class statisticsController: UIViewController,MKMapViewDelegate {
                     j += 1
                     self.mapView.addAnnotation(myAnnotation)
                 }
-            
-                
             }
-            
-            
         })
-        
-        
-        
-       
-       
-        
-        
-        }
+    }
 
-    
-    
-    
-    
-    
-   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

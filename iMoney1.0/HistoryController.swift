@@ -58,9 +58,10 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "HistoryToDetail" {
-            // prepare here, records is stored in self.inUseRecords[self.indexSelected]
-            print("preparing for detail")
-            return
+            var recordDetail = self.inUseRecords[self.indexSelected]
+            let controller = segue.destination as! DetailController
+            controller.recordDetail = recordDetail
+                    
         }
     }
     
