@@ -13,7 +13,7 @@ class resetPassword: UIViewController{
     
      override func viewDidLoad() {
         super.viewDidLoad()
-        
+        hideKeyboardWhenTappedAround()
     }
     @IBAction func resetPassword(_ sender: Any) {
         FIRAuth.auth()!.sendPasswordReset(withEmail: emailText.text!, completion: { (error) in

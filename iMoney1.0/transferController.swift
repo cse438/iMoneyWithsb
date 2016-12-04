@@ -51,6 +51,7 @@ class transferController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         accounts.append(emptyAccnt)
         
         print(accounts)
+        hideKeyboardWhenTappedAround()
     }
     
     

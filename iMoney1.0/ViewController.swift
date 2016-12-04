@@ -22,6 +22,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         ref = FIRDatabase.database().reference()
         currentUser = FIRAuth.auth()?.currentUser
         print("currentuser is:  \(currentUser)")
+        
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewDidAppear(_ animated: Bool) {

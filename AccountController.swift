@@ -67,6 +67,8 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
         self.datetime.text = "\(month)-\(day), \(year)"
         
         theCollectionView.dataSource = self
+        
+        hideKeyboardWhenTappedAround()
     }
     
     override func didReceiveMemoryWarning() {

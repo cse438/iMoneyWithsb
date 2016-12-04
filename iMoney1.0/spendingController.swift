@@ -148,6 +148,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         let emptyAccnt = Account(id:"", AccountNumber: "", balance : "", owner : "")
         accounts.append(emptyAccnt)
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -111,6 +111,7 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         print("View Loading1")
         let emptyAccnt = Account(id:"", AccountNumber: "", balance : "", owner : "")
         accounts.append(emptyAccnt)
+        hideKeyboardWhenTappedAround()
 
     }
     override func viewWillAppear(_ animated: Bool) {
