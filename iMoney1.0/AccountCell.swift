@@ -15,6 +15,7 @@ class AccountCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     
+    @IBOutlet weak var closeImage: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

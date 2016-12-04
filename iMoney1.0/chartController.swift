@@ -192,7 +192,9 @@ class chartController: UIViewController {
             xNames.append(self.cateArray[i])
         }
         let chartDataSet = PieChartDataSet(values: dataEntries, label: "")
-        chartDataSet.colors = ChartColorTemplates.material()
+        chartDataSet.colors = ChartColorTemplates.pastel()
+//        material()
+//        print(ChartColorTemplates.material().count)
         let chartData =  PieChartData(dataSet: chartDataSet)
         chartData.setValueFormatter(self)
         self.thePieChart.data = chartData

@@ -35,7 +35,6 @@ class statisticsController: UIViewController,MKMapViewDelegate {
         let uid = user.uid
             self.currentUser = User(uid:uid,email:email)
         }
-        
       
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         self.ref.child("Records").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -84,6 +83,10 @@ class statisticsController: UIViewController,MKMapViewDelegate {
                 }
             }
         })
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     override func didReceiveMemoryWarning() {

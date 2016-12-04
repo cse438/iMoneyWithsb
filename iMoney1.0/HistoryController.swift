@@ -53,7 +53,7 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
         theTable.tableHeaderView = nil
         theTable.reloadData()
         print("data received, is : ")
-        print(self.inUseRecords)
+//        print(self.inUseRecords)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,6 +95,7 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
             let tableName = self.inUseRecords[i].category == "" ? "Earn" : "Records"
             self.ref.child(tableName).child(self.currentUser.uid).child(accountID).child(recordID).removeValue()
             // maintainance on account balance needed?
+            print("\(recordID) deleted")
             self.inUseRecords.remove(at: i)
             theTable.deleteRows(at: [indexPath], with: .fade)
         }

@@ -34,7 +34,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     let myAnnotation: MKPointAnnotation = MKPointAnnotation()
     
     
-    var category = ["", "Clothes", "Food", "Living", "Transport"];
+    var category = ["", "Clothes", "Food", "Living", "Transport", "Others"];
     var accounts = [Account]();
     
     var cateStr : String = ""

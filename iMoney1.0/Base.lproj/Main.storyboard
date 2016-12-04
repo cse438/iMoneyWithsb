@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -236,7 +236,7 @@
         <!--Navigation Controller-->
         <scene sceneID="sfi-fE-9jL">
             <objects>
-                <navigationController id="DwV-GY-tyU" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="DwV-GY-tyU" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yLm-rk-o8p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -555,7 +555,7 @@
             </objects>
             <point key="canvasLocation" x="-572" y="-1842"/>
         </scene>
-        <!--Account-->
+        <!--Account Controller-->
         <scene sceneID="oUs-tj-b39">
             <objects>
                 <viewController id="7Nv-j5-jsc" customClass="AccountController" customModule="iMoney1_0" customModuleProvider="target" sceneMemberID="viewController">
@@ -605,15 +605,29 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button hidden="YES" opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yu-At-lRM">
+                                                    <rect key="frame" x="74" y="4" width="21" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <size key="titleShadowOffset" width="1" height="0.0"/>
+                                                    <state key="normal" image="close.png">
+                                                        <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <connections>
                                             <outlet property="balanceLabel" destination="x4S-Wl-NKK" id="7Qw-Jt-SHU"/>
+                                            <outlet property="closeImage" destination="9Yu-At-lRM" id="ie5-8l-uel"/>
                                             <outlet property="nameLabel" destination="SiM-cU-YDI" id="0qx-tB-rTM"/>
-                                            <outlet property="theImage" destination="SbQ-1j-0WA" id="lDy-lY-j6t"/>
+                                            <outlet property="theImage" destination="SbQ-1j-0WA" id="bGK-D9-0v4"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="7Nv-j5-jsc" id="ZGo-HO-kzk"/>
+                                    <outlet property="delegate" destination="7Nv-j5-jsc" id="1zu-Le-5Ob"/>
+                                </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJ1-Ds-GTr">
                                 <rect key="frame" x="1" y="72" width="113" height="45"/>
@@ -723,7 +737,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Account" image="610387-200.png" selectedImage="610387-200.png" id="6q6-4h-hyl"/>
+                    <navigationItem key="navigationItem" id="crz-pn-tPR"/>
                     <connections>
                         <outlet property="balanceButton" destination="G5W-Cy-Ogb" id="FHm-ss-zKL"/>
                         <outlet property="dataLabel" destination="NJ1-Ds-GTr" id="ef0-S0-uja"/>
@@ -736,7 +750,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GTx-dz-Omh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="834" y="-1488"/>
+            <point key="canvasLocation" x="1772" y="-1489.2053973013494"/>
         </scene>
         <!--New Spending-->
         <scene sceneID="Mji-rS-rhV">
@@ -1142,7 +1156,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="7Nv-j5-jsc" kind="relationship" relationship="viewControllers" id="YGB-RB-0dj"/>
+                        <segue destination="zWJ-sN-d5W" kind="relationship" relationship="viewControllers" id="YGB-RB-0dj"/>
                         <segue destination="tO1-9y-jl0" kind="relationship" relationship="viewControllers" id="UEl-Rm-19Y"/>
                         <segue destination="9jg-Pg-Jpa" kind="relationship" relationship="viewControllers" id="NW1-LL-pfb"/>
                     </connections>
@@ -1352,6 +1366,25 @@
             </objects>
             <point key="canvasLocation" x="2735.1999999999998" y="-2345.577211394303"/>
         </scene>
+        <!--Account-->
+        <scene sceneID="tli-aC-1JR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zWJ-sN-d5W" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Account" image="610387-200.png" selectedImage="610387-200.png" id="6q6-4h-hyl"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4R3-bN-8zy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7Nv-j5-jsc" kind="relationship" relationship="rootViewController" id="H5i-rv-zwf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1zW-Du-3a8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="832.79999999999995" y="-1488.305847076462"/>
+        </scene>
     </scenes>
     <resources>
         <image name="557994-200.png" width="25" height="25"/>
@@ -1359,6 +1392,7 @@
         <image name="633679-200.png" width="25" height="25"/>
         <image name="AppIcon.png" width="174" height="174"/>
         <image name="Camera.png" width="90" height="90"/>
+        <image name="close.png" width="256" height="256"/>
         <image name="pric.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import CoreLocation
 
-class AccountController: UIViewController, UICollectionViewDataSource, CLLocationManagerDelegate {
+class AccountController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var theCollectionView: UICollectionView!
     
@@ -22,9 +22,10 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
     
     var ref: FIRDatabaseReference!
     var currentUser: User!
-    var accountsDict: [String : [String : String]] = [:]
+//    var accountsDict: [String : [String : String]] = [:]
     var accounts: [Account] = []
     var accountImage: UIImage! = UIImage(named: "Money.png")
+    var accountRecords: [String : [Record]] = [:]
     var spendings: [Record] = []
     var earnings: [Record] = []
     var inUseRecords: [Record] = []
@@ -32,6 +33,8 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
     
     let locationManager = CLLocationManager()
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.tabBarController?.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.title = "iMoney"
     }
     
     override func viewDidLoad() {
@@ -54,8 +57,6 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
             self.currentUser = User(uid:uid,email:email)
             
             self.fetchAccounts()
-            self.fetchSpedingData()
-            self.fetchEarningData()
         }
         let date = Date()
         let calendar = Calendar.current
@@ -67,13 +68,40 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
         self.datetime.text = "\(month)-\(day), \(year)"
         
         theCollectionView.dataSource = self
+        theCollectionView.delegate = self
         
-        hideKeyboardWhenTappedAround()
+        let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(editPressed))
+        self.navigationItem.setRightBarButton(editButton, animated: true)
+//        hideKeyboardWhenTappedAround()
+        
     }
-    
+    func editPressed(){
+        print("edit pressed!")
+
+        if(self.navigationItem.rightBarButtonItem?.title == "Edit"){
+            
+            self.navigationItem.rightBarButtonItem?.title = "Done"
+            
+            //Looping through CollectionView Cells in Swift
+            
+            for item in self.theCollectionView!.visibleCells as! [AccountCell] {
+                
+                let indexpath : IndexPath = self.theCollectionView!.indexPath(for: item as AccountCell)!
+                let cell : AccountCell = self.theCollectionView!.cellForItem(at: indexpath) as! AccountCell
+                
+                let close : UIButton = cell.viewWithTag(102) as! UIButton
+                close.isHidden = false
+            }
+        } else {
+            self.navigationItem.rightBarButtonItem?.title = "Edit"
+            self.theCollectionView?.reloadData()
+        }
+
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    
     }
     
     @IBAction func balanceTapped(_ sender: Any) {
@@ -132,19 +160,21 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
         present(alert, animated: true, completion: nil)
         
     }
+   
     
     func fetchAccounts () {
         print("strat to query")
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        print("currentUser is: \(uid)")
         self.ref.child("Accounts").child(uid).observe(.value, with: { (snapshot) in
             
             guard snapshot.exists() else {
                 return
             }
             self.accounts = []
-            self.accountsDict = snapshot.value as? [String : [String : String]] ?? [:]
+            let accountsDict = snapshot.value as? [String : [String : String]] ?? [:]
             var totalBlc = 0.0
-            for (accountID, account) in self.accountsDict {
+            for (accountID, account) in accountsDict {
                 print(accountID + ": " + account["balance"]!)
                 let blcOp = Double(account["balance"] ?? "")
                 let blc = blcOp != nil ? blcOp! : 0
@@ -154,6 +184,8 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
                 let accountOb = Account(id: id, AccountNumber: acountNumber, balance: String(blc), owner: owner)
                 self.accounts.append(accountOb)
                 totalBlc += blc
+//                self.accountRecords.updateValue([], forKey: accountOb.id)
+                print("userRecords cleared")
             }
             self.balanceButton.setTitle("\(round(totalBlc*100)/100)", for: UIControlState.normal)
             print("end of query")
@@ -162,19 +194,23 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
             self.theCollectionView.reloadData()
             print("after reloading data")
             print("we have \(self.accounts.count) accounts")
+            
+            self.fetchSpedingData()
+            self.fetchEarningData()
         }) // End of observeSingleEvent
     }
     
     func fetchSpedingData() {
+        print("start fetching spending")
         let userRecordsRef = self.ref.child("Records").child(self.currentUser.uid)
-        self.spendings = []
         var total = 0.0
         userRecordsRef.observe(.value, with: { snapshot in
+            self.spendings = []
             guard snapshot.exists() else {
                 return
             }
             let accountDict = snapshot.value as? NSDictionary ?? [:]
-            for (_, accountValue) in accountDict{
+            for (accountID, accountValue) in accountDict{
                 let recordDict = accountValue as? [String : [String : Any]] ?? [:]
                 for (recordID, record) in recordDict {
                     let id = recordID
@@ -189,10 +225,14 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
                     let long = record["locationLongitude"] as? CLLocationDegrees ?? 0
                     let note = record["note"] as? String ?? ""
                     self.spendings.append(Record(id: id, account: account, amount: amount, category: category, date: date, long: long, lat: lat, imageURL: imageURL, note: note))
-                    
                     total += amount
-                    print("Spending is: \(self.spendings[self.spendings.count - 1])")
+                    
+//                    print("Spending is: \(self.spendings[self.spendings.count - 1].id)")
                 }
+//                let id = accountID as? String ?? ""
+//                let oldRecords = self.accountRecords[id] ?? []
+//                self.accountRecords.updateValue(self.earnings + self.spendings, forKey: id)
+//                print("\(self.accountRecords[id]) after fetch spending")
             }
             self.spendingButton.setTitle("\(round(total*100)/100)", for: UIControlState.normal)
         })
@@ -200,15 +240,17 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
     }
     
     func fetchEarningData() {
+        print("start fetching earning")
         let userRecordsRef = self.ref.child("Earn").child(self.currentUser.uid)
-        self.earnings = []
+        print("earnings cleared")
         var total = 0.0
         userRecordsRef.observe(.value, with: { snapshot in
             guard snapshot.exists() else {
                 return
             }
+            self.earnings = []
             let accountDict = snapshot.value as? NSDictionary ?? [:]
-            for (_, accountValue) in accountDict{
+            for (accountID, accountValue) in accountDict{
                 let recordDict = accountValue as? [String : [String : Any]] ?? [:]
                 for (recordID, record) in recordDict {
                     let id = recordID
@@ -223,10 +265,13 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
                     let long = record["locationLongitude"] as? CLLocationDegrees ?? 0
                     let note = record["note"] as? String ?? ""
                     self.earnings.append(Record(id: id, account: account, amount: amount, category: category, date: date, long: long, lat: lat, imageURL: imageURL, note: note))
-                    
                     total += amount
-                    print("Earning is: \(self.earnings[self.earnings.count - 1])")
+                    
+//                    print("Earning is: \(self.earnings[self.earnings.count - 1].id)")
                 }
+//                let id = accountID as? String ?? ""
+//                let oldRecords = self.accountRecords[id] ?? []
+//                self.accountRecords.updateValue(self.spendings + self.earnings, forKey: id)
             }
             self.incomeButton.setTitle("\(round(total*100)/100)", for: UIControlState.normal)
         })
@@ -252,18 +297,60 @@ class AccountController: UIViewController, UICollectionViewDataSource, CLLocatio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "accountCell", for: indexPath) as! AccountCell
+        
         if self.accounts.count != 0 {
-            let account = self.accounts[indexPath.row]
+            let i = indexPath.row
+            let account = self.accounts[i]
             
             cell.theImage.image = accountImage!
             cell.nameLabel.text = account.AccountNumber
             cell.balanceLabel.text = "balance: " + account.balance
             print("cell " + account.AccountNumber + " populated.")
+            if self.navigationItem.rightBarButtonItem!.title == "Edit" {
+                cell.closeImage?.isHidden = true
+            } else {
+                cell.closeImage?.isHidden = false
+            }
+          
+            cell.closeImage?.layer.setValue(indexPath.row, forKey: "index")
+            
+            
+            cell.closeImage?.addTarget(self, action: #selector(AccountController.deletePhoto(_:)), for: UIControlEvents.touchUpInside)
         }
         return cell
     }
-    
-    
+    func deletePhoto(_ sender:UIButton) {
+        let i : Int = (sender.layer.value(forKey: "index")) as! Int
+        let accountID = accounts[i].id
+        self.ref.child("Accounts").child(self.currentUser.uid).child(accountID).removeValue()
+        self.ref.child("Records").child(self.currentUser.uid).child(accountID).removeValue()
+        self.ref.child("Earn").child(self.currentUser.uid).child(accountID).removeValue()
+        
+        accounts.remove(at: i)
+        self.theCollectionView!.reloadData()
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let i = indexPath.row
+        print("\(i) cell selected")
+        let id = accounts[i].id
+        let accountNumber = accounts[i].AccountNumber
+        var records: [Record] = []
+        for spending in self.spendings {
+            if spending.account == accountNumber {
+                records.append(spending)
+            }
+        }
+        for earning in self.earnings {
+            if earning.account == accountNumber {
+                records.append(earning)
+            }
+        }
+        self.accountRecords[id] = records
+        self.inUseRecords = self.accountRecords[id]!
+        self.performSegue(withIdentifier: "dashboardToHistory", sender: nil)
+    }
     /*
      // MARK: - Navigation
      

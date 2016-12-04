@@ -12,6 +12,10 @@ import CoreLocation
 import MapKit
 
 class SettingController: UIViewController{
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
 
     @IBAction func logout(_ sender: Any) {
         let firebaseAuth = FIRAuth.auth()
