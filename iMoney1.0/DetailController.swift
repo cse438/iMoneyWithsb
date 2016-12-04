@@ -11,18 +11,29 @@ import Firebase
 import CoreLocation
 import MapKit
 
-class DetailController: UIViewController {
+class DetailController: UIViewController{
     
+    @IBOutlet weak var imageDisplay: UIImageView!
     var recordDetail: Record = Record(id: "", account: "", amount: 0.0, category: "", date: Date(timeIntervalSince1970: 1000000), long: 0.0, lat: 0.0, imageURL: "", note: "")
     let myAnnotation: MKPointAnnotation = MKPointAnnotation()
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var account: UILabel!
-    @IBOutlet weak var imageDisplay: UIImageView!
+   
     @IBOutlet weak var note: UITextView!
     @IBOutlet weak var amount: UILabel!
     @IBOutlet weak var category: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var showImage: UIButton!
     
+    @IBAction func showImageClicked(_ sender: Any) {
+        let url : NSURL = NSURL(string: recordDetail.imageURL)!
+        if UIApplication.shared.canOpenURL(url as URL) {
+            UIApplication.shared.openURL(url as URL)
+        }
+    }
+    
+    
+   
     init() {
         super.init(nibName:nil, bundle:nil)
     }
@@ -51,6 +62,11 @@ class DetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        print("------------------------------------")
+        print(recordDetail.imageURL)
+        print("------------------------------------")
+
         if recordDetail.category == "" {
             category.text = "/"
         }
@@ -64,7 +80,8 @@ class DetailController: UIViewController {
         mapView.addAnnotation(myAnnotation)
         if recordDetail.imageURL != "" {
             if let checkedUrl = NSURL(string: recordDetail.imageURL){
-                imageDisplay.contentMode = .scaleAspectFit
+                imageDisplay.contentMode = .redraw
+                imageDisplay.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI/2))
                 downloadImage(url: checkedUrl as URL)
             }
         }

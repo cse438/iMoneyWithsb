@@ -26,10 +26,9 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var imageDisplay: UIImageView!
     
     @IBOutlet weak var cameraButton: UIButton!
-        var imageUrl: String = ""
+
 
      let locationManager = CLLocationManager()
-    
     var currentLocation = CLLocation()
     let myAnnotation: MKPointAnnotation = MKPointAnnotation()
     
@@ -61,12 +60,9 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
  
     
-    
-    var base64String: NSString!
+ 
     
     func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
-        
-        print("in here")
         if error == nil {
             let ac = UIAlertController(title: "Saved!", message: "image has been saved to your photos." , preferredStyle: .alert
             )
@@ -108,7 +104,6 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         if CLLocationManager.locationServicesEnabled() {
             userLocation = locations[0]}
         currentLocation = userLocation
-        print("The current location is \(userLocation)")
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
@@ -157,7 +152,6 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     
     func fetchAccounts(){
-        print("strat to query")
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         self.ref.child("Accounts").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             self.accountPicker.reloadAllComponents()
@@ -166,9 +160,6 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             }
             let accntsDict = snapshot.value as? [String : [String : String]] ?? [:]
             for (accntID, accnt) in accntsDict {
-                print("in here")
-                print("id" + accntID)
-                print("accountNumber" + accnt["accountNumber"]!)
                 let account = Account(id:accntID, AccountNumber: accnt["accountNumber"]!, balance : accnt["balance"]!, owner : accnt["owner"]!)
                 self.accounts.append(account)
             self.accountPicker.reloadAllComponents()
@@ -207,50 +198,31 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        print("row:  \(row)")
         if pickerView.tag == 0{
             cateStr = category[row]
         }else{
             selectedAccnt = accounts[row]
-            print(selectedAccnt)
         }
     }
     
 
     @IBAction func addSpending(_ sender: Any) {
+        
+        
         let id = (FIRAuth.auth()?.currentUser?.uid)!
         let amnt = amount.text!
         let nt = note.text!
         let latitude = currentLocation.coordinate.latitude
         let longitude = currentLocation.coordinate.longitude
+        var imageUrl: String = ""
         
         let date = NSDate()
         var formatter = DateFormatter();
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
         formatter.timeZone = NSTimeZone.local
         let defaultTimeZoneStr = formatter.string(from: date as Date);
-
-//        var data = NSData()
-//        data = UIImageJPEGRepresentation(imageDisplay!.image!, 0.8)! as NSData
-//        
-//        let base64String = data.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
-        let storageRef = FIRStorage.storage().reference().child("\(id).png")
         
-                if let uploadData = UIImagePNGRepresentation(imageDisplay.image!){
-                        storageRef.put(uploadData, metadata: nil, completion: {
-                                (metadata, error) in
-                
-                
-                                if error != nil{
-                                    print(error)
-                                    return
-                                }
-                                self.imageUrl = (metadata?.downloadURL()?.absoluteString)!
-                                print(metadata)
-                            })
-            
-                    }
-        if selectedAccnt == nil || selectedAccnt?.AccountNumber == "" || cateStr == "" || amnt == "" {
+                       if selectedAccnt == nil || selectedAccnt?.AccountNumber == "" || cateStr == "" || amnt == "" {
             let myAlert = Alert(title: "Sorry", message: "Please don't leave amount empty or leave category and account unselected", target: self)
             myAlert.show()
             return
@@ -260,27 +232,46 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             myAlert.show()
             return
         }
-
-        print("-----------------------------")
-        print(cateStr)
-        print("account number is " + selectedAccnt!.AccountNumber)
+       
+       
         
-        print(amnt)
-        print(nt)
-        //print(base64String)
-        print("-----------------------------")
-
-        
-//        self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
-        self.ref.child("Records").child(id).child(selectedAccnt!.id).childByAutoId().setValue(["category":cateStr, "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr,"locationLatitude": latitude , "locationLongitude": longitude, "imageURL" : imageUrl])
         let blc = Double(selectedAccnt!.balance)
-        print("\(selectedAccnt)")
         let spd = Double(amnt)
         let newBlc = blc! - spd!
-        
-        print(newBlc)
-        
+
         self.ref.child("Accounts").child(id).child(selectedAccnt!.id).setValue(["owner":selectedAccnt!.owner,"accountNumber":selectedAccnt!.AccountNumber, "balance":String(newBlc)])
+        
+        let storageRef = FIRStorage.storage().reference().child("\(id)\(defaultTimeZoneStr).png")
+        
+        
+        
+        
+        if let uploadData = UIImagePNGRepresentation(imageDisplay.image!){
+            storageRef.put(uploadData, metadata: nil, completion: {
+                (metadata, error) in
+                while(imageUrl == ""){
+                    
+                    
+                    imageUrl = (metadata?.downloadURL()?.absoluteString)!
+                    
+                 
+                    
+                    self.ref.child("Records").child(id).child(self.selectedAccnt!.id).childByAutoId().setValue(["category":self.cateStr, "accountNumber":self.selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr,"locationLatitude": latitude , "locationLongitude": longitude, "imageURL" : imageUrl])
+                    
+                    
+                    
+                    
+                    let myAlert = Alert(title: "Succeeded", message: "Your record has been uploaded", target: self)
+                    myAlert.show()
+                }
+                if error != nil{
+                    print(error)
+                    return
+                }
+                
+            })
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
