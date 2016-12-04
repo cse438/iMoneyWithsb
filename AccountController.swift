@@ -14,7 +14,6 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
     
     @IBOutlet weak var theCollectionView: UICollectionView!
     
-    @IBOutlet weak var datetime: UITextField!
     @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var balanceButton: UIButton!
     @IBOutlet weak var incomeButton: UIButton!
@@ -64,8 +63,11 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
         let hour = calendar.component(.hour, from: date)
         let minutes = calendar.component(.minute, from: date)
         let month = calendar.component(.month, from: date)
+        let months = calendar.shortMonthSymbols
+        let monthSymbol = months[month-1]
         let year = calendar.component(.year, from: date)
-        self.datetime.text = "\(month)-\(day), \(year)"
+        
+        self.dataLabel.text = "\(monthSymbol) \(day), \(year)"
         
         theCollectionView.dataSource = self
         theCollectionView.delegate = self
@@ -80,6 +82,8 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
 
         if(self.navigationItem.rightBarButtonItem?.title == "Edit"){
             
+            let myAlert = Alert(title: "Warning", message: "Once account is deleted, all records related to this account will also be deleted and cannot be restored!", target: self)
+            myAlert.show()
             self.navigationItem.rightBarButtonItem?.title = "Done"
             
             //Looping through CollectionView Cells in Swift
@@ -129,6 +133,18 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
                                         let accountNumber = alert.textFields![0]
                                         let balance = alert.textFields![1]
                                         
+                                        let numberString = accountNumber.text ?? ""
+                                        let balanceString = balance.text ?? ""
+                                        if numberString == "" || balanceString == "" {
+                                            let myAlert = Alert(title: "Sorry", message: "Please don't leave account number or balance empty.", target: self)
+                                            myAlert.show()
+                                            return
+                                        }
+                                        if Double(balanceString) == nil {
+                                            let myAlert = Alert(title: "Sorry", message: "Please enter valid number for balance.", target: self)
+                                            myAlert.show()
+                                            return
+                                        }
                                         
                                         let email = self.currentUser!.email
                                         let id = self.currentUser!.uid

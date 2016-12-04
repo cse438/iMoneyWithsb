@@ -16,6 +16,8 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
 //    @IBOutlet weak var allButton: UIButton!
 //    @IBOutlet weak var incomeButton: UIButton!
 //    @IBOutlet weak var spendingButton: UIButton!
+    @IBOutlet weak var theMinDatePicker: UIDatePicker!
+    @IBOutlet weak var theMaxDatePicker: UIDatePicker!
     
     var ref: FIRDatabaseReference!
     var currentUser: FIRUser!
@@ -26,7 +28,10 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
 //    var allReords: [Record] = []
     var indexSelected: Int = 0
     var inUseRecords: [Record] = []
+    var recordsInDate: [Record] = []
     var formatter: DateFormatter! = nil
+    var minDate: Date = Date()
+    var maxDate: Date = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,17 +48,37 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
                 self.numberToID.updateValue(account.id, forKey: number)
             }
         }
-//        allReords = spendings + earnings
-//        spendings.sort(by: { $0.date > $1.date })
-//        earnings.sort(by: { $0.date > $1.date })
-//        allReords.sort(by: { $0.date > $1.date })
         inUseRecords.sort(by: { $0.date > $1.date})
         theTable.dataSource = self
         theTable.delegate = self
         theTable.tableHeaderView = nil
         theTable.reloadData()
+        
+        theMinDatePicker.date = Date()
+        theMaxDatePicker.date = Date()
+        theMinDatePicker.datePickerMode = .date
+        theMaxDatePicker.datePickerMode = .date
+        theMinDatePicker.minimumDate = Date(timeIntervalSince1970: 0)
+        theMinDatePicker.maximumDate = theMaxDatePicker.date
+        theMaxDatePicker.minimumDate = theMinDatePicker.date
+        theMaxDatePicker.maximumDate = Date()
+        recordsInDate = arrayBetweenIndex(array: self.inUseRecords, minDate: self.minDate, maxDate: self.maxDate)
+        
         print("data received, is : ")
-//        print(self.inUseRecords)
+    }
+    
+    @IBAction func minPickerChanged(_ sender: Any) {
+        theMaxDatePicker.minimumDate = theMinDatePicker.date
+        minDate = theMinDatePicker.date
+        recordsInDate = arrayBetweenIndex(array: self.inUseRecords, minDate: self.minDate, maxDate: self.maxDate)
+        self.theTable.reloadData()
+    }
+    
+    @IBAction func maxPickerChanged(_ sender: Any) {
+        theMinDatePicker.maximumDate = theMaxDatePicker.date
+        maxDate = theMaxDatePicker.date
+        recordsInDate = arrayBetweenIndex(array: self.inUseRecords, minDate: self.minDate, maxDate: self.maxDate)
+        self.theTable.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -61,21 +86,29 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
             var recordDetail = self.inUseRecords[self.indexSelected]
             let controller = segue.destination as! DetailController
             controller.recordDetail = recordDetail
-                    
         }
     }
     
+    func arrayBetweenIndex (array: [Record], minDate: Date, maxDate: Date) -> [Record] {
+        var ans: [Record] = []
+        for record in array {
+            if record.date >= minDate && record.date <= maxDate {
+                ans.append(record)
+            }
+        }
+        return ans
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.inUseRecords.count
+        return self.recordsInDate.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let i = indexPath.row
-        let amount = self.inUseRecords[i].amount
-        let category = self.inUseRecords[i].category
+        let amount = self.recordsInDate[i].amount
+        let category = self.recordsInDate[i].category
         let prefix = category != "" ? category : "Income"
-        let date = self.formatter.string(from: self.inUseRecords[i].date)
+        let date = self.formatter.string(from: self.recordsInDate[i].date)
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = "\(prefix): $\(amount), at \(date)"
         return cell
@@ -89,14 +122,13 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             // handle deleting, remove from remote database, remove record from array
             let i = indexPath.row
-            let recordID = self.inUseRecords[i].id
-            let accountNumber = self.inUseRecords[i].account
+            let recordID = self.recordsInDate[i].id
+            let accountNumber = self.recordsInDate[i].account
             let accountID = self.numberToID[accountNumber]!
-            let tableName = self.inUseRecords[i].category == "" ? "Earn" : "Records"
+            let tableName = self.recordsInDate[i].category == "" ? "Earn" : "Records"
             self.ref.child(tableName).child(self.currentUser.uid).child(accountID).child(recordID).removeValue()
-            // maintainance on account balance needed?
             print("\(recordID) deleted")
-            self.inUseRecords.remove(at: i)
+            self.recordsInDate.remove(at: i)
             theTable.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -108,6 +140,4 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
         self.performSegue(withIdentifier: "HistoryToDetail", sender: nil)
         print("after performing")
     }
-
-    
 }

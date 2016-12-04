@@ -198,8 +198,14 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                                 print(metadata)
                             })
         }
-        if selectedAccnt == nil || amnt == "" {
-            print("error")
+        if selectedAccnt == nil || selectedAccnt?.AccountNumber == "" || amnt == "" {
+            let myAlert = Alert(title: "Sorry", message: "Please don't leave amount empty or leave category and account unselected", target: self)
+            myAlert.show()
+            return
+        }
+        if Double(amnt) == nil || Double(amnt)! <= 0 {
+            let myAlert = Alert(title: "Sorry", message: "Please enter only valid positivie number for amount", target: self)
+            myAlert.show()
             return
         }
         print("-----------------------------")

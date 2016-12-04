@@ -212,6 +212,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             cateStr = category[row]
         }else{
             selectedAccnt = accounts[row]
+            print(selectedAccnt)
         }
     }
     
@@ -249,8 +250,14 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
                             })
             
                     }
-        if selectedAccnt == nil || cateStr == "" || amnt == "" {
-            print("error")
+        if selectedAccnt == nil || selectedAccnt?.AccountNumber == "" || cateStr == "" || amnt == "" {
+            let myAlert = Alert(title: "Sorry", message: "Please don't leave amount empty or leave category and account unselected", target: self)
+            myAlert.show()
+            return
+        }
+        if Double(amnt) == nil || Double(amnt)! <= 0 {
+            let myAlert = Alert(title: "Sorry", message: "Please enter only valid number for amount", target: self)
+            myAlert.show()
             return
         }
 
@@ -266,18 +273,14 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
 //        self.ref.child("Records").child(id).childByAutoId().setValue(["category":cateStr, "accountNumber":accntStr, "amount":amnt, "note": nt, "locationLatitude": latitude , "locationLongitude": longitude, "image" : base64String])
         self.ref.child("Records").child(id).child(selectedAccnt!.id).childByAutoId().setValue(["category":cateStr, "accountNumber":selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr,"locationLatitude": latitude , "locationLongitude": longitude, "imageURL" : imageUrl])
-        
-            let blc = Int(selectedAccnt!.balance)
+        let blc = Double(selectedAccnt!.balance)
         print("\(selectedAccnt)")
-            let spd = Int(amnt)
-            let newBlc = blc! - spd!
+        let spd = Double(amnt)
+        let newBlc = blc! - spd!
         
-            print(newBlc)
+        print(newBlc)
         
-            self.ref.child("Accounts").child(id).child(selectedAccnt!.id).setValue(["owner":selectedAccnt!.owner,"accountNumber":selectedAccnt!.AccountNumber, "balance":String(newBlc)])
-        
-        
-        
+        self.ref.child("Accounts").child(id).child(selectedAccnt!.id).setValue(["owner":selectedAccnt!.owner,"accountNumber":selectedAccnt!.AccountNumber, "balance":String(newBlc)])
     }
 
     override func didReceiveMemoryWarning() {

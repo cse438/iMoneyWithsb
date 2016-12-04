@@ -119,28 +119,36 @@ class transferController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBAction func didTapTransfer(_ sender: Any) {
         let id = (FIRAuth.auth()?.currentUser?.uid)!
         
-        let amnt = Int(amount.text!)!
+        let amnt = amount.text!
+        
+        if acnt1 == nil || acnt2 == nil || acnt1!.AccountNumber == "" || acnt2!.AccountNumber == "" || amnt == "" {
+            let myAlert = Alert(title: "Sorry", message: "Please don't leave amount empty or leave category and account unselected", target: self)
+            myAlert.show()
+            return
+        }
+        if acnt1!.AccountNumber == acnt2!.AccountNumber {
+            let myAlert = Alert(title: "Sorry", message: "Please select differnet accounts.", target: self)
+            myAlert.show()
+            return
+        }
+        if Double(amnt) == nil || Double(amnt)! <= 0 {
+            let myAlert = Alert(title: "Sorry", message: "Please enter only valid number for amount", target: self)
+            myAlert.show()
+            return
+        }
         
         let nt = note.text!
         
-        let newAmnt1 = Int((acnt1?.balance)!)! - amnt
+        let newAmnt1 = Double((acnt1?.balance)!)! - Double(amnt)!
         
-        let newAmnt2 = Int((acnt2?.balance)!)! + amnt
+        let newAmnt2 = Double((acnt2?.balance)!)! + Double(amnt)!
         let date = NSDate()
         var formatter = DateFormatter();
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
         formatter.timeZone = NSTimeZone.local
         let defaultTimeZoneStr = formatter.string(from: date as Date);
 
-        if acnt1!.AccountNumber == acnt2!.AccountNumber {
-            print("Should use different account")
-            return
-        }
         
-        if amnt <= 0{
-            print("Invalid amount")
-            return
-        }
         self.ref.child("Accounts").child(id).child(acnt1!.id).setValue(["owner":acnt1!.owner,"accountNumber":acnt1!.AccountNumber, "balance":String(newAmnt1)])
         
         self.ref.child("Accounts").child(id).child(acnt2!.id).setValue(["owner":acnt2!.owner,"accountNumber":acnt2!.AccountNumber, "balance":String(newAmnt2)])

@@ -524,36 +524,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nv7-ha-MlT">
-                                <rect key="frame" x="0.0" y="117" width="375" height="501"/>
+                                <rect key="frame" x="0.0" y="243" width="375" height="424"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmP-su-uXG">
-                                <rect key="frame" x="16" y="64" width="100" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAl-GE-ICA">
-                                <rect key="frame" x="137" y="64" width="100" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSm-Ao-WE1">
-                                <rect key="frame" x="259" y="64" width="100" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="23b-Bb-cW7">
+                                <rect key="frame" x="0.0" y="194" width="375" height="41"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="502536621.538867">
+                                    <!--2016-12-04 09:30:21 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="maxPickerChanged:" destination="rsH-Zd-ijc" eventType="valueChanged" id="aLU-dS-csX"/>
+                                </connections>
+                            </datePicker>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="tq0-FV-eMF">
+                                <rect key="frame" x="0.0" y="145" width="375" height="41"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="502536621.538867">
+                                    <!--2016-12-04 09:30:21 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="minPickerChanged:" destination="rsH-Zd-ijc" eventType="valueChanged" id="HOT-Db-abB"/>
+                                </connections>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="theMaxDatePicker" destination="23b-Bb-cW7" id="8wf-1A-vyg"/>
+                        <outlet property="theMinDatePicker" destination="tq0-FV-eMF" id="BNm-PG-Osu"/>
                         <outlet property="theTable" destination="nv7-ha-MlT" id="qoB-2g-UfO"/>
                         <segue destination="DdD-W8-4hi" kind="show" identifier="HistoryToDetail" id="UWf-BS-UDx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afU-2g-G1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-572" y="-1842"/>
+            <point key="canvasLocation" x="-554.39999999999998" y="-1704.1979010494754"/>
         </scene>
         <!--Account Controller-->
         <scene sceneID="oUs-tj-b39">
@@ -630,7 +637,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJ1-Ds-GTr">
-                                <rect key="frame" x="1" y="72" width="113" height="45"/>
+                                <rect key="frame" x="1" y="72" width="150" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -702,14 +709,6 @@
                                     <action selector="addAccount:" destination="7Nv-j5-jsc" eventType="touchUpInside" id="B4u-GQ-gjf"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rJD-sR-IdU">
-                                <rect key="frame" x="122" y="79" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5W-Cy-Ogb">
                                 <rect key="frame" x="181" y="124" width="156" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -741,7 +740,6 @@
                     <connections>
                         <outlet property="balanceButton" destination="G5W-Cy-Ogb" id="FHm-ss-zKL"/>
                         <outlet property="dataLabel" destination="NJ1-Ds-GTr" id="ef0-S0-uja"/>
-                        <outlet property="datetime" destination="rJD-sR-IdU" id="SmS-FA-qv0"/>
                         <outlet property="incomeButton" destination="jX4-Ts-Qnq" id="g3W-5o-1Vi"/>
                         <outlet property="spendingButton" destination="kuc-tu-Wa6" id="lTD-J5-1Eb"/>
                         <outlet property="theCollectionView" destination="Gp6-OH-a9N" id="GcE-8K-p2T"/>
@@ -1396,7 +1394,7 @@
         <image name="pric.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tN3-qX-dtX"/>
+        <segue reference="5h6-rj-dcH"/>
         <segue reference="JBQ-BW-mBi"/>
     </inferredMetricsTieBreakers>
 </document>
