@@ -92,6 +92,9 @@ class DetailController: UIViewController{
         let defaultTimeZoneStr = formatter.string(from: date as Date);
         dateLabel.text = defaultTimeZoneStr
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.tabBarController?.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

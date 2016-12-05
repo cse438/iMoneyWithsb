@@ -140,4 +140,7 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
         self.performSegue(withIdentifier: "HistoryToDetail", sender: nil)
         print("after performing")
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.tabBarController?.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
 }
