@@ -168,16 +168,14 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         // Dispose of any resources that can be recreated.
     }
     
-    
-    @IBAction func saveTouched(_ sender: Any) {
-         print("-----------------------------------")
+    @IBAction func earn(_ sender: Any) {
         let id = (FIRAuth.auth()?.currentUser?.uid)!
         let amnt = amount.text!
         let nt = note.text!
         let latitude = currentLocation.coordinate.latitude
         let longitude = currentLocation.coordinate.longitude
         var imageUrl: String = ""
-         print("-----------------------------------")
+        print("-----------------------------------")
         let date = NSDate()
         var formatter = DateFormatter();
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
@@ -195,13 +193,13 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             myAlert.show()
             return
         }
-
         
-         print("-----------------------------------")
+        
+        
         let blc = Double(selectedAccnt!.balance)
         let earn = Double(amnt)
         let newBlc = blc! + earn!
-
+        
         print("-----------------------------------")
         self.ref.child("Accounts").child(id).child(selectedAccnt!.id).setValue(["owner":selectedAccnt!.owner,"accountNumber":selectedAccnt!.AccountNumber, "balance":String(newBlc)])
         
@@ -212,16 +210,16 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             storageRef.put(uploadData, metadata: nil, completion: {
                 (metadata, error) in
                 print("-----------------------------------")
-       
+                
                 while(imageUrl == ""){
                     
                     imageUrl = (metadata?.downloadURL()?.absoluteString)!
                     
                     print("-----------------------------------")
-
-                      self.ref.child("Earn").child(id).child(self.selectedAccnt!.id).childByAutoId().setValue([ "accountNumber":self.selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr, "locationLatitude": latitude , "locationLongitude": longitude, "imageURL" : imageUrl])
+                    
+                    self.ref.child("Earn").child(id).child(self.selectedAccnt!.id).childByAutoId().setValue([ "accountNumber":self.selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr, "locationLatitude": latitude , "locationLongitude": longitude, "imageURL" : imageUrl])
                     print("-----------------------------------")
-
+                    
                     
                     
                     
@@ -232,9 +230,77 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                     print(error)
                     return
                 }
-               
+                
             })
-        }
+
+    }
+    
+//    @IBAction func saveTouched(_ sender: Any) {
+//         print("-----------------------------------")
+//        let id = (FIRAuth.auth()?.currentUser?.uid)!
+//        let amnt = amount.text!
+//        let nt = note.text!
+//        let latitude = currentLocation.coordinate.latitude
+//        let longitude = currentLocation.coordinate.longitude
+//        var imageUrl: String = ""
+//         print("-----------------------------------")
+//        let date = NSDate()
+//        var formatter = DateFormatter();
+//        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
+//        formatter.timeZone = NSTimeZone.local
+//        let defaultTimeZoneStr = formatter.string(from: date as Date);
+//        
+//        if selectedAccnt == nil || selectedAccnt?.AccountNumber == "" || amnt == "" {
+//            let myAlert = Alert(title: "Sorry", message: "Please don't leave amount empty or leave category and account unselected", target: self)
+//            
+//            myAlert.show()
+//            return
+//        }
+//        if Double(amnt) == nil || Double(amnt)! <= 0 {
+//            let myAlert = Alert(title: "Sorry", message: "Please enter only valid positivie number for amount", target: self)
+//            myAlert.show()
+//            return
+//        }
+//
+//        
+//        
+//        let blc = Double(selectedAccnt!.balance)
+//        let earn = Double(amnt)
+//        let newBlc = blc! + earn!
+//
+//        print("-----------------------------------")
+//        self.ref.child("Accounts").child(id).child(selectedAccnt!.id).setValue(["owner":selectedAccnt!.owner,"accountNumber":selectedAccnt!.AccountNumber, "balance":String(newBlc)])
+//        
+//        
+//        let storageRef = FIRStorage.storage().reference().child("\(id)\(defaultTimeZoneStr).png")
+//        
+//        if let uploadData = UIImagePNGRepresentation(imageDisplay.image!){
+//            storageRef.put(uploadData, metadata: nil, completion: {
+//                (metadata, error) in
+//                print("-----------------------------------")
+//       
+//                while(imageUrl == ""){
+//                    
+//                    imageUrl = (metadata?.downloadURL()?.absoluteString)!
+//                    
+//                    print("-----------------------------------")
+//
+//                      self.ref.child("Earn").child(id).child(self.selectedAccnt!.id).childByAutoId().setValue([ "accountNumber":self.selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr, "locationLatitude": latitude , "locationLongitude": longitude, "imageURL" : imageUrl])
+//                    print("-----------------------------------")
+//
+//                    
+//                    
+//                    
+//                    let myAlert = Alert(title: "Succeeded", message: "Your record has been uploaded", target: self)
+//                    myAlert.show()
+//                }
+//                if error != nil{
+//                    print(error)
+//                    return
+//                }
+//               
+//            })
+//        }
        
 
        
