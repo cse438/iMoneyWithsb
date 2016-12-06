@@ -33,10 +33,14 @@
 		61E28B5A1DE25D3C008C02D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E28B591DE25D3B008C02D2 /* User.swift */; };
 		9B40834D5B8705E39A1A4915 /* Pods_iMoney1_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D23F8045CF666B302AE5D6 /* Pods_iMoney1_0.framework */; };
 		A0F19647BCC1D90DCB6B6A73 /* Pods_iMoney1_0Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09DCE88CB33C6A3002CA685E /* Pods_iMoney1_0Tests.framework */; };
+		A24B658D1DF66D0C003FEBB1 /* 1481016461_vector_65_04.png in Resources */ = {isa = PBXBuildFile; fileRef = A24B658C1DF66D0C003FEBB1 /* 1481016461_vector_65_04.png */; };
+		A24B65911DF67379003FEBB1 /* 1481019463_image.png in Resources */ = {isa = PBXBuildFile; fileRef = A24B65901DF67379003FEBB1 /* 1481019463_image.png */; };
+		A24B65931DF67453003FEBB1 /* 1481019681_Instagram.png in Resources */ = {isa = PBXBuildFile; fileRef = A24B65921DF67453003FEBB1 /* 1481019681_Instagram.png */; };
 		A2682B011DE3AF4F0091102F /* earningController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2682B001DE3AF4F0091102F /* earningController.swift */; };
 		A2682B031DE3C2520091102F /* statisticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2682B021DE3C2520091102F /* statisticsController.swift */; };
 		A2682B051DE4F3490091102F /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = A2682B041DE4F3490091102F /* Camera.png */; };
 		A269C28B1DE521F0004270F6 /* pric.png in Resources */ = {isa = PBXBuildFile; fileRef = A269C28A1DE521F0004270F6 /* pric.png */; };
+		A284F7E11DF6773A0086D0D7 /* imageholder.png in Resources */ = {isa = PBXBuildFile; fileRef = A284F7E01DF6773A0086D0D7 /* imageholder.png */; };
 		A2C4320D1DE25B9B00286E3B /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A2C4320C1DE25B9B00286E3B /* AppIcon.png */; };
 		A2F93E0D1DE202B50088BFB4 /* 8557-200.png in Resources */ = {isa = PBXBuildFile; fileRef = A2F93E0C1DE202B50088BFB4 /* 8557-200.png */; };
 		A2F93E0F1DE2033B0088BFB4 /* 557994-200.png in Resources */ = {isa = PBXBuildFile; fileRef = A2F93E0E1DE2033B0088BFB4 /* 557994-200.png */; };
@@ -99,10 +103,14 @@
 		61E28B591DE25D3B008C02D2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		91D23F8045CF666B302AE5D6 /* Pods_iMoney1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMoney1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92350E0F4EBC8987C9986994 /* Pods_iMoney1_0UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMoney1_0UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A24B658C1DF66D0C003FEBB1 /* 1481016461_vector_65_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1481016461_vector_65_04.png; sourceTree = "<group>"; };
+		A24B65901DF67379003FEBB1 /* 1481019463_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1481019463_image.png; sourceTree = "<group>"; };
+		A24B65921DF67453003FEBB1 /* 1481019681_Instagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1481019681_Instagram.png; sourceTree = "<group>"; };
 		A2682B001DE3AF4F0091102F /* earningController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = earningController.swift; sourceTree = "<group>"; };
 		A2682B021DE3C2520091102F /* statisticsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = statisticsController.swift; sourceTree = "<group>"; };
 		A2682B041DE4F3490091102F /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Camera.png; sourceTree = "<group>"; };
 		A269C28A1DE521F0004270F6 /* pric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pric.png; sourceTree = "<group>"; };
+		A284F7E01DF6773A0086D0D7 /* imageholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageholder.png; sourceTree = "<group>"; };
 		A2C4320C1DE25B9B00286E3B /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
 		A2F93E0C1DE202B50088BFB4 /* 8557-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "8557-200.png"; sourceTree = "<group>"; };
 		A2F93E0E1DE2033B0088BFB4 /* 557994-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "557994-200.png"; sourceTree = "<group>"; };
@@ -170,7 +178,11 @@
 				A2F93E0C1DE202B50088BFB4 /* 8557-200.png */,
 				3D1DA27B1DDFE29A00D0E0E3 /* iMoney1.0.entitlements */,
 				3D1DA2411DDFAE8900D0E0E3 /* AppDelegate.swift */,
+				A284F7E01DF6773A0086D0D7 /* imageholder.png */,
 				35AFBDD71DF3F1E300C41D4D /* Main.storyboard */,
+				A24B65921DF67453003FEBB1 /* 1481019681_Instagram.png */,
+				A24B658C1DF66D0C003FEBB1 /* 1481016461_vector_65_04.png */,
+				A24B65901DF67379003FEBB1 /* 1481019463_image.png */,
 				3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */,
 				61E28B571DE25743008C02D2 /* AccountController.swift */,
 				618A0AA81DE2949100CDFAD9 /* spendingController.swift */,
@@ -373,13 +385,17 @@
 				35AFBDD51DF3F1E300C41D4D /* Main.storyboard in Resources */,
 				A2C4320D1DE25B9B00286E3B /* AppIcon.png in Resources */,
 				35AFBDD21DF3C33100C41D4D /* GoogleService-Info.plist in Resources */,
+				A284F7E11DF6773A0086D0D7 /* imageholder.png in Resources */,
 				A2F93E131DE203880088BFB4 /* 633679-200.png in Resources */,
+				A24B65931DF67453003FEBB1 /* 1481019681_Instagram.png in Resources */,
 				A269C28B1DE521F0004270F6 /* pric.png in Resources */,
 				3D1DA2491DDFAE8900D0E0E3 /* Assets.xcassets in Resources */,
 				35AFBDD41DF3F01900C41D4D /* close@2x.png in Resources */,
 				A2F93E0F1DE2033B0088BFB4 /* 557994-200.png in Resources */,
 				359DE4DD1DE2AE7300EF497F /* Money.png in Resources */,
 				A2F93E0D1DE202B50088BFB4 /* 8557-200.png in Resources */,
+				A24B658D1DF66D0C003FEBB1 /* 1481016461_vector_65_04.png in Resources */,
+				A24B65911DF67379003FEBB1 /* 1481019463_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,7 +733,7 @@
 				DEVELOPMENT_TEAM = T8ZP529MU8;
 				INFOPLIST_FILE = iMoney1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-1204";
+				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-12042";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -733,7 +749,7 @@
 				DEVELOPMENT_TEAM = T8ZP529MU8;
 				INFOPLIST_FILE = iMoney1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-1204";
+				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-12042";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

@@ -318,7 +318,6 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
             let i = indexPath.row
             let account = self.accounts[i]
             
-            cell.theImage.image = accountImage!
             cell.nameLabel.text = account.AccountNumber
             cell.balanceLabel.text = "balance: " + account.balance
             print("cell " + account.AccountNumber + " populated.")

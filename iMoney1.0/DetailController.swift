@@ -73,7 +73,7 @@ class DetailController: UIViewController{
         else { category.text = recordDetail.category
         }
         account.text = recordDetail.account
-        amount.text = String(recordDetail.amount) + "$"
+        amount.text = "$" + String(recordDetail.amount)
         note.text = recordDetail.note
         myAnnotation.title = ""
         self.myAnnotation.coordinate = CLLocationCoordinate2DMake(recordDetail.lat, recordDetail.long)

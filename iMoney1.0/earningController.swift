@@ -68,7 +68,7 @@ class earningController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
+        locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
            
