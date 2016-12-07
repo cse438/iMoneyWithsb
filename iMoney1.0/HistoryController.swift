@@ -30,8 +30,10 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
     var inUseRecords: [Record] = []
     var recordsInDate: [Record] = []
     var formatter: DateFormatter! = nil
+    var calendar: Calendar! = nil
     var minDate: Date = Date()
     var maxDate: Date = Date()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,8 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
         self.formatter = DateFormatter();
         self.formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
         self.formatter.timeZone = NSTimeZone.local
+        self.calendar = Calendar.current
+        self.calendar.timeZone = NSTimeZone.local
         
         for account in accounts {
             let number = account.AccountNumber
@@ -62,9 +66,15 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
         theMinDatePicker.maximumDate = theMaxDatePicker.date
         theMaxDatePicker.minimumDate = theMinDatePicker.date
         theMaxDatePicker.maximumDate = Date()
+        
+        let startOfToday = calendar.startOfDay(for: Date())
+        let lastMinOfToday = calendar.date(byAdding: .minute, value: 1439, to: Date())!
+        let endOfToday = calendar.date(byAdding: .second, value: 59, to: lastMinOfToday)!
+        self.minDate = startOfToday
+        self.maxDate = endOfToday
         recordsInDate = arrayBetweenIndex(array: self.inUseRecords, minDate: self.minDate, maxDate: self.maxDate)
         
-        print("data received, is : ")
+        print("segue performed")
     }
     
     @IBAction func minPickerChanged(_ sender: Any) {
@@ -76,14 +86,18 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
     
     @IBAction func maxPickerChanged(_ sender: Any) {
         theMinDatePicker.maximumDate = theMaxDatePicker.date
-        maxDate = theMaxDatePicker.date
+        let startOfDay = theMaxDatePicker.date
+        var dateAtEnd = calendar.date(byAdding: .minute, value: 1439, to: startOfDay)
+        dateAtEnd = calendar.date(byAdding: .second, value: 59, to: dateAtEnd!)
+        maxDate = dateAtEnd!
         recordsInDate = arrayBetweenIndex(array: self.inUseRecords, minDate: self.minDate, maxDate: self.maxDate)
+        print("maxdate is: "+self.formatter.string(from: maxDate))
         self.theTable.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "HistoryToDetail" {
-            var recordDetail = self.inUseRecords[self.indexSelected]
+            let recordDetail = self.inUseRecords[self.indexSelected]
             let controller = segue.destination as! DetailController
             controller.recordDetail = recordDetail
         }
