@@ -22,7 +22,6 @@ class SettingController: UIViewController,MFMailComposeViewControllerDelegate {
         self.tabBarController?.navigationController?.setNavigationBarHidden(false, animated: false)
         self.userName.text = FIRAuth.auth()?.currentUser?.email!
     }
-    
 
     @IBAction func shareButtonClicked(_ sender: Any) {
         if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter){
@@ -35,7 +34,6 @@ class SettingController: UIViewController,MFMailComposeViewControllerDelegate {
             self.present(alert, animated: true, completion: nil)
         }    }
     
-    
     @IBAction func sendFeedback(_ sender: Any) {
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
@@ -43,9 +41,8 @@ class SettingController: UIViewController,MFMailComposeViewControllerDelegate {
         } else {
             self.showSendMailErrorAlert()
         }
-
-        
     }
+    
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
@@ -53,7 +50,6 @@ class SettingController: UIViewController,MFMailComposeViewControllerDelegate {
         mailComposerVC.setToRecipients(["cse438@gmail.com"])
         mailComposerVC.setSubject("Sending you an in-app e-mail...")
         mailComposerVC.setMessageBody("Write your feedback about this app here. Your suggestions will help to improve this app.", isHTML: false)
-        
         return mailComposerVC
     }
     
@@ -75,7 +71,5 @@ class SettingController: UIViewController,MFMailComposeViewControllerDelegate {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-        
     }
-    
 }

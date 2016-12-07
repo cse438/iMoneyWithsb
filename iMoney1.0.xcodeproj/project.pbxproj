@@ -182,11 +182,7 @@
 				A2F93E0C1DE202B50088BFB4 /* 8557-200.png */,
 				3D1DA27B1DDFE29A00D0E0E3 /* iMoney1.0.entitlements */,
 				3D1DA2411DDFAE8900D0E0E3 /* AppDelegate.swift */,
-				A284F7E01DF6773A0086D0D7 /* imageholder.png */,
 				35AFBDD71DF3F1E300C41D4D /* Main.storyboard */,
-				A24B65921DF67453003FEBB1 /* 1481019681_Instagram.png */,
-				A24B658C1DF66D0C003FEBB1 /* 1481016461_vector_65_04.png */,
-				A24B65901DF67379003FEBB1 /* 1481019463_image.png */,
 				3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */,
 				61E28B571DE25743008C02D2 /* AccountController.swift */,
 				A284F7E21DF7ACC20086D0D7 /* icon-arrow2.jpg */,
@@ -196,15 +192,20 @@
 				359DE4F81DF1475200EF497F /* HistoryController.swift */,
 				35AFBDCD1DF1702C00C41D4D /* DetailController.swift */,
 				A2682B021DE3C2520091102F /* statisticsController.swift */,
+				359DE4F01DF0E1BB00EF497F /* chartController.swift */,
+				A284F7E41DF7C0FF0086D0D7 /* detailMap.swift */,
 				3D9409C41DF11DB900885835 /* SettingController.swift */,
 				3D9409C81DF12D4E00885835 /* resetPassword.swift */,
 				359DE4DA1DE2A56E00EF497F /* AccountCell.swift */,
-				359DE4F01DF0E1BB00EF497F /* chartController.swift */,
+				35AFBDD81DF4231300C41D4D /* Alert.swift */,
 				61E28B591DE25D3B008C02D2 /* User.swift */,
 				61ADE02A1DEA03EC005E37D0 /* Account.swift */,
 				359DE4F11DF0E1BB00EF497F /* Record.swift */,
 				35AFBDCF1DF3B4FC00C41D4D /* ExtensionForTap.swift */,
-				35AFBDD81DF4231300C41D4D /* Alert.swift */,
+				A284F7E01DF6773A0086D0D7 /* imageholder.png */,
+				A24B65921DF67453003FEBB1 /* 1481019681_Instagram.png */,
+				A24B658C1DF66D0C003FEBB1 /* 1481016461_vector_65_04.png */,
+				A24B65901DF67379003FEBB1 /* 1481019463_image.png */,
 				35AFBDD31DF3F01900C41D4D /* close@2x.png */,
 				A269C28A1DE521F0004270F6 /* pric.png */,
 				A2682B041DE4F3490091102F /* Camera.png */,
@@ -217,7 +218,6 @@
 				3D1DA24A1DDFAE8900D0E0E3 /* LaunchScreen.storyboard */,
 				3D1DA24D1DDFAE8900D0E0E3 /* Info.plist */,
 				35AFBDDA1DF79DCE00C41D4D /* GoogleService-Info.plist */,
-				A284F7E41DF7C0FF0086D0D7 /* detailMap.swift */,
 			);
 			path = iMoney1.0;
 			sourceTree = "<group>";
@@ -340,7 +340,7 @@
 				TargetAttributes = {
 					3D1DA23D1DDFAE8900D0E0E3 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = T8ZP529MU8;
+						DevelopmentTeam = CZQZCNS84P;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -738,10 +738,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMoney1.0/iMoney1.0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = T8ZP529MU8;
+				DEVELOPMENT_TEAM = CZQZCNS84P;
 				INFOPLIST_FILE = iMoney1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-xinzhe-1206";
+				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-xinzhe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -754,10 +754,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMoney1.0/iMoney1.0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = T8ZP529MU8;
+				DEVELOPMENT_TEAM = CZQZCNS84P;
 				INFOPLIST_FILE = iMoney1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-xinzhe-1206";
+				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-xinzhe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

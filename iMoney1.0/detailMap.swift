@@ -46,8 +46,6 @@ class detailMap: UIViewController {
             
             
             if records.count != 0 {
-                print("--------------------------------------")
-                
                 for singleRecord in records.values{
                     for oneRecord in singleRecord.values{
                         self.latitudeSet.append(oneRecord["locationLatitude"] as! CLLocationDegrees)
@@ -62,9 +60,6 @@ class detailMap: UIViewController {
                     self.coordinateSet?.append(CLLocationCoordinate2D())
                     self.coordinateSet?[i].latitude = self.latitudeSet[i]
                     self.coordinateSet?[i].longitude = self.longitudeSet[i]
-               
-                    print(self.coordinateSet?[i])
-         
                     i = i + 1
                 }
                 var j: Int = 0

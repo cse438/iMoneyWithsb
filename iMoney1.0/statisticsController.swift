@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 import Firebase
-// add
+// for chart
 import Charts
 
 class statisticsController: UIViewController,MKMapViewDelegate {
@@ -22,7 +22,7 @@ class statisticsController: UIViewController,MKMapViewDelegate {
     var coordinateSet: [CLLocationCoordinate2D]? = []
     var records: [String: [String: Any]]? = [:]
     var titles: [String] = []
-    // add
+    // for chart
     @IBOutlet weak var thePieChart: PieChartView!
     var minDate: Date = Date(timeIntervalSince1970: 0)
     var maxDate: Date = Date()
@@ -48,7 +48,7 @@ class statisticsController: UIViewController,MKMapViewDelegate {
       
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         
-        // add
+        // for chart
         self.minDate = Date(timeIntervalSince1970: 0)
         self.maxDate = Date()
         self.uid = uid
@@ -57,22 +57,9 @@ class statisticsController: UIViewController,MKMapViewDelegate {
         fetchData()
         
         self.ref.child("Records").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            guard snapshot.exists() else {
-                return
-            }
-            
-            
-            //let records = snapshot.value as? [String: [String : Any]] ?? [:]
             let records = snapshot.value as? [String: [String : [String : Any]]] ?? [:]
-          
-             print("*********************")
-             print(records)
-             print("*********************")
             
             if records.count != 0 {
-                print("--------------------------------------")
-                
                 for singleRecord in records.values{
                     for oneRecord in singleRecord.values{
                        self.latitudeSet.append(oneRecord["locationLatitude"] as! CLLocationDegrees)
@@ -87,9 +74,6 @@ class statisticsController: UIViewController,MKMapViewDelegate {
                     self.coordinateSet?.append(CLLocationCoordinate2D())
                     self.coordinateSet?[i].latitude = self.latitudeSet[i]
                     self.coordinateSet?[i].longitude = self.longitudeSet[i]
-                    print("@@@@@@@@@@@@@@@@@@")
-                    print(self.coordinateSet?[i])
-                    print("@@@@@@@@@@@@@@@@@@")
                     i = i + 1
                 }
                 var j: Int = 0
@@ -117,7 +101,6 @@ class statisticsController: UIViewController,MKMapViewDelegate {
         self.curCate = Set(["Clothes", "Food", "Living", "Transport", "Others"])
         self.cateArray = Array(curCate).sorted()
         ref.child("Categories").child(self.uid).setValue(self.cateArray)
-        print("after init")
     }
     
     func fetchCate() {
@@ -135,7 +118,6 @@ class statisticsController: UIViewController,MKMapViewDelegate {
                 return
             }
         })
-        print("categories retreived: \(self.curCate)")
     }
     
     func fetchData() {
@@ -165,9 +147,6 @@ class statisticsController: UIViewController,MKMapViewDelegate {
                     let long = record["locationLongitude"] as? CLLocationDegrees ?? 0
                     let note = record["note"] as? String ?? ""
                     self.recordsForChart.append(Record(id: id, account: account, amount: amount, category: category, date: date, long: long, lat: lat, imageURL: imageURL, note: note))
-                    
-                    print("Record is: \(self.recordsForChart[self.recordsForChart.count - 1])")
-                    
                 }
             }
             self.updatePieChart()
@@ -187,9 +166,7 @@ class statisticsController: UIViewController,MKMapViewDelegate {
             if self.curCate.contains(category) && record.date >= self.minDate && record.date <= self.maxDate {
                 subTotals.updateValue(subTotals[category]! + amount, forKey: category)
             }
-            //            let subTotalsSorted = subTotals.sorted(by: { $0.0 < $1.0 })
         }
-        //        print(subTotalsSorted)
         var dataEntries: [ChartDataEntry] = []
         var xNames: [String] = []
         for i in 0 ... self.cateArray.count - 1 {
@@ -200,24 +177,20 @@ class statisticsController: UIViewController,MKMapViewDelegate {
         }
         let chartDataSet = PieChartDataSet(values: dataEntries, label: "")
         chartDataSet.colors = ChartColorTemplates.material() + [UIColor(red: 192/255.0, green: 192/255.0, blue: 192/255.0, alpha: 1.0)]
-        //        print(ChartColorTemplates.material().count)
         let chartData =  PieChartData(dataSet: chartDataSet)
         chartData.setValueFormatter(self)
         self.thePieChart.data = chartData
         self.thePieChart.usePercentValuesEnabled = true
-        //        self.thePieChart.animate(xAxisDuration: 1, yAxisDuration: 1, easingOption: ChartEasingOption.easeInCirc)
-        //            self.thePieChart.backgroundColor = UIColor.clear
     }
 }
 
-// add
 extension statisticsController: IAxisValueFormatter {
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         return cateArray[Int(value)]
     }
 }
-//
+
 extension statisticsController: IValueFormatter {
     
     func stringForValue(_ value: Double,

@@ -126,16 +126,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         changeRequest?.commitChanges() { (error) in
             
             if let error = error {
-                //                self.showMessagePrompt(error.localizedDescription)
                 return
             }
-            
             // [START basic_write]
             self.ref.child("users").child(user.uid).setValue(["Email": email])
             // [END basic_write]
         }
-        
     }
-
 }
 

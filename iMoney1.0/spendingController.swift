@@ -38,10 +38,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     var cateStr : String = ""
     var selectedAccnt : Account?
-//    var subcategory0 = ["Pants","Dresses","Overcoat",]
     
-    
-
     @IBAction func cameraClicked(_ sender: Any) {
         let picker = UIImagePickerController()
         
@@ -59,9 +56,6 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
   
     }
  
-    
- 
-    
     func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if error == nil {
             let ac = UIAlertController(title: "Saved!", message: "image has been saved to your photos." , preferredStyle: .alert
@@ -74,12 +68,6 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             present(ac, animated:true, completion:nil)
         }
     }
-
-    
-    
-    
-    
-
     
     func determineCurrentLocation()
     {
@@ -90,14 +78,11 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         if CLLocationManager.locationServicesEnabled() {
             
             locationManager.startUpdatingLocation()
-            
-           
             myAnnotation.title = "Current location"
             mapView.addAnnotation(myAnnotation)
         }
-            
-            
-        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         var userLocation = locations[0]
@@ -106,8 +91,6 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         currentLocation = userLocation
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-    
         
         mapView.setRegion(region, animated: true)
         
@@ -217,7 +200,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         var imageUrl: String = ""
         
         let date = NSDate()
-        var formatter = DateFormatter();
+        let formatter = DateFormatter();
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
         formatter.timeZone = NSTimeZone.local
         let defaultTimeZoneStr = formatter.string(from: date as Date);
@@ -232,9 +215,6 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             myAlert.show()
             return
         }
-       
-       
-        
         let blc = Double(selectedAccnt!.balance)
         let spd = Double(amnt)
         let newBlc = blc! - spd!
@@ -242,9 +222,6 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         self.ref.child("Accounts").child(id).child(selectedAccnt!.id).setValue(["owner":selectedAccnt!.owner,"accountNumber":selectedAccnt!.AccountNumber, "balance":String(newBlc)])
         
         let storageRef = FIRStorage.storage().reference().child("\(id)\(defaultTimeZoneStr).png")
-        
-        
-        
         
         if let uploadData = UIImagePNGRepresentation(imageDisplay.image!){
             storageRef.put(uploadData, metadata: nil, completion: {
@@ -254,13 +231,7 @@ class spendingController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
                     
                     imageUrl = (metadata?.downloadURL()?.absoluteString)!
                     
-                 
-                    
                     self.ref.child("Records").child(id).child(self.selectedAccnt!.id).childByAutoId().setValue(["category":self.cateStr, "accountNumber":self.selectedAccnt!.AccountNumber, "amount":amnt, "note": nt, "date": defaultTimeZoneStr,"locationLatitude": latitude , "locationLongitude": longitude, "imageURL" : imageUrl])
-                    
-                    
-                    
-                    
                     let myAlert = Alert(title: "Succeeded", message: "Your record has been uploaded", target: self)
                     myAlert.show()
                 }

@@ -49,11 +49,8 @@ class DetailController: UIViewController{
     }
     
     func downloadImage(url: URL) {
-        print("Download Started")
         getDataFromUrl(url: url) { (data, response, error)  in
             guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
             DispatchQueue.main.async() { () -> Void in
                self.imageDisplay.image = UIImage(data: data)
             }
@@ -62,11 +59,6 @@ class DetailController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        print("------------------------------------")
-        print(recordDetail.imageURL)
-        print("------------------------------------")
-
         if recordDetail.category == "" {
             category.text = "N/A"
         }

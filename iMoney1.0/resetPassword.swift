@@ -35,8 +35,6 @@ class resetPassword: UIViewController{
                 passwordAlert.addAction(dismissAction)
                 self.present(passwordAlert, animated: true, completion: nil)
             }
-
-            
         })
     }
 

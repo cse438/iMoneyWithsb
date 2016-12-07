@@ -13,7 +13,6 @@ import Charts
 
 class chartController: UIViewController {
     
-    //    @IBOutlet weak var theBarChart: BarChartView!
     @IBOutlet weak var thePieChart: PieChartView!
     @IBOutlet weak var theMinDatePicker: UIDatePicker!
     @IBOutlet weak var theMaxDatePicker: UIDatePicker!
@@ -35,8 +34,7 @@ class chartController: UIViewController {
         initCates()
         fetchCate()
         fetchData()
-        //        theBarChart.isHidden = true
-        //below for pick testing
+        
         self.calendar = Calendar.current
         self.calendar.timeZone = NSTimeZone.local
         theMinDatePicker.date = Date()
@@ -79,7 +77,6 @@ class chartController: UIViewController {
         self.curCate = Set(["Clothes", "Food", "Living", "Transport", "Others"])
         self.cateArray = Array(curCate).sorted()
         ref.child("Categories").child(self.currentUser.uid).setValue(self.cateArray)
-        print("after init")
     }
     
     
@@ -98,7 +95,6 @@ class chartController: UIViewController {
                 return
             }
         })
-        print("categories retreived: \(self.curCate)")
     }
     
     
@@ -129,50 +125,12 @@ class chartController: UIViewController {
                     let long = record["locationLongitude"] as? CLLocationDegrees ?? 0
                     let note = record["note"] as? String ?? ""
                     self.records.append(Record(id: id, account: account, amount: amount, category: category, date: date, long: long, lat: lat, imageURL: imageURL, note: note))
-                    
-                    print("Record is: \(self.records[self.records.count - 1])")
-                    
                 }
             }
             self.updatePieChart()
-            //            self.updateBarChart()
         })
         return
     }
-    
-    //    func updateBarChart() {
-    //        // calculation
-    //        var subTotals: [String : Double] = [:]
-    //        for name in cateArray {
-    //            subTotals.updateValue(0, forKey: name)
-    //        }
-    //        self.thePieChart.chartDescription?.text = "Spending Structure"
-    //        for record in records {
-    //            let category = record.category
-    //            let amount = record.amount
-    //            if self.curCate.contains(category) && amount != 0 {
-    //                subTotals.updateValue(subTotals[category]! + amount, forKey: category)
-    //            }
-    //            //            let subTotalsSorted = subTotals.sorted(by: { $0.0 < $1.0 })
-    //        }
-    //
-    //        // feed data to chart
-    //        var dataEntries: [BarChartDataEntry] = []
-    //        for i in 0 ... self.cateArray.count - 1 {
-    //            if subTotals[self.cateArray[i]]! == 0 { continue }
-    //            let dataEntry = BarChartDataEntry(x: Double(i), y: subTotals[self.cateArray[i]]!)
-    //            dataEntries.append(dataEntry)
-    //        }
-    //        print(dataEntries)
-    //        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Spenging in each category")
-    //        let chartData =  BarChartData(dataSet: chartDataSet)
-    //        self.theBarChart.data = chartData
-    //        let xaxis = self.theBarChart.xAxis
-    //        xaxis.labelPosition = .bottom
-    //        xaxis.valueFormatter = self
-    //        self.theBarChart.animate(yAxisDuration: 1)
-    //        //            self.theBarChart.backgroundColor = UIColor.clear
-    //    }
     
     func updatePieChart() {
         var subTotals: [String : Double] = [:]
@@ -186,9 +144,7 @@ class chartController: UIViewController {
             if self.curCate.contains(category) && record.date >= self.minDate && record.date <= self.maxDate {
                 subTotals.updateValue(subTotals[category]! + amount, forKey: category)
             }
-            //            let subTotalsSorted = subTotals.sorted(by: { $0.0 < $1.0 })
         }
-        //        print(subTotalsSorted)
         var dataEntries: [ChartDataEntry] = []
         var xNames: [String] = []
         for i in 0 ... self.cateArray.count - 1 {
@@ -199,39 +155,11 @@ class chartController: UIViewController {
         }
         let chartDataSet = PieChartDataSet(values: dataEntries, label: "")
         chartDataSet.colors = ChartColorTemplates.material() + [UIColor(red: 192/255.0, green: 192/255.0, blue: 192/255.0, alpha: 1.0)]
-//        print(ChartColorTemplates.material().count)
         let chartData =  PieChartData(dataSet: chartDataSet)
         chartData.setValueFormatter(self)
         self.thePieChart.data = chartData
         self.thePieChart.usePercentValuesEnabled = true
-        //        self.thePieChart.animate(xAxisDuration: 1, yAxisDuration: 1, easingOption: ChartEasingOption.easeInCirc)
-        //            self.thePieChart.backgroundColor = UIColor.clear
     }
-    
-    
-    
-    //    func addCate(name: String) {
-    //        let CateUserRef = ref.child("Categories").child(self.currentUser.uid)
-    //        CateUserRef.observeSingleEvent(of: .value, with: { snapshot in
-    //            guard snapshot.exists() else {
-    ////                self.curCate = [name]
-    ////                self.ref.child("Categories").child(self.currentUser.uid).setValue(Array(self.curCate))
-    //                return
-    //            }
-    //            let curCateArray = snapshot.value as? [String] ?? []
-    //            self.curCate = Set(curCateArray)
-    ////            guard self.curCate == [] else {
-    ////                self.curCate = [name]
-    ////                self.ref.child("Categories").child(self.currentUser.uid).setValue(Array(self.curCate))
-    ////                return
-    ////            }
-    //            self.curCate.insert(name)
-    //            print("\(name) added")
-    //            print(self.curCate)
-    //            self.ref.child("Categories").child(self.currentUser.uid).setValue(Array(self.curCate))
-    //        })
-    //    }
-    
     /*
      // MARK: - Navigation
      
@@ -247,13 +175,10 @@ class chartController: UIViewController {
 extension chartController: IAxisValueFormatter {
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        //        let dateFormatter = DateFormatter()
-        //        dateFormatter.dateFormat = “HH:mm.ss”
-        //        return dateFormatter.string(from: Date(timeIntervalSince1970: value))
         return cateArray[Int(value)]
     }
 }
-//
+
 extension chartController: IValueFormatter {
     
     func stringForValue(_ value: Double,

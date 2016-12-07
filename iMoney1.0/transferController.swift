@@ -45,18 +45,13 @@ class transferController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         fetchAccounts()
         
-        print("in view did load")
-        
         let emptyAccnt = Account(id:"", AccountNumber: "", balance : "", owner : "")
         accounts.append(emptyAccnt)
-        
-        print(accounts)
         hideKeyboardWhenTappedAround()
     }
     
     
     func fetchAccounts(){
-        print("strat to query")
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         self.ref.child("Accounts").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             self.acntPickerView1.reloadAllComponents()
@@ -68,13 +63,10 @@ class transferController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             for (accntID, accnt) in accntsDict {
                 let account = Account(id:accntID, AccountNumber: accnt["accountNumber"]!, balance : accnt["balance"]!, owner : accnt["owner"]!)
                 
-                print(account)
                 self.accounts.append(account)
                 self.acntPickerView1.reloadAllComponents()
                 self.acntPickerView2.reloadAllComponents()
             }
-            
-            print("end of query")
         }) // End of observeSingleEvent
     }
     
@@ -107,7 +99,6 @@ class transferController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        print("row:  \(row)")
         if pickerView == acntPickerView1{
             acnt1 = accounts[row]
         }else{
@@ -147,17 +138,10 @@ class transferController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
         formatter.timeZone = NSTimeZone.local
         let defaultTimeZoneStr = formatter.string(from: date as Date);
-
-        
         self.ref.child("Accounts").child(id).child(acnt1!.id).setValue(["owner":acnt1!.owner,"accountNumber":acnt1!.AccountNumber, "balance":String(newAmnt1)])
-        
         self.ref.child("Accounts").child(id).child(acnt2!.id).setValue(["owner":acnt2!.owner,"accountNumber":acnt2!.AccountNumber, "balance":String(newAmnt2)])
         
-        
         self.ref.child("Transfers").child(id).childByAutoId().setValue(["from": acnt1!.AccountNumber, "to": acnt2!.AccountNumber, "amount": String(amnt), "note" : nt, "date": defaultTimeZoneStr])
-        
-
-
     }
     
     

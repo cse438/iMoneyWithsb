@@ -21,7 +21,6 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
     
     var ref: FIRDatabaseReference!
     var currentUser: User!
-//    var accountsDict: [String : [String : String]] = [:]
     var accounts: [Account] = []
     var numberToID: [String : String] = [:]
     var accountImage: UIImage! = UIImage(named: "Money.png")
@@ -75,8 +74,6 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
         
         let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(editPressed))
         self.navigationItem.setRightBarButton(editButton, animated: true)
-//        hideKeyboardWhenTappedAround()
-        
     }
     func editPressed(){
         print("edit pressed!")
@@ -158,27 +155,17 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
                                         print("here is " + email)
                                         print("here is " + id)
                                         self.ref.child("Accounts").child(id).childByAutoId().setValue(["owner":email, "accountNumber":accountNumber.text!, "balance":balance.text!])
-                                        
-                                        
-                                        
         }
-        
-        
-        
         let cancelAction = UIAlertAction(title: "Cancel",
                                          style: .default)
-        
         alert.addTextField { accountNumber in
             accountNumber.placeholder = "Enter your account number"
         }
-        
         alert.addTextField { balance in
             balance.placeholder = "Enter the balance"
         }
-        
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
-        
         present(alert, animated: true, completion: nil)
         
     }
@@ -189,13 +176,10 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         print("currentUser is: \(uid)")
         self.ref.child("Accounts").child(uid).observe(.value, with: { (snapshot) in
-            
-//            guard snapshot.exists() else {
-//                return
-//            }
             var totalBlc = 0.0
             self.accounts = []
             let accountsDict = snapshot.value as? [String : [String : String]] ?? [:]
+            self.numberToID = [:]
             for (accountID, account) in accountsDict {
                 print(accountID + ": " + account["balance"]!)
                 let blcOp = Double(account["balance"] ?? "")
@@ -206,10 +190,7 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
                 let accountOb = Account(id: id, AccountNumber: acountNumber, balance: String(blc), owner: owner)
                 self.accounts.append(accountOb)
                 totalBlc += blc
-//                self.accountRecords.updateValue([], forKey: accountOb.id)
-                
                 let number = accountOb.AccountNumber
-                self.numberToID = [:]
                 if number != "" {
                     self.numberToID.updateValue(accountOb.id, forKey: number)
                 }
@@ -234,9 +215,6 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
         userRecordsRef.observe(.value, with: { snapshot in
             self.spendings = []
             var total = 0.0
-//            guard snapshot.exists() else {
-//                return
-//            }
             let accountDict = snapshot.value as? NSDictionary ?? [:]
             for (accountID, accountValue) in accountDict{
                 let recordDict = accountValue as? [String : [String : Any]] ?? [:]
@@ -254,13 +232,7 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
                     let note = record["note"] as? String ?? ""
                     self.spendings.append(Record(id: id, account: account, amount: amount, category: category, date: date, long: long, lat: lat, imageURL: imageURL, note: note))
                     total += amount
-                    
-//                    print("Spending is: \(self.spendings[self.spendings.count - 1].id)")
                 }
-//                let id = accountID as? String ?? ""
-//                let oldRecords = self.accountRecords[id] ?? []
-//                self.accountRecords.updateValue(self.earnings + self.spendings, forKey: id)
-//                print("\(self.accountRecords[id]) after fetch spending")
             }
             self.spendingButton.setTitle("\(round(total*100)/100)", for: UIControlState.normal)
         })
@@ -272,9 +244,6 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
         let userRecordsRef = self.ref.child("Earn").child(self.currentUser.uid)
         print("earnings cleared")
         userRecordsRef.observe(.value, with: { snapshot in
-//            guard snapshot.exists() else {
-//                return
-//            }
             var total = 0.0
             self.earnings = []
             let accountDict = snapshot.value as? NSDictionary ?? [:]
@@ -294,12 +263,7 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
                     let note = record["note"] as? String ?? ""
                     self.earnings.append(Record(id: id, account: account, amount: amount, category: category, date: date, long: long, lat: lat, imageURL: imageURL, note: note))
                     total += amount
-                    
-//                    print("Earning is: \(self.earnings[self.earnings.count - 1].id)")
                 }
-//                let id = accountID as? String ?? ""
-//                let oldRecords = self.accountRecords[id] ?? []
-//                self.accountRecords.updateValue(self.spendings + self.earnings, forKey: id)
             }
             self.incomeButton.setTitle("\(round(total*100)/100)", for: UIControlState.normal)
         })
@@ -309,8 +273,6 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "dashboardToHistory" {
             if let toCV = segue.destination as? HistoryController {
-//                toCV.spendings = self.spendings
-//                toCV.earnings = self.earnings
                 toCV.inUseRecords = self.inUseRecords
                 toCV.accounts = self.accounts
                 print("data passed")
