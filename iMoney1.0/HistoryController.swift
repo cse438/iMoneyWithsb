@@ -13,9 +13,6 @@ import CoreLocation
 class HistoryController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var theTable: UITableView!
-//    @IBOutlet weak var allButton: UIButton!
-//    @IBOutlet weak var incomeButton: UIButton!
-//    @IBOutlet weak var spendingButton: UIButton!
     @IBOutlet weak var theMinDatePicker: UIDatePicker!
     @IBOutlet weak var theMaxDatePicker: UIDatePicker!
     
@@ -23,12 +20,10 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
     var currentUser: FIRUser!
     var accounts: [Account] = []
     var numberToID: [String : String] = [:]
-//    var spendings: [Record] = []
-//    var earnings: [Record] = []
-//    var allReords: [Record] = []
     var indexSelected: Int = 0
     var inUseRecords: [Record] = []
     var recordsInDate: [Record] = []
+//    var indexToIndex: [Int] = []
     var formatter: DateFormatter! = nil
     var calendar: Calendar! = nil
     var minDate: Date = Date()
@@ -52,6 +47,7 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
                 self.numberToID.updateValue(account.id, forKey: number)
             }
         }
+        
         inUseRecords.sort(by: { $0.date > $1.date})
         theTable.dataSource = self
         theTable.delegate = self
@@ -125,6 +121,7 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
         let date = self.formatter.string(from: self.recordsInDate[i].date)
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = "\(prefix): $\(amount), at \(date)"
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         return cell
     }
     
@@ -142,6 +139,10 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
             let tableName = self.recordsInDate[i].category == "" ? "Earn" : "Records"
             self.ref.child(tableName).child(self.currentUser.uid).child(accountID).child(recordID).removeValue()
             print("\(recordID) deleted")
+            let index = self.inUseRecords.index(where: { $0.id == recordID })
+            if index != nil {
+                self.inUseRecords.remove(at: index!)
+            }
             self.recordsInDate.remove(at: i)
             theTable.deleteRows(at: [indexPath], with: .fade)
         }

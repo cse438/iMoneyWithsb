@@ -68,7 +68,7 @@ class DetailController: UIViewController{
         print("------------------------------------")
 
         if recordDetail.category == "" {
-            category.text = "/"
+            category.text = "N/A"
         }
         else { category.text = recordDetail.category
         }

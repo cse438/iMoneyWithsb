@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import Firebase
+// add
+import Charts
 
 class statisticsController: UIViewController,MKMapViewDelegate {
 
@@ -20,6 +22,14 @@ class statisticsController: UIViewController,MKMapViewDelegate {
     var coordinateSet: [CLLocationCoordinate2D]? = []
     var records: [String: [String: Any]]? = [:]
     var titles: [String] = []
+    // add
+    @IBOutlet weak var thePieChart: PieChartView!
+    var minDate: Date = Date(timeIntervalSince1970: 0)
+    var maxDate: Date = Date()
+    var recordsForChart: [Record] = []
+    var cateArray: [String] = []
+    var curCate: Set<String> = Set<String>()
+    var uid: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +47,15 @@ class statisticsController: UIViewController,MKMapViewDelegate {
         }
       
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        
+        // add
+        self.minDate = Date(timeIntervalSince1970: 0)
+        self.maxDate = Date()
+        self.uid = uid
+        initCates()
+        fetchCate()
+        fetchData()
+        
         self.ref.child("Records").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard snapshot.exists() else {
@@ -93,4 +112,119 @@ class statisticsController: UIViewController,MKMapViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    // add
+    func initCates() {
+        self.curCate = Set(["Clothes", "Food", "Living", "Transport", "Others"])
+        self.cateArray = Array(curCate).sorted()
+        ref.child("Categories").child(self.uid).setValue(self.cateArray)
+        print("after init")
+    }
+    
+    func fetchCate() {
+        let CateUserRef = ref.child("Categories").child(self.uid)
+        CateUserRef.observe(.value, with: { snapshot in
+            guard snapshot.exists() else {
+                // initialize if no category in database
+                self.initCates()
+                return
+            }
+            let curCateArray = snapshot.value as? [String] ?? []
+            self.curCate = Set(curCateArray)
+            guard self.curCate == [] else {
+                self.initCates()
+                return
+            }
+        })
+        print("categories retreived: \(self.curCate)")
+    }
+    
+    func fetchData() {
+        let userRecordsRef = self.ref.child("Records").child(self.uid)
+        let formatter = DateFormatter();
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
+        formatter.timeZone = NSTimeZone.local
+        self.recordsForChart = []
+        
+        userRecordsRef.observe(.value, with: { snapshot in
+            guard snapshot.exists() else {
+                return
+            }
+            let accountDict = snapshot.value as? NSDictionary ?? [:]
+            for (_, accountValue) in accountDict{
+                let recordDict = accountValue as? [String : [String : Any]] ?? [:]
+                for (recordID, record) in recordDict {
+                    let id = recordID
+                    let account = record["accountNumber"] as? String ?? ""
+                    let amountString = record["amount"] as? String ?? ""
+                    let amount = Double(amountString) ?? 0
+                    let category = record["category"] as? String ?? ""
+                    let dateString = record["date"] as? String ?? ""
+                    let date = formatter.date(from: dateString) ?? Date(timeIntervalSince1970: 0)
+                    let imageURL = record["imageURL"] as? String ?? ""
+                    let lat = record["locationLatitude"] as? CLLocationDegrees ?? 0
+                    let long = record["locationLongitude"] as? CLLocationDegrees ?? 0
+                    let note = record["note"] as? String ?? ""
+                    self.recordsForChart.append(Record(id: id, account: account, amount: amount, category: category, date: date, long: long, lat: lat, imageURL: imageURL, note: note))
+                    
+                    print("Record is: \(self.recordsForChart[self.recordsForChart.count - 1])")
+                    
+                }
+            }
+            self.updatePieChart()
+        })
+        return
+    }
+    
+    func updatePieChart() {
+        var subTotals: [String : Double] = [:]
+        for name in cateArray {
+            subTotals.updateValue(0, forKey: name)
+        }
+        self.thePieChart.chartDescription?.text = "Spending Structure"
+        for record in recordsForChart {
+            let category = record.category
+            let amount = record.amount
+            if self.curCate.contains(category) && record.date >= self.minDate && record.date <= self.maxDate {
+                subTotals.updateValue(subTotals[category]! + amount, forKey: category)
+            }
+            //            let subTotalsSorted = subTotals.sorted(by: { $0.0 < $1.0 })
+        }
+        //        print(subTotalsSorted)
+        var dataEntries: [ChartDataEntry] = []
+        var xNames: [String] = []
+        for i in 0 ... self.cateArray.count - 1 {
+            if subTotals[self.cateArray[i]]! == 0 { continue }
+            let dataEntry = PieChartDataEntry(value: subTotals[self.cateArray[i]]!, label: self.cateArray[i])
+            dataEntries.append(dataEntry)
+            xNames.append(self.cateArray[i])
+        }
+        let chartDataSet = PieChartDataSet(values: dataEntries, label: "")
+        chartDataSet.colors = ChartColorTemplates.material() + [UIColor(red: 192/255.0, green: 192/255.0, blue: 192/255.0, alpha: 1.0)]
+        //        print(ChartColorTemplates.material().count)
+        let chartData =  PieChartData(dataSet: chartDataSet)
+        chartData.setValueFormatter(self)
+        self.thePieChart.data = chartData
+        self.thePieChart.usePercentValuesEnabled = true
+        //        self.thePieChart.animate(xAxisDuration: 1, yAxisDuration: 1, easingOption: ChartEasingOption.easeInCirc)
+        //            self.thePieChart.backgroundColor = UIColor.clear
+    }
 }
+
+// add
+extension statisticsController: IAxisValueFormatter {
+    
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return cateArray[Int(value)]
+    }
+}
+//
+extension statisticsController: IValueFormatter {
+    
+    func stringForValue(_ value: Double,
+                        entry: ChartDataEntry,
+                        dataSetIndex: Int,
+                        viewPortHandler: ViewPortHandler?) -> String {
+        return "\(round(100 * value)/100)%"
+    }
+}
+

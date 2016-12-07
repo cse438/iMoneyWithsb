@@ -22,6 +22,7 @@ class chartController: UIViewController {
     var currentUser: FIRUser!
     var minDate: Date = Date()
     var maxDate: Date = Date()
+    var calendar: Calendar! = nil
     var records: [Record] = []
     var cateArray: [String] = []
     var curCate: Set<String> = Set<String>()
@@ -36,6 +37,8 @@ class chartController: UIViewController {
         fetchData()
         //        theBarChart.isHidden = true
         //below for pick testing
+        self.calendar = Calendar.current
+        self.calendar.timeZone = NSTimeZone.local
         theMinDatePicker.date = Date()
         theMaxDatePicker.date = Date()
         theMinDatePicker.datePickerMode = .date
@@ -44,6 +47,12 @@ class chartController: UIViewController {
         theMinDatePicker.maximumDate = theMaxDatePicker.date
         theMaxDatePicker.minimumDate = theMinDatePicker.date
         theMaxDatePicker.maximumDate = Date()
+        let startOfToday = calendar.startOfDay(for: Date())
+        let lastMinOfToday = calendar.date(byAdding: .minute, value: 1439, to: Date())!
+        let endOfToday = calendar.date(byAdding: .second, value: 59, to: lastMinOfToday)!
+        self.minDate = startOfToday
+        self.maxDate = endOfToday
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,15 +68,12 @@ class chartController: UIViewController {
     
     @IBAction func maxPickerChanged(_ sender: Any) {
         theMinDatePicker.maximumDate = theMaxDatePicker.date
-        maxDate = theMaxDatePicker.date
+        let startOfDay = theMaxDatePicker.date
+        var dateAtEnd = calendar.date(byAdding: .minute, value: 1439, to: startOfDay)
+        dateAtEnd = calendar.date(byAdding: .second, value: 59, to: dateAtEnd!)
+        maxDate = dateAtEnd!
         updatePieChart()
     }
-    
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        initCates()
-    //        fetchCate()
-    //        fetchData()
-    //    }
     
     func initCates() {
         self.curCate = Set(["Clothes", "Food", "Living", "Transport", "Others"])
@@ -192,8 +198,7 @@ class chartController: UIViewController {
             xNames.append(self.cateArray[i])
         }
         let chartDataSet = PieChartDataSet(values: dataEntries, label: "")
-        chartDataSet.colors = ChartColorTemplates.pastel()
-//        material()
+        chartDataSet.colors = ChartColorTemplates.material() + [UIColor(red: 192/255.0, green: 192/255.0, blue: 192/255.0, alpha: 1.0)]
 //        print(ChartColorTemplates.material().count)
         let chartData =  PieChartData(dataSet: chartDataSet)
         chartData.setValueFormatter(self)

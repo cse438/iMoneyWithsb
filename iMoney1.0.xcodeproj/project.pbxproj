@@ -41,6 +41,8 @@
 		A2682B051DE4F3490091102F /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = A2682B041DE4F3490091102F /* Camera.png */; };
 		A269C28B1DE521F0004270F6 /* pric.png in Resources */ = {isa = PBXBuildFile; fileRef = A269C28A1DE521F0004270F6 /* pric.png */; };
 		A284F7E11DF6773A0086D0D7 /* imageholder.png in Resources */ = {isa = PBXBuildFile; fileRef = A284F7E01DF6773A0086D0D7 /* imageholder.png */; };
+		A284F7E31DF7ACC20086D0D7 /* icon-arrow2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A284F7E21DF7ACC20086D0D7 /* icon-arrow2.jpg */; };
+		A284F7E51DF7C0FF0086D0D7 /* detailMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284F7E41DF7C0FF0086D0D7 /* detailMap.swift */; };
 		A2C4320D1DE25B9B00286E3B /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A2C4320C1DE25B9B00286E3B /* AppIcon.png */; };
 		A2F93E0D1DE202B50088BFB4 /* 8557-200.png in Resources */ = {isa = PBXBuildFile; fileRef = A2F93E0C1DE202B50088BFB4 /* 8557-200.png */; };
 		A2F93E0F1DE2033B0088BFB4 /* 557994-200.png in Resources */ = {isa = PBXBuildFile; fileRef = A2F93E0E1DE2033B0088BFB4 /* 557994-200.png */; };
@@ -111,6 +113,8 @@
 		A2682B041DE4F3490091102F /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Camera.png; sourceTree = "<group>"; };
 		A269C28A1DE521F0004270F6 /* pric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pric.png; sourceTree = "<group>"; };
 		A284F7E01DF6773A0086D0D7 /* imageholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageholder.png; sourceTree = "<group>"; };
+		A284F7E21DF7ACC20086D0D7 /* icon-arrow2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "icon-arrow2.jpg"; sourceTree = "<group>"; };
+		A284F7E41DF7C0FF0086D0D7 /* detailMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailMap.swift; sourceTree = "<group>"; };
 		A2C4320C1DE25B9B00286E3B /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
 		A2F93E0C1DE202B50088BFB4 /* 8557-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "8557-200.png"; sourceTree = "<group>"; };
 		A2F93E0E1DE2033B0088BFB4 /* 557994-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "557994-200.png"; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 				A24B65901DF67379003FEBB1 /* 1481019463_image.png */,
 				3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */,
 				61E28B571DE25743008C02D2 /* AccountController.swift */,
+				A284F7E21DF7ACC20086D0D7 /* icon-arrow2.jpg */,
 				618A0AA81DE2949100CDFAD9 /* spendingController.swift */,
 				A2682B001DE3AF4F0091102F /* earningController.swift */,
 				3DA5373D1DECC8FF006C5BC1 /* transferController.swift */,
@@ -212,6 +217,7 @@
 				3D1DA24A1DDFAE8900D0E0E3 /* LaunchScreen.storyboard */,
 				3D1DA24D1DDFAE8900D0E0E3 /* Info.plist */,
 				35AFBDDA1DF79DCE00C41D4D /* GoogleService-Info.plist */,
+				A284F7E41DF7C0FF0086D0D7 /* detailMap.swift */,
 			);
 			path = iMoney1.0;
 			sourceTree = "<group>";
@@ -334,7 +340,7 @@
 				TargetAttributes = {
 					3D1DA23D1DDFAE8900D0E0E3 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = CZQZCNS84P;
+						DevelopmentTeam = T8ZP529MU8;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -384,6 +390,7 @@
 				A2682B051DE4F3490091102F /* Camera.png in Resources */,
 				A2F93E111DE203690088BFB4 /* 610387-200.png in Resources */,
 				35AFBDD51DF3F1E300C41D4D /* Main.storyboard in Resources */,
+				A284F7E31DF7ACC20086D0D7 /* icon-arrow2.jpg in Resources */,
 				A2C4320D1DE25B9B00286E3B /* AppIcon.png in Resources */,
 				A284F7E11DF6773A0086D0D7 /* imageholder.png in Resources */,
 				A2F93E131DE203880088BFB4 /* 633679-200.png in Resources */,
@@ -564,6 +571,7 @@
 				61E28B5A1DE25D3C008C02D2 /* User.swift in Sources */,
 				3D9409C91DF12D4E00885835 /* resetPassword.swift in Sources */,
 				359DE4F31DF0E1BB00EF497F /* Record.swift in Sources */,
+				A284F7E51DF7C0FF0086D0D7 /* detailMap.swift in Sources */,
 				359DE4DB1DE2A56E00EF497F /* AccountCell.swift in Sources */,
 				61E28B581DE25743008C02D2 /* AccountController.swift in Sources */,
 				A2682B031DE3C2520091102F /* statisticsController.swift in Sources */,
@@ -730,10 +738,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMoney1.0/iMoney1.0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = CZQZCNS84P;
+				DEVELOPMENT_TEAM = T8ZP529MU8;
 				INFOPLIST_FILE = iMoney1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-xinzhe-1204";
+				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-xinzhe-1206";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -746,10 +754,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMoney1.0/iMoney1.0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = CZQZCNS84P;
+				DEVELOPMENT_TEAM = T8ZP529MU8;
 				INFOPLIST_FILE = iMoney1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-xinzhe-1204";
+				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-xinzhe-1206";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

@@ -209,6 +209,7 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
 //                self.accountRecords.updateValue([], forKey: accountOb.id)
                 
                 let number = accountOb.AccountNumber
+                self.numberToID = [:]
                 if number != "" {
                     self.numberToID.updateValue(accountOb.id, forKey: number)
                 }

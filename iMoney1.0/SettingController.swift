@@ -14,11 +14,15 @@ import Social
 import MessageUI
 
 class SettingController: UIViewController,MFMailComposeViewControllerDelegate {
-    
+    var ref: FIRDatabaseReference!
+
+    @IBOutlet weak var userName: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.userName.text = FIRAuth.auth()?.currentUser?.email!
     }
+    
 
     @IBAction func shareButtonClicked(_ sender: Any) {
         if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter){
