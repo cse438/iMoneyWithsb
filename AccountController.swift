@@ -23,6 +23,7 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
     var currentUser: User!
 //    var accountsDict: [String : [String : String]] = [:]
     var accounts: [Account] = []
+    var numberToID: [String : String] = [:]
     var accountImage: UIImage! = UIImage(named: "Money.png")
     var accountRecords: [String : [Record]] = [:]
     var spendings: [Record] = []
@@ -145,6 +146,11 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
                                             myAlert.show()
                                             return
                                         }
+                                        if self.numberToID[numberString] != nil {
+                                            let myAlert = Alert(title: "Sorry", message: "Account Number Already Exists!", target: self)
+                                            myAlert.show()
+                                            return
+                                        }
                                         
                                         let email = self.currentUser!.email
                                         let id = self.currentUser!.uid
@@ -184,12 +190,12 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
         print("currentUser is: \(uid)")
         self.ref.child("Accounts").child(uid).observe(.value, with: { (snapshot) in
             
-            guard snapshot.exists() else {
-                return
-            }
+//            guard snapshot.exists() else {
+//                return
+//            }
+            var totalBlc = 0.0
             self.accounts = []
             let accountsDict = snapshot.value as? [String : [String : String]] ?? [:]
-            var totalBlc = 0.0
             for (accountID, account) in accountsDict {
                 print(accountID + ": " + account["balance"]!)
                 let blcOp = Double(account["balance"] ?? "")
@@ -201,6 +207,11 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
                 self.accounts.append(accountOb)
                 totalBlc += blc
 //                self.accountRecords.updateValue([], forKey: accountOb.id)
+                
+                let number = accountOb.AccountNumber
+                if number != "" {
+                    self.numberToID.updateValue(accountOb.id, forKey: number)
+                }
                 print("userRecords cleared")
             }
             self.balanceButton.setTitle("\(round(totalBlc*100)/100)", for: UIControlState.normal)
@@ -219,12 +230,12 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
     func fetchSpedingData() {
         print("start fetching spending")
         let userRecordsRef = self.ref.child("Records").child(self.currentUser.uid)
-        var total = 0.0
         userRecordsRef.observe(.value, with: { snapshot in
             self.spendings = []
-            guard snapshot.exists() else {
-                return
-            }
+            var total = 0.0
+//            guard snapshot.exists() else {
+//                return
+//            }
             let accountDict = snapshot.value as? NSDictionary ?? [:]
             for (accountID, accountValue) in accountDict{
                 let recordDict = accountValue as? [String : [String : Any]] ?? [:]
@@ -259,11 +270,11 @@ class AccountController: UIViewController, UICollectionViewDataSource, UICollect
         print("start fetching earning")
         let userRecordsRef = self.ref.child("Earn").child(self.currentUser.uid)
         print("earnings cleared")
-        var total = 0.0
         userRecordsRef.observe(.value, with: { snapshot in
-            guard snapshot.exists() else {
-                return
-            }
+//            guard snapshot.exists() else {
+//                return
+//            }
+            var total = 0.0
             self.earnings = []
             let accountDict = snapshot.value as? NSDictionary ?? [:]
             for (accountID, accountValue) in accountDict{

@@ -14,10 +14,10 @@
 		359DE4F91DF1475200EF497F /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359DE4F81DF1475200EF497F /* HistoryController.swift */; };
 		35AFBDCE1DF1702C00C41D4D /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFBDCD1DF1702C00C41D4D /* DetailController.swift */; };
 		35AFBDD01DF3B4FC00C41D4D /* ExtensionForTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFBDCF1DF3B4FC00C41D4D /* ExtensionForTap.swift */; };
-		35AFBDD21DF3C33100C41D4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35AFBDD11DF3C33100C41D4D /* GoogleService-Info.plist */; };
 		35AFBDD41DF3F01900C41D4D /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35AFBDD31DF3F01900C41D4D /* close@2x.png */; };
 		35AFBDD51DF3F1E300C41D4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35AFBDD71DF3F1E300C41D4D /* Main.storyboard */; };
 		35AFBDD91DF4231300C41D4D /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFBDD81DF4231300C41D4D /* Alert.swift */; };
+		35AFBDDB1DF79DCE00C41D4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35AFBDDA1DF79DCE00C41D4D /* GoogleService-Info.plist */; };
 		3D1DA2421DDFAE8900D0E0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1DA2411DDFAE8900D0E0E3 /* AppDelegate.swift */; };
 		3D1DA2441DDFAE8900D0E0E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1DA2431DDFAE8900D0E0E3 /* ViewController.swift */; };
 		3D1DA2491DDFAE8900D0E0E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D1DA2481DDFAE8900D0E0E3 /* Assets.xcassets */; };
@@ -76,10 +76,10 @@
 		359DE4F81DF1475200EF497F /* HistoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		35AFBDCD1DF1702C00C41D4D /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		35AFBDCF1DF3B4FC00C41D4D /* ExtensionForTap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForTap.swift; sourceTree = "<group>"; };
-		35AFBDD11DF3C33100C41D4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		35AFBDD31DF3F01900C41D4D /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@2x.png"; sourceTree = "<group>"; };
 		35AFBDD61DF3F1E300C41D4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35AFBDD81DF4231300C41D4D /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		35AFBDDA1DF79DCE00C41D4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3ABD51C6B76AA783C9B93F05 /* Pods-iMoney1.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMoney1.0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMoney1.0/Pods-iMoney1.0.debug.xcconfig"; sourceTree = "<group>"; };
 		3D1DA23E1DDFAE8900D0E0E3 /* iMoney1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMoney1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D1DA2411DDFAE8900D0E0E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 				3D1DA2481DDFAE8900D0E0E3 /* Assets.xcassets */,
 				3D1DA24A1DDFAE8900D0E0E3 /* LaunchScreen.storyboard */,
 				3D1DA24D1DDFAE8900D0E0E3 /* Info.plist */,
-				35AFBDD11DF3C33100C41D4D /* GoogleService-Info.plist */,
+				35AFBDDA1DF79DCE00C41D4D /* GoogleService-Info.plist */,
 			);
 			path = iMoney1.0;
 			sourceTree = "<group>";
@@ -334,7 +334,7 @@
 				TargetAttributes = {
 					3D1DA23D1DDFAE8900D0E0E3 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = T8ZP529MU8;
+						DevelopmentTeam = CZQZCNS84P;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -380,11 +380,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D1DA24C1DDFAE8900D0E0E3 /* LaunchScreen.storyboard in Resources */,
+				35AFBDDB1DF79DCE00C41D4D /* GoogleService-Info.plist in Resources */,
 				A2682B051DE4F3490091102F /* Camera.png in Resources */,
 				A2F93E111DE203690088BFB4 /* 610387-200.png in Resources */,
 				35AFBDD51DF3F1E300C41D4D /* Main.storyboard in Resources */,
 				A2C4320D1DE25B9B00286E3B /* AppIcon.png in Resources */,
-				35AFBDD21DF3C33100C41D4D /* GoogleService-Info.plist in Resources */,
 				A284F7E11DF6773A0086D0D7 /* imageholder.png in Resources */,
 				A2F93E131DE203880088BFB4 /* 633679-200.png in Resources */,
 				A24B65931DF67453003FEBB1 /* 1481019681_Instagram.png in Resources */,
@@ -730,10 +730,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMoney1.0/iMoney1.0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = T8ZP529MU8;
+				DEVELOPMENT_TEAM = CZQZCNS84P;
 				INFOPLIST_FILE = iMoney1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-12042";
+				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-xinzhe-1204";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -746,10 +746,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMoney1.0/iMoney1.0.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = T8ZP529MU8;
+				DEVELOPMENT_TEAM = CZQZCNS84P;
 				INFOPLIST_FILE = iMoney1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-12042";
+				PRODUCT_BUNDLE_IDENTIFIER = "whoooo.iMoney1-xinzhe-1204";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
